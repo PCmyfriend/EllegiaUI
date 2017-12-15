@@ -15,4 +15,8 @@ export default defineMessages({
     id: 'app.components.Header.handbooks',
     defaultMessage: 'Handbooks',
   },
+  sign_out: {
+    id: 'app.components.Header.sign_out',
+    defaultMessage: 'Sign out',
+  }
 });
