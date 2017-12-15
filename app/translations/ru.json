@@ -1,4 +1,6 @@
 {
+  "app.components.Header.header": "Эллегия",
+  "app.components.Header.handbooks": "Справочники",
   "app.components.HomePage.header": "Главная",
   "app.components.NotFoundPage.header": "Страница не найдена!"
 }
