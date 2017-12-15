@@ -1,5 +1,8 @@
 {
   "app.components.Header.header": "Эллегия",
+  "app.components.Header.assortment": "Ассортимент",
+  "app.components.Header.orders": "Заказы",
+  "app.components.Header.customers": "Заказчики",
   "app.components.Header.handbooks": "Справочники",
   "app.components.Header.sign_out": "Выйти",
   "app.components.HomePage.header": "Главная",
