@@ -18,6 +18,7 @@ import { Switch, Route } from 'react-router-dom';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
 import HomePage from '../../containers/HomePage/Loadable';
+import HandbooksPage from '../../containers/HandbooksPage/Loadable';
 import NotFoundPage from '../../containers/NotFoundPage/Loadable';
 import Header from '../../components/Header';
 
@@ -26,16 +27,13 @@ export default function App() {
     <MuiThemeProvider>
       <div>
         <Header />
-        <Grid fluid />
-        <Row center="xs">
-          <Col xs={6}>
-            <Switch>
-              <Route exact path="/" component={HomePage} />
-              <Route component={NotFoundPage} />
-            </Switch>
-          </Col>
-        </Row>
-        <Grid />
+        <div className="centered-container">
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/handbooks" component={HandbooksPage} />
+            <Route component={NotFoundPage} />
+          </Switch>
+        </div>
       </div>
     </MuiThemeProvider>
   );

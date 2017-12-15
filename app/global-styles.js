@@ -21,6 +21,11 @@ injectGlobal`
     min-height: 100%;
     min-width: 100%;
   }
+  
+  .centered-container {
+    width: 80%;
+    margin: auto;
+  }
 
   p,
   label {

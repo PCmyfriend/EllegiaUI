@@ -6,5 +6,11 @@
   "app.components.Header.handbooks": "Справочники",
   "app.components.Header.sign_out": "Выйти",
   "app.components.HomePage.header": "Главная",
-  "app.components.NotFoundPage.header": "Страница не найдена!"
+  "app.components.NotFoundPage.header": "Страница не найдена!",
+  "app.components.HandbooksPage.header": "Справочники",
+  "app.components.HandbooksPage.contactType": "Типы контактов",
+  "app.components.HandbooksPage.filmTypes": "Марки пленки",
+  "app.components.HandbooksPage.plasticBagTypes": "Виды пакетов",
+  "app.components.HandbooksPage.filmOptions": "Варианты пленки",
+  "app.components.HandbooksPage.colors": "Цвета"
 }
