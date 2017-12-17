@@ -30,5 +30,5 @@ export default defineMessages({
   colors: {
     id: 'app.components.HandbooksPage.colors',
     defaultMessage: 'Colors',
-  }
+  },
 });

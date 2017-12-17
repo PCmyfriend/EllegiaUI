@@ -15,9 +15,8 @@ import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Switch, Route } from 'react-router-dom';
 
-import { Grid, Row, Col } from 'react-flexbox-grid';
-
 import HomePage from '../../containers/HomePage/Loadable';
+import LoginPage from '../../containers/LoginPage/Loadable';
 import HandbooksPage from '../../containers/HandbooksPage/Loadable';
 import NotFoundPage from '../../containers/NotFoundPage/Loadable';
 import Header from '../../components/Header';
@@ -30,6 +29,7 @@ export default function App() {
         <div className="centered-container">
           <Switch>
             <Route exact path="/" component={HomePage} />
+            <Route path="/login" component={LoginPage} />
             <Route path="/handbooks" component={HandbooksPage} />
             <Route component={NotFoundPage} />
           </Switch>
