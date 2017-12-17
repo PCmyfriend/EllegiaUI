@@ -6,8 +6,8 @@ import {
 } from './constants';
 
 const initialState = fromJS({
-  credentials: false,
-  authPayload: false,
+  credentials: null,
+  authPayload: null,
 });
 
 function userReducer(state = initialState, action) {

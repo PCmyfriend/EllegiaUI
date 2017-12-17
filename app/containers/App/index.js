@@ -15,11 +15,32 @@ import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Switch, Route } from 'react-router-dom';
 
+import { connectedReduxRedirect } from 'redux-auth-wrapper/history4/redirect';
+import { routerActions } from 'react-router-redux';
+import locationHelperBuilder from 'redux-auth-wrapper/history4/locationHelper';
+
 import HomePage from '../../containers/HomePage/Loadable';
 import LoginPage from '../../containers/LoginPage/Loadable';
 import HandbooksPage from '../../containers/HandbooksPage/Loadable';
 import NotFoundPage from '../../containers/NotFoundPage/Loadable';
 import Header from '../../components/Header';
+
+const userIsAuthenticated = connectedReduxRedirect({
+  redirectPath: '/login',
+  authenticatedSelector: (state) => !!(state.get('user') && state.get('user').get('authPayload')),
+  wrapperDisplayName: 'UserIsAuthenticated',
+  redirectAction: routerActions.replace,
+});
+
+const locationHelper = locationHelperBuilder({});
+
+const userIsNotAuthenticated = connectedReduxRedirect({
+  redirectPath: (state, ownProps) => locationHelper.getRedirectQueryParam(ownProps) || '/',
+  allowRedirectBack: false,
+  authenticatedSelector: (state) => !state.get('user') || !state.get('user').get('authPayload'),
+  wrapperDisplayName: 'UserIsNotAuthenticated',
+  redirectAction: routerActions.replace,
+});
 
 export default function App() {
   return (
@@ -28,9 +49,9 @@ export default function App() {
         <Header />
         <div className="centered-container">
           <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/handbooks" component={HandbooksPage} />
+            <Route exact path="/" component={userIsAuthenticated(HomePage)} />
+            <Route path="/login" component={userIsNotAuthenticated(LoginPage)} />
+            <Route path="/handbooks" component={userIsAuthenticated(HandbooksPage)} />
             <Route component={NotFoundPage} />
           </Switch>
         </div>
