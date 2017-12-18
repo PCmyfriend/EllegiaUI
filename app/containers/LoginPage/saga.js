@@ -1,8 +1,9 @@
-import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { all, call, put, select, takeLatest } from 'redux-saga/effects';
 import qs from 'qs';
 
 import { LOGIN_USER } from './constants';
 import { loginUserSuccess } from './actions';
+import { showLoading, hideLoading } from '../../components/Progress/actions';
 
 import { request } from '../../api/ellegiaRequest';
 import IdTokenParser from '../../utils/idTokenParser';
@@ -17,14 +18,16 @@ export function* loginUser() {
   const requestUrl = 'connect/token';
 
   try {
+    yield put(showLoading());
     const authPayload = yield call(
       request().post,
       requestUrl,
       urlEncodedCredentials,
       { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
     authPayload.idTokenInfo = IdTokenParser.parse(authPayload.id_token);
-    yield put(loginUserSuccess(authPayload));
+    yield all([put(loginUserSuccess(authPayload)), put(hideLoading())]);
   } catch (err) {
+    yield put(hideLoading());
     // yield put(loginUserFailure(err));
   }
 }

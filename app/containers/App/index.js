@@ -24,6 +24,7 @@ import LoginPage from '../../containers/LoginPage/Loadable';
 import HandbooksPage from '../../containers/HandbooksPage/Loadable';
 import NotFoundPage from '../../containers/NotFoundPage/Loadable';
 import Header from '../../components/Header';
+import Progress from '../../components/Progress';
 
 const userIsAuthenticated = connectedReduxRedirect({
   redirectPath: '/login',
@@ -47,6 +48,7 @@ export default function App() {
     <MuiThemeProvider>
       <div>
         <Header />
+        <Progress />
         <div className="centered-container">
           <Switch>
             <Route exact path="/" component={userIsAuthenticated(HomePage)} />
