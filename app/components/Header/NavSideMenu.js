@@ -20,7 +20,7 @@ const NavSideMenu = (props) => (
   >
     <MenuItem primaryText={<FormattedMessage {...messages.assortment} />} />
     <MenuItem primaryText={<FormattedMessage {...messages.orders} />} />
-    <MenuItem primaryText={<FormattedMessage {...messages.customers} />} />
+    <MenuItem primaryText={<HeaderLink to="/customers"><FormattedMessage {...messages.customers} /></HeaderLink>} />
     <MenuItem primaryText={<HeaderLink to="/handbooks"><FormattedMessage {...messages.handbooks} /></HeaderLink>} />
     <Divider />
     <MenuItem primaryText={<FormattedMessage {...messages.signOut} />} />

@@ -18,8 +18,20 @@ const makeSelectUserRole = () => createSelector(
   }
 );
 
+const makeSelectToken = () => createSelector(
+  selectUser,
+  (userState) => {
+    if (!userState) {
+      return null;
+    }
+    const authPayload = userState.get('authPayload');
+    return authPayload ? `${authPayload.token_type} ${authPayload.access_token}` : null;
+  }
+);
+
 export {
   selectUser,
   makeSelectCredentials,
   makeSelectUserRole,
+  makeSelectToken,
 };

@@ -14,6 +14,6 @@ export function showError(title = 'Ошибка', message = 'Произошла 
     title,
     message,
     position: 'tr',
-    autoDismiss: 5,
+    autoDismiss: 3,
   });
 }
