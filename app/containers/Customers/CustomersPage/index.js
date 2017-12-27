@@ -1,19 +1,22 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { FormattedMessage } from 'react-intl';
 import { compose } from 'redux';
+import { push } from 'react-router-redux';
 
-import { List, ListItem } from 'material-ui/List';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
-import injectSaga from '../../utils/injectSaga';
-import injectReducer from '../../utils/injectReducer';
+import injectSaga from '../../../utils/injectSaga';
 
-import { loadCustomers } from './actions';
-import { makeSelectCustomers } from './selectors';
+import { loadCustomers } from '../actions';
+import { makeSelectCustomers } from '../selectors';
 import messages from './messages';
-import reducer from './reducer';
 import saga from './saga';
+
+import CustomerList from './CustomersList';
 
 class CustomersPage extends React.PureComponent {
 
@@ -25,10 +28,10 @@ class CustomersPage extends React.PureComponent {
     return (
       <div>
         <h1><FormattedMessage {...messages.header} /></h1>
-        <List>
-          {this.props.customers.map((customer) =>
-            <ListItem primaryText={customer.name} />)}
-        </List>
+        <CustomerList customers={this.props.customers} />
+        <FloatingActionButton onClick={this.props.redirectToAddCustomerPage}>
+          <ContentAdd />
+        </FloatingActionButton >
       </div>
     );
   }
@@ -37,6 +40,7 @@ class CustomersPage extends React.PureComponent {
 CustomersPage.propTypes = {
   customers: PropTypes.object.isRequired,
   loadCustomers: PropTypes.func.isRequired,
+  redirectToAddCustomerPage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -46,16 +50,15 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     loadCustomers: () => dispatch(loadCustomers()),
+    redirectToAddCustomerPage: () => dispatch(push('/customer')),
   };
 }
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'customers', reducer });
 const withSaga = injectSaga({ key: 'customers', saga });
 
 export default compose(
-  withReducer,
   withSaga,
   withConnect
 )(CustomersPage);

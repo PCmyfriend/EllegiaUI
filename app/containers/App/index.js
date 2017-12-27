@@ -22,7 +22,8 @@ import locationHelperBuilder from 'redux-auth-wrapper/history4/locationHelper';
 import HomePage from '../../containers/HomePage/Loadable';
 import LoginPage from '../../containers/LoginPage/Loadable';
 import HandbooksPage from '../../containers/HandbooksPage/Loadable';
-import CustomersPage from '../../containers/CustomersPage/Loadable';
+import CustomersPage from '../../containers/Customers/CustomersPage/Loadable';
+import ManageCustomerPage from '../../containers/Customers/ManageCustomerPage/Loadable';
 import NotFoundPage from '../../containers/NotFoundPage/Loadable';
 import Header from '../../components/Header';
 import Progress from '../../components/Progress';
@@ -58,6 +59,7 @@ export default function App() {
             <Route path="/login" component={userIsNotAuthenticated(LoginPage)} />
             <Route path="/handbooks" component={userIsAuthenticated(HandbooksPage)} />
             <Route path="/customers" component={userIsAuthenticated(CustomersPage)} />
+            <Route path="/customer" component={userIsAuthenticated(ManageCustomerPage)} />
             <Route component={NotFoundPage} />
           </Switch>
         </div>

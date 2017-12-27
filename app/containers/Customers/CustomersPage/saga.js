@@ -1,12 +1,12 @@
 import { all, call, put, select, takeLatest } from 'redux-saga/effects';
 
-import { showLoading, hideLoading } from '../../components/Progress/actions';
-import { showSuccess, showError } from '../../components/NotificationCenter/actions';
-import { apiRequest } from '../../api/ellegiaRequest';
-import { makeSelectToken } from '../LoginPage/selectors';
+import { showLoading, hideLoading } from '../../../components/Progress/actions';
+import { showError } from '../../../components/NotificationCenter/actions';
+import { apiRequest } from '../../../api/ellegiaRequest';
+import { makeSelectToken } from '../../LoginPage/selectors';
 
-import { LOAD_CUSTOMERS } from './constants';
-import { loadCustomersSuccess } from './actions';
+import { LOAD_CUSTOMERS } from '../constants';
+import { loadCustomersSuccess } from '../actions';
 
 export function* loadCustomers() {
   const authHeader = yield select(makeSelectToken());
