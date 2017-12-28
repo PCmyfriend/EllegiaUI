@@ -34,11 +34,7 @@ LoginPage.propTypes = {
 export function mapDispatchToProps(dispatch) {
   return {
     onSubmitForm: (values) => {
-      const credentials = {};
-      Array.from(values.entries()).forEach((e) => {
-        credentials[e[0]] = e[1];
-      });
-      dispatch(loginUser(credentials));
+      dispatch(loginUser(values.toJS()));
     },
   };
 }

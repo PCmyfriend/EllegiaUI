@@ -28,11 +28,7 @@ ManageCustomerPage.propTypes = {
 export function mapDispatchToProps(dispatch) {
   return {
     onSubmitForm: (values) => {
-      const customer = {};
-      Array.from(values.entries()).forEach((e) => {
-        customer[e[0]] = e[1];
-      });
-      customer.id = 0;
+      const customer = Object.assign({}, values.toJS(), { id: 0 });
       dispatch(addCustomer(customer));
     },
   };
