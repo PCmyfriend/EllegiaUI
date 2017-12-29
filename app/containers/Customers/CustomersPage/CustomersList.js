@@ -1,7 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Face from 'material-ui/svg-icons/action/face';
 
 import { List, ListItem } from 'material-ui/List';
+
+const getContactsJsxArray = (contacts = []) =>
+  contacts.map((contact) =>
+    (<ListItem
+      key={contact.get('id')}
+      primaryText={contact.get('name')}
+    />)
+  ).toArray();
 
 const CustomersList = ({ customers }) => (
   <List>
@@ -9,26 +18,11 @@ const CustomersList = ({ customers }) => (
       (<ListItem
         key={customer.get('id')}
         primaryText={customer.get('name')}
-        nestedItems={
-          getContactsJsxArray(customer.get('contacts'))
-        }
+        leftIcon={<Face />}
+        nestedItems={getContactsJsxArray(customer.get('contacts'))}
       />))}
   </List>
 );
-
-function getContactsJsxArray(contacts) {
-  if (!contacts) { return []; }
-
-  const array = [];
-  for (let i = 0; i < contacts.size; i += 1) {
-    const contact = contacts.get(i);
-    array.push(<ListItem
-      key={contact.get('id')}
-      primaryText={contact.get('name')}
-    />);
-  }
-  return array;
-}
 
 CustomersList.propTypes = {
   customers: PropTypes.object.isRequired,
