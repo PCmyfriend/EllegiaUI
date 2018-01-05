@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Face from 'material-ui/svg-icons/action/face';
+import { fromJS } from 'immutable';
 
 import { List, ListItem } from 'material-ui/List';
 
-const getContactsJsxArray = (contacts = []) =>
+const getContactsJsxArray = (contacts = fromJS([])) =>
   contacts.map((contact) =>
     (<ListItem
       key={contact.get('id')}
