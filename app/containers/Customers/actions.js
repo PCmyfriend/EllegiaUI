@@ -3,7 +3,8 @@ import {
   LOAD_CUSTOMERS_SUCCESS,
   ADD_CUSTOMER,
   ADD_CUSTOMER_SUCCESS,
-  ADD_CUSTOMER_FAILURE,
+  ADD_CONTACT,
+  ADD_CONTACT_SUCCESS,
 } from './constants';
 
 export function loadCustomers() {
@@ -33,8 +34,16 @@ export function addCustomerSuccess(customer) {
   };
 }
 
-export function addCustomerFailure() {
+export function addContact(contact) {
   return {
-    type: ADD_CUSTOMER_FAILURE,
+    type: ADD_CONTACT,
+    contact,
+  };
+}
+
+export function addContactSuccess(contact) {
+  return {
+    type: ADD_CONTACT_SUCCESS,
+    contact,
   };
 }

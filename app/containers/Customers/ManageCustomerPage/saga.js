@@ -7,21 +7,19 @@ import { apiRequest } from '../../../api/ellegiaRequest';
 import { makeSelectToken } from '../../LoginPage/selectors';
 
 import { ADD_CUSTOMER } from '../constants';
-import { addCustomerSuccess, addCustomerFailure } from '../actions';
+import { addCustomerSuccess } from '../actions';
 
-import { makeSelectLastCustomer } from '../selectors';
-
-export function* addCustomer() {
+export function* addCustomer(action) {
+  let customer = action.customer;
   const authHeader = yield select(makeSelectToken());
   const requestUrl = 'customers/';
-  const lastCustomer = yield select(makeSelectLastCustomer());
 
   try {
     yield put(showLoading());
-    const customer = yield call(apiRequest(authHeader).post, requestUrl, lastCustomer);
+    customer = yield call(apiRequest(authHeader).post, requestUrl, customer);
     yield all([put(addCustomerSuccess(customer)), put(hideLoading()), put(showSuccess()), put(push('/customers'))]);
   } catch (err) {
-    yield all([put(hideLoading()), put(showError()), put(addCustomerFailure()), put(push('/customers'))]);
+    yield all([put(hideLoading()), put(showError()), put(push('/customers'))]);
   }
 }
 
