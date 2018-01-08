@@ -10,6 +10,7 @@ import languageProviderReducer from 'containers/LanguageProvider/reducer';
 import { reducer as reduxFormReducer } from 'redux-form/immutable';
 import { reducer as notifications } from 'react-notification-system-redux';
 import customers from './containers/Customers/reducer';
+import contactTypes from './containers/ContactTypes/reducer';
 
 /*
  * routeReducer
@@ -49,6 +50,7 @@ export default function createReducer(injectedReducers) {
     form: reduxFormReducer,
     notifications,
     customers,
+    contactTypes,
     ...injectedReducers,
   });
 }
