@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Face from 'material-ui/svg-icons/action/face';
 import { fromJS } from 'immutable';
-import ManageContactPage from '../ManageContactPage';
-
 import { List, ListItem } from 'material-ui/List';
+import ManageContactPage from '../ManageContactPage';
 
 const getContactsJsxArray = (contacts = fromJS([])) =>
   contacts.map((contact) =>

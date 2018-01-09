@@ -11,6 +11,7 @@ import { reducer as reduxFormReducer } from 'redux-form/immutable';
 import { reducer as notifications } from 'react-notification-system-redux';
 import customers from './containers/Customers/reducer';
 import contactTypes from './containers/ContactTypes/reducer';
+import filmTypes from './containers/FilmTypes/reducer';
 
 /*
  * routeReducer
@@ -51,6 +52,7 @@ export default function createReducer(injectedReducers) {
     notifications,
     customers,
     contactTypes,
+    filmTypes,
     ...injectedReducers,
   });
 }

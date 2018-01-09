@@ -12,6 +12,7 @@
   "app.components.LoginPage.userName": "Имя пользователя",
   "app.components.LoginPage.password": "Пароль",
   "app.components.LoginPage.signIn": "Войти",
+  "app.components.FilmTypesPage.header": "Марки пленки",
   "app.components.CustomersPage.header": "Заказчики",
   "app.components.ManageCustomerPage.header": "Форма заказчика",
   "app.components.ManageCustomerPage.customerName": "Имя заказчика",

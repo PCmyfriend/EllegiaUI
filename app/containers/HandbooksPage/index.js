@@ -17,7 +17,7 @@ export default class CommonHandbooksPage extends React.PureComponent { // eslint
         </h1>
         <List>
           <ListItem primaryText={<Link to="#"><FormattedMessage {...messages.contactTypes} /></Link>} leftIcon={<ContentInbox />} />
-          <ListItem primaryText={<Link to="#"><FormattedMessage {...messages.filmTypes} /></Link>} leftIcon={<ActionGrade />} />
+          <ListItem primaryText={<Link to="/filmTypes"><FormattedMessage {...messages.filmTypes} /></Link>} leftIcon={<ActionGrade />} />
           <ListItem primaryText={<Link to="#"><FormattedMessage {...messages.filmOptions} /></Link>} leftIcon={<ContentSend />} />
           <ListItem primaryText={<Link to="#"><FormattedMessage {...messages.plasticBagTypes} /></Link>} leftIcon={<ContentDrafts />} />
           <ListItem primaryText={<Link to="#"><FormattedMessage {...messages.colors} /></Link>} leftIcon={<ContentInbox />} />

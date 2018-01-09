@@ -24,6 +24,7 @@ import LoginPage from '../../containers/LoginPage/Loadable';
 import HandbooksPage from '../../containers/HandbooksPage/Loadable';
 import CustomersPage from '../../containers/Customers/CustomersPage/Loadable';
 import ManageCustomerPage from '../../containers/Customers/ManageCustomerPage/Loadable';
+import FilmTypesPage from '../../containers/FilmTypes/FilmTypesPage/Loadable';
 import NotFoundPage from '../../containers/NotFoundPage/Loadable';
 import Header from '../../components/Header';
 import Progress from '../../components/Progress';
@@ -60,6 +61,7 @@ export default function App() {
             <Route path="/handbooks" component={userIsAuthenticated(HandbooksPage)} />
             <Route path="/customers" component={userIsAuthenticated(CustomersPage)} />
             <Route path="/customer" component={userIsAuthenticated(ManageCustomerPage)} />
+            <Route path="/filmTypes" component={userIsAuthenticated(FilmTypesPage)} />
             <Route component={NotFoundPage} />
           </Switch>
         </div>
