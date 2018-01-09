@@ -23,7 +23,7 @@ const CustomersList = ({ customers }) => (
         leftIcon={<Face />}
         nestedItems={[
           ...getContactsJsxArray(customer.get('contacts')),
-          <ListItem key={-1}><ManageContactPage customerId={customer.get('id')} /></ListItem>
+          <ListItem key={-customer.get('id')}><ManageContactPage customerId={customer.get('id')} /></ListItem>
         ]}
       />))}
   </List>

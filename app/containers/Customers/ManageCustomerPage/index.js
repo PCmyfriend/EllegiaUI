@@ -28,7 +28,7 @@ ManageCustomerPage.propTypes = {
 export function mapDispatchToProps(dispatch) {
   return {
     onSubmitForm: (values) => {
-      const customer = Object.assign({}, values.toJS(), { id: 0 });
+      const customer = Object.assign({}, values.toJS(), { id: 0, contacts: [] });
       dispatch(addCustomer(customer));
     },
   };

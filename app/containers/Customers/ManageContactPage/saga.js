@@ -17,7 +17,7 @@ export function* addContact(action) {
   try {
     yield put(showLoading());
     contact = yield call(apiRequest(authHeader).post, requestUrl, contact);
-    yield all([put(addContactSuccess(contact)), put(hideLoading()), put(push('/customers'))]);
+    yield all([put(addContactSuccess(contact)), put(hideLoading())]);
   } catch (err) {
     yield all([put(hideLoading()), put(showError())]);
   }
