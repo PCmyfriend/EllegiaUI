@@ -10,7 +10,7 @@ const renderFilmTypes = (filmTypes = fromJS([])) => filmTypes.map((filmType) =>
     primaryText={filmType.get('name')}
     nestedItems={renderFilmTypes(filmType.get('children'))}
   />)
-);
+).toArray();
 
 const FilmTypesList = ({ filmTypes }) => (
   <List>
