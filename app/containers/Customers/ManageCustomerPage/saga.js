@@ -6,8 +6,8 @@ import { showSuccess, showError } from '../../../components/NotificationCenter/a
 import { apiRequest } from '../../../api/ellegiaRequest';
 import { makeSelectToken } from '../../LoginPage/selectors';
 
-import { ADD_CUSTOMER } from '../constants';
-import { addCustomerSuccess } from '../actions';
+import { ADD_CUSTOMER, DELETE_CUSTOMER } from '../constants';
+import { addCustomerSuccess, deleteCustomerSuccess } from '../actions';
 
 export function* addCustomer(action) {
   let customer = action.customer;
@@ -23,6 +23,23 @@ export function* addCustomer(action) {
   }
 }
 
+export function* deleteCustomer(action) {
+  let customerId = action.customerId;
+  const authHeader = yield select(makeSelectToken());
+  const requestUrl = `customers/${customerId}`;
+
+  try {
+    yield put(showLoading());
+    yield call(apiRequest(authHeader).delete, requestUrl);
+    yield all([put(deleteCustomerSuccess(customerId)), put(hideLoading()), put(showSuccess())]);
+  } catch (err) {
+    yield all([put(hideLoading()), put(showError())]);
+  }
+}
+
 export default function* customersData() {
-  yield takeLatest(ADD_CUSTOMER, addCustomer);
+  yield [
+    takeLatest(ADD_CUSTOMER, addCustomer),
+    takeLatest(DELETE_CUSTOMER, deleteCustomer),
+  ];
 }

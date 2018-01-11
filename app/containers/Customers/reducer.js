@@ -3,10 +3,19 @@ import { fromJS } from 'immutable';
 import {
   ADD_CUSTOMER_SUCCESS,
   LOAD_CUSTOMERS_SUCCESS,
-  ADD_CONTACT_SUCCESS,
+  ADD_CONTACT_SUCCESS, DELETE_CUSTOMER_SUCCESS, DELETE_CONTACT_SUCCESS,
 } from './constants';
 
 const initialState = fromJS([]);
+
+const getCustomerById = (customers, id) => {
+  for (let i = 0; i < customers.length; ++i) {
+    if (customers[i].id === id) {
+      return customers[i];
+    }
+  }
+  return undefined;
+};
 
 export default function customersReducer(state = initialState, action) {
   switch (action.type) {
@@ -17,15 +26,17 @@ export default function customersReducer(state = initialState, action) {
     case ADD_CONTACT_SUCCESS:
       const contact = action.contact;
       const customers = state.toJS();
-      console.log(contact.customerId);
-      for (let i = 0; i < customers.length; ++i) {
-        console.log(customers[i]);
-        if (customers[i].id === contact.customerId) {
-          customers[i].contacts.push(contact);
-        }
-      }
-      console.log(customers);
+      const customer = getCustomerById(customers, contact.customerId);
+      customer.contacts.push(contact);
       return fromJS(customers);
+    case DELETE_CUSTOMER_SUCCESS:
+      return fromJS([...state.filter((c) => c.get('id') != action.customerId)]);
+    case DELETE_CONTACT_SUCCESS:
+      const contactForDeletion = action.contact.toJS();
+      const customers1 = state.toJS();
+      const customer1 = getCustomerById(customers1, contactForDeletion.customerId);
+      customer1.contacts = (customer1.contacts || []).filter((c) => c.id != contactForDeletion.id);
+      return fromJS(customers1);
     default:
       return state;
   }

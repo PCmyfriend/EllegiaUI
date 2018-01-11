@@ -3,8 +3,12 @@ import {
   LOAD_CUSTOMERS_SUCCESS,
   ADD_CUSTOMER,
   ADD_CUSTOMER_SUCCESS,
+  DELETE_CUSTOMER,
+  DELETE_CUSTOMER_SUCCESS,
   ADD_CONTACT,
   ADD_CONTACT_SUCCESS,
+  DELETE_CONTACT,
+  DELETE_CONTACT_SUCCESS,
 } from './constants';
 
 export function loadCustomers() {
@@ -34,6 +38,20 @@ export function addCustomerSuccess(customer) {
   };
 }
 
+export function deleteCustomer(customerId) {
+  return {
+    type: DELETE_CUSTOMER,
+    customerId,
+  }
+}
+
+export function deleteCustomerSuccess(customerId) {
+  return {
+    type: DELETE_CUSTOMER_SUCCESS,
+    customerId,
+  }
+}
+
 export function addContact(contact) {
   return {
     type: ADD_CONTACT,
@@ -46,4 +64,18 @@ export function addContactSuccess(contact) {
     type: ADD_CONTACT_SUCCESS,
     contact,
   };
+}
+
+export function deleteContact(contactId) {
+  return {
+    type: DELETE_CONTACT,
+    contactId
+  }
+}
+
+export function deleteContactSuccess(contact) {
+  return {
+    type: DELETE_CONTACT_SUCCESS,
+    contact
+  }
 }
