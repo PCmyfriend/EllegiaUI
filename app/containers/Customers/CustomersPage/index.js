@@ -16,7 +16,6 @@ import { makeSelectCustomers } from '../selectors';
 import messages from './messages';
 import saga from './saga';
 import manageCustomerSaga from '../ManageCustomerPage/saga';
-import manageContactSaga from '../ManageContactPage/saga';
 
 import CustomerList from './CustomersList';
 

@@ -42,7 +42,7 @@ export function deleteCustomer(customerId) {
   return {
     type: DELETE_CUSTOMER,
     customerId,
-  }
+  };
 }
 
 export function deleteCustomerSuccess(customerId) {
@@ -69,13 +69,13 @@ export function addContactSuccess(contact) {
 export function deleteContact(contactId) {
   return {
     type: DELETE_CONTACT,
-    contactId
-  }
+    contactId,
+  };
 }
 
 export function deleteContactSuccess(contact) {
   return {
     type: DELETE_CONTACT_SUCCESS,
-    contact
-  }
+    contact,
+  };
 }

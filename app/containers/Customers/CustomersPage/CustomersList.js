@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import Face from 'material-ui/svg-icons/action/face';
 import { fromJS } from 'immutable';
 import { List, ListItem } from 'material-ui/List';
-import ManageContactPage from '../ManageContactPage';
 
 import IconButton from 'material-ui/IconButton';
-import DeleteForeverIcon from 'material-ui/svg-icons/action/delete-forever'
+import DeleteForeverIcon from 'material-ui/svg-icons/action/delete-forever';
 import { grey400 } from 'material-ui/styles/colors';
+
+import ManageContactPage from '../ManageContactPage';
 
 const getContactsJsxArray = (contacts = fromJS([]), onDeleteContactClick) =>
   contacts.map((contact) =>
@@ -17,7 +18,7 @@ const getContactsJsxArray = (contacts = fromJS([]), onDeleteContactClick) =>
         <IconButton
           id={contact.get('id')}
           onClick={onDeleteContactClick}
-          touch={true}>
+          touch>
           <DeleteForeverIcon color={grey400} />
         </IconButton>
       }
@@ -36,7 +37,7 @@ const CustomersList = ({ customers, onCustomerClick, expendedCustomers, onDelete
         rightIconButton={
           <IconButton
             id={customer.get('id')}
-            touch={true}
+            touch
             onClick={onDeleteCustomerClick}>
             <DeleteForeverIcon color={grey400} />
           </IconButton>

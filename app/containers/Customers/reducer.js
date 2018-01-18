@@ -23,20 +23,22 @@ export default function customersReducer(state = initialState, action) {
       return fromJS(action.customers);
     case ADD_CUSTOMER_SUCCESS:
       return fromJS([...state, action.customer]);
-    case ADD_CONTACT_SUCCESS:
+    case ADD_CONTACT_SUCCESS: {
       const contact = action.contact;
       const customers = state.toJS();
       const customer = getCustomerById(customers, contact.customerId);
       customer.contacts.push(contact);
       return fromJS(customers);
+    }
     case DELETE_CUSTOMER_SUCCESS:
       return fromJS([...state.filter((c) => c.get('id') != action.customerId)]);
-    case DELETE_CONTACT_SUCCESS:
+    case DELETE_CONTACT_SUCCESS: {
       const contactForDeletion = action.contact.toJS();
       const customers1 = state.toJS();
       const customer1 = getCustomerById(customers1, contactForDeletion.customerId);
       customer1.contacts = (customer1.contacts || []).filter((c) => c.id != contactForDeletion.id);
       return fromJS(customers1);
+    }
     default:
       return state;
   }
