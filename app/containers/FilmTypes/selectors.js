@@ -10,4 +10,4 @@ const makeSelectFilmTypes = () => createSelector(
 export {
   selectFilmTypes,
   makeSelectFilmTypes,
-}
+};

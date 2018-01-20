@@ -12,6 +12,7 @@ import { reducer as notifications } from 'react-notification-system-redux';
 import customers from './containers/Customers/reducer';
 import contactTypes from './containers/ContactTypes/reducer';
 import filmTypes from './containers/FilmTypes/reducer';
+import makeHandbookReducer from './containers/HandbookMaker/handbookReducerMaker';
 
 /*
  * routeReducer
@@ -53,6 +54,9 @@ export default function createReducer(injectedReducers) {
     customers,
     contactTypes,
     filmTypes,
+    colors: makeHandbookReducer('colors'),
+    plasticBagTypes: makeHandbookReducer('plasticBagTypes'),
+    filmTypeOptions: makeHandbookReducer('filmTypeOptions'),
     ...injectedReducers,
   });
 }

@@ -16,11 +16,10 @@ export default class CommonHandbooksPage extends React.PureComponent { // eslint
           <FormattedMessage {...messages.header} />
         </h1>
         <List>
-          <ListItem primaryText={<Link to="#"><FormattedMessage {...messages.contactTypes} /></Link>} leftIcon={<ContentInbox />} />
           <ListItem primaryText={<Link to="/filmTypes"><FormattedMessage {...messages.filmTypes} /></Link>} leftIcon={<ActionGrade />} />
-          <ListItem primaryText={<Link to="#"><FormattedMessage {...messages.filmOptions} /></Link>} leftIcon={<ContentSend />} />
-          <ListItem primaryText={<Link to="#"><FormattedMessage {...messages.plasticBagTypes} /></Link>} leftIcon={<ContentDrafts />} />
-          <ListItem primaryText={<Link to="#"><FormattedMessage {...messages.colors} /></Link>} leftIcon={<ContentInbox />} />
+          <ListItem primaryText={<Link to="/filmTypeOptions"><FormattedMessage {...messages.filmOptions} /></Link>} leftIcon={<ContentSend />} />
+          <ListItem primaryText={<Link to="/plasticBagTypes"><FormattedMessage {...messages.plasticBagTypes} /></Link>} leftIcon={<ContentDrafts />} />
+          <ListItem primaryText={<Link to="/colors"><FormattedMessage {...messages.colors} /></Link>} leftIcon={<ContentInbox />} />
         </List>
       </div>
     );
