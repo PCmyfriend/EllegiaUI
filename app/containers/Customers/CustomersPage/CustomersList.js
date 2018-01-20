@@ -18,7 +18,8 @@ const getContactsJsxArray = (contacts = fromJS([]), onDeleteContactClick) =>
         <IconButton
           id={contact.get('id')}
           onClick={onDeleteContactClick}
-          touch>
+          touch
+        >
           <DeleteForeverIcon color={grey400} />
         </IconButton>
       }
@@ -38,7 +39,8 @@ const CustomersList = ({ customers, onCustomerClick, expendedCustomers, onDelete
           <IconButton
             id={customer.get('id')}
             touch
-            onClick={onDeleteCustomerClick}>
+            onClick={onDeleteCustomerClick}
+          >
             <DeleteForeverIcon color={grey400} />
           </IconButton>
         }
@@ -47,7 +49,7 @@ const CustomersList = ({ customers, onCustomerClick, expendedCustomers, onDelete
         open={expendedCustomers[customer.get('id')] || false}
         nestedItems={[
           ...getContactsJsxArray(customer.get('contacts'), onDeleteContactClick),
-          <ListItem key={-customer.get('id')}><ManageContactPage customerId={customer.get('id')} /></ListItem>
+          <ListItem key={-customer.get('id')}><ManageContactPage customerId={customer.get('id')} /></ListItem>,
         ]}
       />))}
   </List>

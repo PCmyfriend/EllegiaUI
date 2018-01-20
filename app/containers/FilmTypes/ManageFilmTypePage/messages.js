@@ -3,7 +3,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   header: {
     id: 'app.components.ManageFilmTypePage.header',
-    defaultMessage: 'Customer form',
+    defaultMessage: 'Film type form',
   },
   filmType: {
     id: 'app.components.ManageFilmTypesPage.filmType',
