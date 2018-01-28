@@ -11,7 +11,7 @@ import saga from '../saga';
 import messages from './messages';
 import FilmTypeForm from './FilmTypeForm';
 
-import { makeSelectFilmTypes } from '../selectors';
+import { makeSelectNotRecursiveFilmTypes } from '../selectors';
 
 class ManageFilmTypesPage extends React.PureComponent {
   render() {
@@ -30,7 +30,7 @@ ManageFilmTypesPage.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  filmTypes: makeSelectFilmTypes(),
+  filmTypes: makeSelectNotRecursiveFilmTypes(),
 });
 
 export function mapDispatchToProps(dispatch) {
