@@ -29,5 +29,13 @@
   "app.components.HandbooksPage.filmTypes": "Марки пленки",
   "app.components.HandbooksPage.plasticBagTypes": "Виды пакетов",
   "app.components.HandbooksPage.filmOptions": "Варианты пленки",
-  "app.components.HandbooksPage.colors": "Цвета"
+  "app.components.HandbooksPage.colors": "Цвета",
+  "app.components.ManageHandbookValuePage.header": "Добавить",
+  "app.components.ManageHandbookValuePage.save": "Сохранить",
+  "app.components.ManageHandbookValuePage.colors": "Цвета",
+  "app.components.ManageHandbookValuePage.color": "Цвет",
+  "app.components.ManageHandbookValuePage.plasticBagTypes": "Виды пакетов",
+  "app.components.ManageHandbookValuePage.plasticBagType": "Вид пакета",
+  "app.components.ManageHandbookValuePage.filmTypeOptions": "Варианты пленки",
+  "app.components.ManageHandbookValuePage.filmTypeOption": "Вариант пленки"
 }

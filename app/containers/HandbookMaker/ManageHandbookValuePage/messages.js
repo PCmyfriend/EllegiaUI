@@ -9,4 +9,28 @@ export default defineMessages({
     id: 'app.components.ManageHandbookValuePage.save',
     defaultMessage: 'Save',
   },
+  colors: {
+    id: 'app.components.ManageHandbookValuePage.colors',
+    defaultMessage: 'Colors',
+  },
+  color: {
+    id: 'app.components.ManageHandbookValuePage.color',
+    defaultMessage: 'Color',
+  },
+  plasticBagTypes: {
+    id: 'app.components.ManageHandbookValuePage.plasticBagTypes',
+    defaultMessage: 'Plastic bag types',
+  },
+  plasticBagType: {
+    id: 'app.components.ManageHandbookValuePage.plasticBagType',
+    defaultMessage: 'Plastic bag type',
+  },
+  filmTypeOptions: {
+    id: 'app.components.ManageHandbookValuePage.filmTypeOptions',
+    defaultMessage: 'Film type options',
+  },
+  filmTypeOption: {
+    id: 'app.components.ManageHandbookValuePage.filmTypeOption',
+    defaultMessage: 'Film type option',
+  },
 });

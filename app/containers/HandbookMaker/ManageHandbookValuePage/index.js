@@ -14,7 +14,7 @@ class ManageHandbookValuePage extends React.PureComponent {
   render() {
     return (
       <div>
-        <h1><FormattedMessage {...messages.header} />{` ${this.props.handbookName}`}</h1>
+        <h1><FormattedMessage {...messages.header} />{' '}<FormattedMessage {...messages[this.props.handbookSingularName]} /></h1>
         <HandbookValueForm onSubmit={this.props.onSubmitForm} handbookSingularName={this.props.handbookSingularName} />
       </div>
     );
@@ -22,7 +22,6 @@ class ManageHandbookValuePage extends React.PureComponent {
 }
 
 ManageHandbookValuePage.propTypes = {
-  handbookName: PropTypes.string.isRequired,
   handbookSingularName: PropTypes.string.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
 };

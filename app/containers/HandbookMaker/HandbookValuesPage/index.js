@@ -4,6 +4,7 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import { FormattedMessage } from 'react-intl';
 
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -16,6 +17,7 @@ import { loadHandbookValues, deleteHandbookValue } from '../actions';
 import saga from '../saga';
 
 import HandbookValuesList from './HandbookValuesList';
+import messages from '../ManageHandbookValuePage/messages';
 
 class HandbookValuesPage extends React.PureComponent {
 
@@ -26,7 +28,7 @@ class HandbookValuesPage extends React.PureComponent {
   render() {
     return (
       <div>
-        <h1>{this.props.handbookName}</h1>
+        <h1><FormattedMessage {...messages[this.props.handbookName]} /></h1>
         <HandbookValuesList
           handbookValues={this.props.handbookValues}
           onDeleteHandbookValueClick={this.props.handleDeleteHandbookValueClick}

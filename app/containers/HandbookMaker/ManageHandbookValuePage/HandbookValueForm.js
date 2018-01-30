@@ -25,7 +25,7 @@ const HandbookValueForm = ({ handleSubmit, handbookSingularName }) => (
     <div>
       <FormTextField
         name="name"
-        label={handbookSingularName}
+        label={<FormattedMessage {...messages[handbookSingularName]} />}
       />
     </div>
     <div>
