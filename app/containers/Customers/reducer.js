@@ -9,7 +9,7 @@ import {
 const initialState = fromJS([]);
 
 const getCustomerById = (customers, id) => {
-  for (let i = 0; i < customers.length; ++i) {
+  for (let i = 0; i < customers.length; i += 1) {
     if (customers[i].id === id) {
       return customers[i];
     }
