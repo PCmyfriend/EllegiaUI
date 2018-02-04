@@ -37,5 +37,14 @@
   "app.components.ManageHandbookValuePage.plasticBagTypes": "Виды пакетов",
   "app.components.ManageHandbookValuePage.plasticBagType": "Вид пакета",
   "app.components.ManageHandbookValuePage.filmTypeOptions": "Варианты пленки",
-  "app.components.ManageHandbookValuePage.filmTypeOption": "Вариант пленки"
+  "app.components.ManageHandbookValuePage.filmTypeOption": "Вариант пленки",
+  "app.components.PlasticBagTypes.ManageStandardSize.header": "Форма стандартных размеров",
+  "app.components.PlasticBagTypes.ManageStandardSize.width": "Ширина",
+  "app.components.PlasticBagTypes.ManageStandardSize.height": "Высота",
+  "app.components.PlasticBagTypes.ManageStandardSize.quantityInBag": "Количество в сумке",
+  "app.components.PlasticBagTypes.ManageStandardSize.save": "Сохранить",
+  "app.components.PlasticBagTypes.ManagePlasticBagTypePage.header": "Форма вида пакета",
+  "app.components.PlasticBagTypes.ManagePlasticBagTypePage.name": "Вид пакета",
+  "app.components.PlasticBagTypes.ManagePlasticBagTypePage.save": "Сохранить",
+  "app.components.PlasticBagTypes.PlasticBagTypesPage.header": "Виды пакетов"
 }

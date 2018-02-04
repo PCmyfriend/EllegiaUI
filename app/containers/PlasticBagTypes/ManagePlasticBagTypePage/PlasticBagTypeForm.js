@@ -1,14 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
-import MenuItem from 'material-ui/MenuItem';
 import { reduxForm } from 'redux-form/immutable';
 import { FormattedMessage } from 'react-intl';
 
-import messages from './messages';
-
 import FormTextField from '../../../components/FormTextField';
-import FormSelectField from '../../../components/FormSelectField';
+import messages from './messages';
 
 const validate = (values) => {
   const errors = {};
@@ -23,22 +20,12 @@ const validate = (values) => {
   return errors;
 };
 
-const ContactForm = ({ contactTypes, handleSubmit }) => (
+const HandbookValueForm = ({ handleSubmit }) => (
   <form onSubmit={handleSubmit}>
-    <div>
-      <FormSelectField
-        name="contactTypeId"
-        label={<FormattedMessage {...messages.contactType} />}
-      >
-        {contactTypes.map((ct) =>
-          <MenuItem key={ct.get('id')} value={ct.get('id')} primaryText={ct.get('name')} />
-          )}
-      </FormSelectField>
-    </div>
     <div>
       <FormTextField
         name="name"
-        label={<FormattedMessage {...messages.contact} />}
+        label={<FormattedMessage {...messages.name} />}
       />
     </div>
     <div>
@@ -47,12 +34,11 @@ const ContactForm = ({ contactTypes, handleSubmit }) => (
   </form>
 );
 
-ContactForm.propTypes = {
+HandbookValueForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  contactTypes: PropTypes.object.isRequired,
 };
 
 export default reduxForm({
-  form: 'contactForm',
+  form: 'plasticBagTypeForm',
   validate,
-})(ContactForm);
+})(HandbookValueForm);

@@ -66,9 +66,10 @@ export function addStandardSizeSuccess(standardSize) {
   };
 }
 
-export function deleteStandardSize(standardSizeId) {
+export function deleteStandardSize(plasticBagTypeId, standardSizeId) {
   return {
     type: DELETE_STANDARD_SIZE,
+    plasticBagTypeId,
     standardSizeId,
   };
 }

@@ -32,6 +32,8 @@ import Progress from '../../components/Progress';
 import NotificationsCenter from '../../components/NotificationCenter';
 import HandbookValuesPage from '../../containers/HandbookMaker/HandbookValuesPage/Loadable';
 import ManageHandbookValuePage from '../../containers/HandbookMaker/ManageHandbookValuePage/Loadable';
+import PlasticBagTypesPage from '../../containers/PlasticBagTypes/PlasticBagTypesPage/Loadable';
+import ManagePlasticBagTypePage from '../../containers/PlasticBagTypes/ManagePlasticBagTypePage/Loadable';
 
 const userIsAuthenticated = connectedReduxRedirect({
   redirectPath: '/login',
@@ -78,13 +80,11 @@ export default function App() {
             />
             <Route
               path="/plasticBagTypes"
-              component={userIsAuthenticated(() =>
-                <HandbookValuesPage handbookName={'plasticBagTypes'} handbookSingularName={'plasticBagType'} />)}
+              component={userIsAuthenticated(PlasticBagTypesPage)}
             />
             <Route
               path="/plasticBagType"
-              component={userIsAuthenticated(() =>
-                <ManageHandbookValuePage handbookName={'plasticBagTypes'} handbookSingularName={'plasticBagType'} />)}
+              component={userIsAuthenticated(ManagePlasticBagTypePage)}
             />
             <Route
               path="/filmTypeOptions"

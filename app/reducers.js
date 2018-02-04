@@ -13,6 +13,7 @@ import customers from './containers/Customers/reducer';
 import contactTypes from './containers/ContactTypes/reducer';
 import filmTypes from './containers/FilmTypes/reducer';
 import makeHandbookReducer from './containers/HandbookMaker/handbookReducerMaker';
+import plasticBagTypes from './containers/PlasticBagTypes/reducer';
 
 /*
  * routeReducer
@@ -55,7 +56,7 @@ export default function createReducer(injectedReducers) {
     contactTypes,
     filmTypes,
     colors: makeHandbookReducer('colors'),
-    plasticBagTypes: makeHandbookReducer('plasticBagTypes'),
+    plasticBagTypes,
     filmTypeOptions: makeHandbookReducer('filmTypeOptions'),
     ...injectedReducers,
   });

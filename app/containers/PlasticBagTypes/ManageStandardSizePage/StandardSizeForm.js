@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
-import MenuItem from 'material-ui/MenuItem';
 import { reduxForm } from 'redux-form/immutable';
 import { FormattedMessage } from 'react-intl';
 
 import messages from './messages';
 
 import FormTextField from '../../../components/FormTextField';
-import FormSelectField from '../../../components/FormSelectField';
 
 const validate = (values) => {
   const errors = {};
   const requiredFields = [
-    'name',
+    'heightInCm',
+    'widthInCm',
+    'quantityInBag',
   ];
   requiredFields.forEach((field) => {
     if (!values.get(field)) {
@@ -23,22 +23,24 @@ const validate = (values) => {
   return errors;
 };
 
-const ContactForm = ({ contactTypes, handleSubmit }) => (
+const StandardSizeForm = ({ handleSubmit }) => (
   <form onSubmit={handleSubmit}>
     <div>
-      <FormSelectField
-        name="contactTypeId"
-        label={<FormattedMessage {...messages.contactType} />}
-      >
-        {contactTypes.map((ct) =>
-          <MenuItem key={ct.get('id')} value={ct.get('id')} primaryText={ct.get('name')} />
-          )}
-      </FormSelectField>
+      <FormTextField
+        name="heightInCm"
+        label={<FormattedMessage {...messages.height} />}
+      />
     </div>
     <div>
       <FormTextField
-        name="name"
-        label={<FormattedMessage {...messages.contact} />}
+        name="widthInCm"
+        label={<FormattedMessage {...messages.width} />}
+      />
+    </div>
+    <div>
+      <FormTextField
+        name="quantityInBag"
+        label={<FormattedMessage {...messages.quantityInBag} />}
       />
     </div>
     <div>
@@ -47,12 +49,11 @@ const ContactForm = ({ contactTypes, handleSubmit }) => (
   </form>
 );
 
-ContactForm.propTypes = {
+StandardSizeForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  contactTypes: PropTypes.object.isRequired,
 };
 
 export default reduxForm({
-  form: 'contactForm',
+  form: 'standardSizeForm',
   validate,
-})(ContactForm);
+})(StandardSizeForm);
