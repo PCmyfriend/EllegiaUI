@@ -37,7 +37,7 @@ class CustomersPage extends React.PureComponent {
 
   handleCustomerClick(event) {
     const customerId = event.currentTarget.id;
-    const expandedCustomers = this.state.expandedFilmTypes;
+    const expandedCustomers = this.state.expandedCustomers;
     expandedCustomers[customerId] = !expandedCustomers[customerId];
     this.setState({ expandedCustomers: Object.assign({}, expandedCustomers) });
   }
@@ -51,7 +51,7 @@ class CustomersPage extends React.PureComponent {
           onCustomerClick={this.handleCustomerClick}
           onDeleteCustomerClick={this.props.handleDeleteCustomerClick}
           onDeleteContactClick={this.props.handleDeleteContactClick}
-          expendedCustomers={this.state.expandedFilmTypes}
+          expandedCustomers={this.state.expandedCustomers}
         />
         <FloatingActionButton onClick={this.props.redirectToAddCustomerPage}>
           <ContentAdd />

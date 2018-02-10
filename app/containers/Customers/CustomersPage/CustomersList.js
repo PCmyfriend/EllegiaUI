@@ -28,7 +28,7 @@ const getContactsJsxArray = (contacts = fromJS([]), onDeleteContactClick) =>
     />)
   ).toArray();
 
-const CustomersList = ({ customers, onCustomerClick, expendedCustomers, onDeleteCustomerClick, onDeleteContactClick }) => (
+const CustomersList = ({ customers, onCustomerClick, expandedCustomers, onDeleteCustomerClick, onDeleteContactClick }) => (
   <List>
     {customers.map((customer) =>
       (<ListItem
@@ -46,7 +46,7 @@ const CustomersList = ({ customers, onCustomerClick, expendedCustomers, onDelete
         }
         primaryText={customer.get('name')}
         onClick={onCustomerClick}
-        open={expendedCustomers[customer.get('id')] || false}
+        open={expandedCustomers[customer.get('id')] || false}
         nestedItems={[
           ...getContactsJsxArray(customer.get('contacts'), onDeleteContactClick),
           <ListItem key={-customer.get('id')}><ManageContactPage customerId={customer.get('id')} /></ListItem>,
@@ -58,7 +58,7 @@ const CustomersList = ({ customers, onCustomerClick, expendedCustomers, onDelete
 CustomersList.propTypes = {
   customers: PropTypes.object.isRequired,
   onCustomerClick: PropTypes.func.isRequired,
-  expendedCustomers: PropTypes.object.isRequired,
+  expandedCustomers: PropTypes.object.isRequired,
   onDeleteCustomerClick: PropTypes.func.isRequired,
   onDeleteContactClick: PropTypes.func.isRequired,
 };
