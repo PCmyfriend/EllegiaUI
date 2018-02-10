@@ -15,7 +15,7 @@ const getStandardSizesJsxArray = (standardSizes = fromJS([]), onDeleteStandardSi
       key={standardSize.get('id')}
       rightIconButton={
         <IconButton
-          id={standardSize.get('id')}
+          id={`${standardSize.get('plasticBagTypeId')}-${standardSize.get('id')}`}
           onClick={onDeleteStandardSizeClick}
           touch
         >

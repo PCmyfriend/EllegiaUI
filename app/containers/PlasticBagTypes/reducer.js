@@ -42,7 +42,7 @@ export default function plasticBagTypesReducer(state = initialState, action) {
         plasticBagType = plasticBagTypes[i];
         const standardSizes = [];
         for (let j = 0; j < plasticBagType.standardSizes.length; j += 1) {
-          if (plasticBagType.standardSizes[j].id !== action.standardSizeId) {
+          if (plasticBagType.standardSizes[j].id != action.standardSizeId) {
             standardSizes.push(plasticBagType.standardSizes[j]);
           }
         }

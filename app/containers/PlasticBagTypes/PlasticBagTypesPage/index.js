@@ -77,7 +77,10 @@ function mapDispatchToProps(dispatch) {
     loadPlasticBagTypes: () => dispatch(loadPlasticBagTypes()),
     redirectToAddPlasticBagTypePage: () => dispatch(push('/plasticBagType')),
     handleDeletePlasticBagTypeClick: (event) => dispatch(deletePlasticBagType(event.currentTarget.id)),
-    handleDeleteStandardSizeClick: (event) => dispatch(deleteStandardSize(event.currentTarget.id)),
+    handleDeleteStandardSizeClick: (event) => {
+      const plasticBagTypeAndStandardSizeIds = event.currentTarget.id.split('-');
+      dispatch(deleteStandardSize(plasticBagTypeAndStandardSizeIds[0], plasticBagTypeAndStandardSizeIds[1]));
+    },
   };
 }
 

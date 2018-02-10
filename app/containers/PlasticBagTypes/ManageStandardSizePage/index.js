@@ -14,7 +14,6 @@ class ManageStandardSizePage extends React.PureComponent {
   render() {
     return (
       <div>
-        <h1><FormattedMessage {...messages.header} /></h1>
         <StandardSizeForm onSubmit={this.props.onSubmitForm} />
       </div>
     );
