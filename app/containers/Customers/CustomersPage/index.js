@@ -14,7 +14,7 @@ import injectSaga from '../../../utils/injectSaga';
 import { loadCustomers, deleteCustomer, deleteContact } from '../actions';
 import { makeSelectCustomers } from '../selectors';
 import messages from './messages';
-import saga from './saga';
+import saga from '../saga';
 import manageCustomerSaga from '../ManageCustomerPage/saga';
 
 import CustomerList from './CustomersList';

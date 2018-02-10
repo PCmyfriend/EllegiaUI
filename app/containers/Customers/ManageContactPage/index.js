@@ -4,7 +4,6 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import manageContactSaga from './saga';
 import contactTypesSaga from '../../ContactTypes/saga';
 
 import ContactForm from './ContactForm';
@@ -24,7 +23,11 @@ class ManageContactPage extends React.PureComponent {
   render() {
     return (
       <div>
-        <ContactForm contactTypes={this.props.contactTypes} onSubmit={this.props.onSubmitForm} />
+        <ContactForm
+          form={`contactsForm_${this.props.customerId}`}
+          contactTypes={this.props.contactTypes}
+          onSubmit={this.props.onSubmitForm}
+        />
       </div>
     );
   }
@@ -38,7 +41,7 @@ ManageContactPage.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  contactTypes: makeSelectContactTypes()
+  contactTypes: makeSelectContactTypes(),
 });
 
 export function mapDispatchToProps(dispatch, ownProps) {
@@ -53,11 +56,9 @@ export function mapDispatchToProps(dispatch, ownProps) {
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withManageContactSaga = injectSaga({ key: 'manageContact', saga: manageContactSaga });
 const withContactTypesSaga = injectSaga({ key: 'contactTypes', saga: contactTypesSaga });
 
 export default compose(
-  withManageContactSaga,
   withContactTypesSaga,
   withConnect
 )(ManageContactPage);

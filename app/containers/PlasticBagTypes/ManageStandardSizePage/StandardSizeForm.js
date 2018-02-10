@@ -54,6 +54,5 @@ StandardSizeForm.propTypes = {
 };
 
 export default reduxForm({
-  form: 'standardSizeForm',
   validate,
 })(StandardSizeForm);

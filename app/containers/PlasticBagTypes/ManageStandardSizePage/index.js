@@ -14,7 +14,7 @@ class ManageStandardSizePage extends React.PureComponent {
   render() {
     return (
       <div>
-        <StandardSizeForm onSubmit={this.props.onSubmitForm} />
+        <StandardSizeForm form={`standardSizeForm_${this.props.plasticBagTypeId}`} onSubmit={this.props.onSubmitForm} />
       </div>
     );
   }

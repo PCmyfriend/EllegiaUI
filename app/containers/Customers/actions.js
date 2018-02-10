@@ -49,7 +49,7 @@ export function deleteCustomerSuccess(customerId) {
   return {
     type: DELETE_CUSTOMER_SUCCESS,
     customerId,
-  }
+  };
 }
 
 export function addContact(contact) {

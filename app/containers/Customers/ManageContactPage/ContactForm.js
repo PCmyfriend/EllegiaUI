@@ -53,6 +53,5 @@ ContactForm.propTypes = {
 };
 
 export default reduxForm({
-  form: 'contactForm',
   validate,
 })(ContactForm);
