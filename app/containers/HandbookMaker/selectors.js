@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
 
-const selectHandbookValues = (state, ownProps) => state.get(ownProps.handbookName);
+const selectHandbookValues = (handbookName) => (state) => state.get(handbookName);
 
-const makeSelectHandbookValues = () => createSelector(
-  selectHandbookValues,
+const makeSelectHandbookValues = (handbookName) => createSelector(
+  selectHandbookValues(handbookName),
   (handbookValuesState) => handbookValuesState,
 );
 

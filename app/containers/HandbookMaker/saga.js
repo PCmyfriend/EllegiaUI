@@ -1,4 +1,4 @@
-import { all, call, put, select, takeLatest } from 'redux-saga/effects';
+import { all, call, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 
 import { showLoading, hideLoading } from '../../components/Progress/actions';
@@ -52,7 +52,7 @@ export function* deleteHandbookValue(action) {
 
 export default function* handbookValuesData() {
   yield [
-    takeLatest(LOAD_HANDBOOK_VALUES, loadHandbookValues),
+    takeEvery(LOAD_HANDBOOK_VALUES, loadHandbookValues),
     takeLatest(ADD_HANDBOOK_VALUE, addHandbookValue),
     takeLatest(DELETE_HANDBOOK_VALUE, deleteHandbookValue),
   ];

@@ -14,6 +14,7 @@ import contactTypes from './containers/ContactTypes/reducer';
 import filmTypes from './containers/FilmTypes/reducer';
 import makeHandbookReducer from './containers/HandbookMaker/handbookReducerMaker';
 import plasticBagTypes from './containers/PlasticBagTypes/reducer';
+import orders from './containers/Orders/reducer';
 
 /*
  * routeReducer
@@ -58,6 +59,7 @@ export default function createReducer(injectedReducers) {
     colors: makeHandbookReducer('colors'),
     plasticBagTypes,
     filmTypeOptions: makeHandbookReducer('filmTypeOptions'),
+    orders,
     ...injectedReducers,
   });
 }

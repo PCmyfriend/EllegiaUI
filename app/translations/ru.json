@@ -46,5 +46,18 @@
   "app.components.PlasticBagTypes.ManagePlasticBagTypePage.header": "Форма вида пакета",
   "app.components.PlasticBagTypes.ManagePlasticBagTypePage.name": "Вид пакета",
   "app.components.PlasticBagTypes.ManagePlasticBagTypePage.save": "Сохранить",
-  "app.components.PlasticBagTypes.PlasticBagTypesPage.header": "Виды пакетов"
+  "app.components.PlasticBagTypes.PlasticBagTypesPage.header": "Виды пакетов",
+  "app.components.Orders.ManageOrderPage.header": "Форма заказа",
+  "app.components.Orders.ManageOrderPage.save": "Сохранить",
+  "app.components.Orders.ManageOrderPage.customer": "Заказчик",
+  "app.components.Orders.ManageOrderPage.standardSize": "Стандартный размер",
+  "app.components.Orders.ManageOrderPage.color": "Цвет",
+  "app.components.Orders.ManageOrderPage.filmTypeOption": "Вариант пленки",
+  "app.components.Orders.ManageOrderPage.filmType": "Марка пленки",
+  "app.components.Orders.ManageOrderPage.plasticBagType": "Вид пакета",
+  "app.components.Orders.ManageOrderPage.name": "Наименование",
+  "app.components.Orders.ManageOrderPage.thicknessInMicron": "Толщина в микронах",
+  "app.components.Orders.ManageOrderPage.quantityInKg": "Количество в кг",
+  "app.components.Orders.ManageOrderPage.pricePerKg": "Цена за кг",
+  "app.components.Orders.ManageOrderPage.totalSum": "Общая стоимость"
 }

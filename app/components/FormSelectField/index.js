@@ -16,7 +16,12 @@ class FormSelectField extends React.Component {
         floatingLabelText={label}
         errorText={touched && error}
         {...input}
-        onChange={(event, index, value) => input.onChange(value)}
+        onChange={(event, index, value) => {
+          input.onChange(value);
+          if (this.props.onChange) {
+            this.props.onChange(value);
+          }
+        }}
         children={children}
         {...custom}
       />
@@ -41,6 +46,7 @@ FormSelectField.propTypes = {
     PropTypes.string.isRequired,
     PropTypes.object.isRequired,
   ]),
+  onChange: PropTypes.func,
 };
 
 export default FormSelectField;

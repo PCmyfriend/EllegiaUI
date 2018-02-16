@@ -49,8 +49,8 @@ HandbookValuesPage.propTypes = {
   handleDeleteHandbookValueClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = createStructuredSelector({
-  handbookValues: makeSelectHandbookValues(),
+const mapStateToProps = (state, ownProps) => createStructuredSelector({
+  handbookValues: makeSelectHandbookValues(ownProps.handbookName),
 });
 
 function mapDispatchToProps(dispatch, ownProps) {

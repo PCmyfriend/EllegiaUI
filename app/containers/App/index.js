@@ -34,6 +34,7 @@ import HandbookValuesPage from '../../containers/HandbookMaker/HandbookValuesPag
 import ManageHandbookValuePage from '../../containers/HandbookMaker/ManageHandbookValuePage/Loadable';
 import PlasticBagTypesPage from '../../containers/PlasticBagTypes/PlasticBagTypesPage/Loadable';
 import ManagePlasticBagTypePage from '../../containers/PlasticBagTypes/ManagePlasticBagTypePage/Loadable';
+import ManagaOrderPage from '../../containers/Orders/ManageOrderPage/Loadable';
 
 const userIsAuthenticated = connectedReduxRedirect({
   redirectPath: '/login',
@@ -68,6 +69,7 @@ export default function App() {
             <Route path="/customer" component={userIsAuthenticated(ManageCustomerPage)} />
             <Route path="/filmTypes" component={userIsAuthenticated(FilmTypesPage)} />
             <Route path="/filmType" component={userIsAuthenticated(ManageFilmTypePage)} />
+            <Route path="/order" component={userIsAuthenticated(ManagaOrderPage)} />
             <Route
               path="/colors"
               component={userIsAuthenticated(() =>
