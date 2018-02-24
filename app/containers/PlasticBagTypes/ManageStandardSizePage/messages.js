@@ -5,13 +5,17 @@ export default defineMessages({
     id: 'app.components.PlasticBagTypes.ManageStandardSize.header',
     defaultMessage: 'Standard size form',
   },
-  width: {
-    id: 'app.components.PlasticBagTypes.ManageStandardSize.width',
-    defaultMessage: 'Width',
+  widthInMm: {
+    id: 'app.components.PlasticBagTypes.ManageStandardSize.widthInMm',
+    defaultMessage: 'Width in mm',
   },
-  height: {
-    id: 'app.components.PlasticBagTypes.ManageStandardSize.height',
-    defaultMessage: 'Height',
+  lengthInMm: {
+    id: 'app.components.PlasticBagTypes.ManageStandardSize.lengthInMm',
+    defaultMessage: 'Length in mm',
+  },
+  heightInMm: {
+    id: 'app.components.PlasticBagTypes.ManageStandardSize.heightInMm',
+    defaultMessage: 'Height in mm',
   },
   quantityInBag: {
     id: 'app.components.PlasticBagTypes.ManageStandardSize.quantityInBag',

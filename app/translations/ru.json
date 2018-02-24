@@ -39,8 +39,9 @@
   "app.components.ManageHandbookValuePage.filmTypeOptions": "Варианты пленки",
   "app.components.ManageHandbookValuePage.filmTypeOption": "Вариант пленки",
   "app.components.PlasticBagTypes.ManageStandardSize.header": "Форма стандартных размеров",
-  "app.components.PlasticBagTypes.ManageStandardSize.width": "Ширина",
-  "app.components.PlasticBagTypes.ManageStandardSize.height": "Высота",
+  "app.components.PlasticBagTypes.ManageStandardSize.widthInMm": "Ширина в мм",
+  "app.components.PlasticBagTypes.ManageStandardSize.lengthInMm": "Длина в мм",
+  "app.components.PlasticBagTypes.ManageStandardSize.heightInMm": "Высота в мм",
   "app.components.PlasticBagTypes.ManageStandardSize.quantityInBag": "Количество в сумке",
   "app.components.PlasticBagTypes.ManageStandardSize.save": "Сохранить",
   "app.components.PlasticBagTypes.ManagePlasticBagTypePage.header": "Форма вида пакета",
@@ -59,5 +60,10 @@
   "app.components.Orders.ManageOrderPage.thicknessInMicron": "Толщина в микронах",
   "app.components.Orders.ManageOrderPage.quantityInKg": "Количество в кг",
   "app.components.Orders.ManageOrderPage.pricePerKg": "Цена за кг",
-  "app.components.Orders.ManageOrderPage.totalSum": "Общая стоимость"
+  "app.components.Orders.ManageOrderPage.totalSum": "Общая стоимость",
+  "app.components.Orders.ManageOrderPage.hasCorona": "Корона",
+  "app.components.Orders.ManageOrderPage.widthInMmError": "Погрешность ширины в мм",
+  "app.components.Orders.ManageOrderPage.heightInMmError": "Погрешность высоты в мм",
+  "app.components.Orders.ManageOrderPage.lengthInMmError": "Погрешность длины в мм",
+  "app.components.Orders.ManageOrderPage.thicknessInMicronError": "Погрешность толщины в мк"
 }

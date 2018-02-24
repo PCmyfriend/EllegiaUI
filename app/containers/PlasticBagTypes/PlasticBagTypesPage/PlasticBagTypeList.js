@@ -22,7 +22,7 @@ const getStandardSizesJsxArray = (standardSizes = fromJS([]), onDeleteStandardSi
           <DeleteForeverIcon color={grey400} />
         </IconButton>
       }
-      primaryText={`${standardSize.get('heightInCm')}x${standardSize.get('widthInCm')} cm`}
+      primaryText={`${standardSize.get('name')}`}
     />)
   ).toArray();
 

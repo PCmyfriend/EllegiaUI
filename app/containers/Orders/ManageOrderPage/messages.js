@@ -53,4 +53,24 @@ export default defineMessages({
     id: 'app.components.Orders.ManageOrderPage.plasticBagType',
     defaultMessage: 'Plastic bag type',
   },
+  hasCorona: {
+    id: 'app.components.Orders.ManageOrderPage.hasCorona',
+    defaultMessage: 'Has corona',
+  },
+  widthInMmError: {
+    id: 'app.components.Orders.ManageOrderPage.widthInMmError',
+    defaultMessage: 'Width in mm error',
+  },
+  lengthInMmError: {
+    id: 'app.components.Orders.ManageOrderPage.lengthInMmError',
+    defaultMessage: 'Length in mm error',
+  },
+  heightInMmError: {
+    id: 'app.components.Orders.ManageOrderPage.heightInMmError',
+    defaultMessage: 'Height in mm error',
+  },
+  thicknessInMicronError: {
+    id: 'app.components.Orders.ManageOrderPage.thicknessInMicronError',
+    defaultMessage: 'Thickness in micron error',
+  },
 });

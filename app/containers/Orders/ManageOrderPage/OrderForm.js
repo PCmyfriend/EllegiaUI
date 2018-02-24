@@ -11,6 +11,7 @@ import messages from './messages';
 
 import FormTextField from '../../../components/FormTextField';
 import FormSelectField from '../../../components/FormSelectField';
+import FormCheckboxField from '../../../components/FormCheckboxField';
 
 const validate = (values) => {
   const errors = {};
@@ -25,7 +26,11 @@ const validate = (values) => {
     'quantityInKg',
     'pricePerKg',
     'thicknessInMicron',
+    'thicknessInMicronError',
     'totalSum',
+    'hasCorona',
+    'widthInMmError',
+    'lengthInMmError',
   ];
   requiredFields.forEach((field) => {
     if (!values.get(field)) {
@@ -57,20 +62,20 @@ class OrderForm extends React.PureComponent {
     return (
       <form onSubmit={this.props.handleSubmit}>
         <div>
-          <FormTextField
-            name="name"
-            label={<FormattedMessage {...messages.name} />}
-          />
-        </div>
-        <div>
           <FormSelectField
             name="customerId"
             label={<FormattedMessage {...messages.customer} />}
           >
             {this.props.customers.map((c) =>
               <MenuItem key={c.get('id')} value={c.get('id')} primaryText={c.get('name')} />
-             )}
+            )}
           </FormSelectField>
+        </div>
+        <div>
+          <FormTextField
+            name="name"
+            label={<FormattedMessage {...messages.name} />}
+          />
         </div>
         <div>
           <FormSelectField
@@ -79,6 +84,16 @@ class OrderForm extends React.PureComponent {
           >
             {this.props.filmTypes.map((ft) =>
               <MenuItem key={ft.get('id')} value={ft.get('id')} primaryText={ft.get('name')} />
+            )}
+          </FormSelectField>
+        </div>
+        <div>
+          <FormSelectField
+            name="colorId"
+            label={<FormattedMessage {...messages.color} />}
+          >
+            {this.props.colors.map((c) =>
+              <MenuItem key={c.get('id')} value={c.get('id')} primaryText={c.get('name')} />
             )}
           </FormSelectField>
         </div>
@@ -104,6 +119,42 @@ class OrderForm extends React.PureComponent {
           </FormSelectField>
         </div>
         <div>
+          <FormTextField
+            name="widthInMmError"
+            label={<FormattedMessage {...messages.widthInMmError} />}
+          />
+        </div>
+        <div>
+          <FormTextField
+            name="lengthInMmError"
+            label={<FormattedMessage {...messages.lengthInMmError} />}
+          />
+        </div>
+        <div>
+          <FormTextField
+            name="heightInMmError"
+            label={<FormattedMessage {...messages.heightInMmError} />}
+          />
+        </div>
+        <div>
+          <FormTextField
+            name="thicknessInMicron"
+            label={<FormattedMessage {...messages.thicknessInMicron} />}
+          />
+        </div>
+        <div>
+          <FormTextField
+            name="thicknessInMicronError"
+            label={<FormattedMessage {...messages.thicknessInMicronError} />}
+          />
+        </div>
+        <div>
+          <FormCheckboxField
+            name="hasCorona"
+            label={<FormattedMessage {...messages.hasCorona} />}
+          />
+        </div>
+        <div>
           <FormSelectField
             name="filmTypeOptionId"
             label={<FormattedMessage {...messages.filmTypeOption} />}
@@ -112,22 +163,6 @@ class OrderForm extends React.PureComponent {
               <MenuItem key={fto.get('id')} value={fto.get('id')} primaryText={fto.get('name')} />
             )}
           </FormSelectField>
-        </div>
-        <div>
-          <FormSelectField
-            name="colorId"
-            label={<FormattedMessage {...messages.color} />}
-          >
-            {this.props.colors.map((c) =>
-              <MenuItem key={c.get('id')} value={c.get('id')} primaryText={c.get('name')} />
-            )}
-          </FormSelectField>
-        </div>
-        <div>
-          <FormTextField
-            name="thicknessInMicron"
-            label={<FormattedMessage {...messages.thicknessInMicron} />}
-          />
         </div>
         <div>
           <FormTextField
@@ -139,12 +174,6 @@ class OrderForm extends React.PureComponent {
           <FormTextField
             name="pricePerKg"
             label={<FormattedMessage {...messages.pricePerKg} />}
-          />
-        </div>
-        <div>
-          <FormTextField
-            name="totalSum"
-            label={<FormattedMessage {...messages.totalSum} />}
           />
         </div>
         <div>

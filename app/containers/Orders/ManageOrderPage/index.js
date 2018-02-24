@@ -22,6 +22,7 @@ import { loadFilmTypes } from '../../FilmTypes/actions';
 import { loadHandbookValues } from '../../HandbookMaker/actions';
 import { loadCustomers } from '../../Customers/actions';
 import { loadPlasticBagTypes } from '../../PlasticBagTypes/actions';
+import { addOrder } from '../actions';
 
 import messages from './messages';
 
@@ -80,7 +81,7 @@ const mapStateToProps = createStructuredSelector({
 export function mapDispatchToProps(dispatch) {
   return {
     onSubmitForm: (values) => {
-      console.log(values);
+      dispatch(addOrder(values));
     },
     loadCustomers: () => dispatch(loadCustomers()),
     loadFilmTypes: () => dispatch(loadFilmTypes()),
@@ -96,7 +97,7 @@ const withCustomersSaga = injectSaga({ key: 'customers', saga: customersSaga });
 const withFilmTypesSaga = injectSaga({ key: 'filmTypes', saga: filmTypesSaga });
 const withOrdersSaga = injectSaga({ key: 'orders', saga: ordersSaga });
 const withHandbookSaga = injectSaga({ key: 'handbook', saga: handbooksSaga });
-const withPlasticBagTypesSaga = injectSaga({ key: 'plasticBagTYpes', saga: plasticBagTypesSaga });
+const withPlasticBagTypesSaga = injectSaga({ key: 'plasticBagTypes', saga: plasticBagTypesSaga });
 
 export default compose(
   withOrdersSaga,

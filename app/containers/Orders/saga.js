@@ -25,14 +25,37 @@ export function* loadOrders(action) {
 }
 
 export function* addOrder(action) {
-  let order = action.order;
+  const orderViewModel = action.order.toJS();
   const authHeader = yield select(makeSelectToken());
-  const requestUrl = 'orders';
+  const productTypeRequestUrl = 'productTypes';
+  const orderRequestUrl = 'orders';
+
+  let productType = {
+    name: orderViewModel.name,
+    standardSizeId: orderViewModel.standardSizeId,
+    filmTypeOptionId: orderViewModel.filmTypeOptionId,
+    colorId: orderViewModel.colorId,
+    hasCorona: orderViewModel.hasCorona,
+    thicknessInMicron: orderViewModel.thicknessInMicron,
+    heightInMmError: orderViewModel.heightInMmError,
+    widthInMmError: orderViewModel.widthInMmError,
+    lengthInMmError: orderViewModel.lengthInMmError,
+    thicknessInMicronError: orderViewModel.thicknessInMicronError,
+  };
+
+  let order = {
+    warehouseId: 1,
+    customerId: orderViewModel.customerId,
+    quantityInKg: orderViewModel.quantityInKg,
+    pricePerKg: orderViewModel.pricePerKg,
+  };
 
   try {
     yield put(showLoading());
-    order = yield call(apiRequest(authHeader).post, requestUrl, order);
-    yield all([put(addOrderSuccess(order)), put(hideLoading()), put(showSuccess()), put(push('/orders'))]);
+    productType = yield call(apiRequest(authHeader).post, productTypeRequestUrl, productType);
+    order.productTypeId = productType.id;
+    order = yield call(apiRequest(authHeader).post, orderRequestUrl, order);
+    yield all([put(addOrderSuccess(order)), put(hideLoading()), put(showSuccess()), put(push('/'))]);
   } catch (err) {
     yield all([put(hideLoading()), put(showError())]);
   }

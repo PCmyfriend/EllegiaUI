@@ -11,8 +11,8 @@ import FormTextField from '../../../components/FormTextField';
 const validate = (values) => {
   const errors = {};
   const requiredFields = [
-    'heightInCm',
-    'widthInCm',
+    'widthInMm',
+    'lengthInMm',
     'quantityInBag',
   ];
   requiredFields.forEach((field) => {
@@ -27,14 +27,20 @@ const StandardSizeForm = ({ handleSubmit }) => (
   <form onSubmit={handleSubmit}>
     <div>
       <FormTextField
-        name="heightInCm"
-        label={<FormattedMessage {...messages.height} />}
+        name="widthInMm"
+        label={<FormattedMessage {...messages.widthInMm} />}
       />
     </div>
     <div>
       <FormTextField
-        name="widthInCm"
-        label={<FormattedMessage {...messages.width} />}
+        name="lengthInMm"
+        label={<FormattedMessage {...messages.lengthInMm} />}
+      />
+    </div>
+    <div>
+      <FormTextField
+        name="heightInMm"
+        label={<FormattedMessage {...messages.heightInMm} />}
       />
     </div>
     <div>
