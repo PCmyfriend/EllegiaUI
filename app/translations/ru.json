@@ -65,5 +65,10 @@
   "app.components.Orders.ManageOrderPage.widthInMmError": "Погрешность ширины в мм",
   "app.components.Orders.ManageOrderPage.heightInMmError": "Погрешность высоты в мм",
   "app.components.Orders.ManageOrderPage.lengthInMmError": "Погрешность длины в мм",
-  "app.components.Orders.ManageOrderPage.thicknessInMicronError": "Погрешность толщины в мк"
+  "app.components.Orders.ManageOrderPage.thicknessInMicronError": "Погрешность толщины в мк",
+  "app.components.Orders.OrdersPage.header": "Заказы",
+  "app.components.Orders.OrdersPage.totalPrice": "Итоговая цена",
+  "app.components.Orders.OrdersPage.active": "Активные",
+  "app.components.Orders.OrdersPage.completed": "Завершенные",
+  "app.components.Orders.OrdersPage.released": "Отпущенные"
 }

@@ -1,4 +1,4 @@
-import { all, call, put, select, takeLatest } from 'redux-saga/effects';
+import { all, call, put, select, takeLatest, takeEvery } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 
 import { ADD_ORDER, LOAD_ORDERS, DELETE_ORDER } from './constants';
@@ -18,7 +18,7 @@ export function* loadOrders(action) {
   try {
     yield put(showLoading());
     const orders = yield call(apiRequest(authHeader).get, requestUrl);
-    yield all([put(loadOrdersSuccess(orders)), put(hideLoading())]);
+    yield all([put(loadOrdersSuccess(orderStatus, orders)), put(hideLoading())]);
   } catch (err) {
     yield all([put(hideLoading()), put(showError())]);
   }
@@ -41,6 +41,7 @@ export function* addOrder(action) {
     widthInMmError: orderViewModel.widthInMmError,
     lengthInMmError: orderViewModel.lengthInMmError,
     thicknessInMicronError: orderViewModel.thicknessInMicronError,
+    filmTypeId: orderViewModel.filmTypeId,
   };
 
   let order = {
@@ -76,7 +77,7 @@ export function* deleteOrder(action) {
 }
 export default function* ordersData() {
   yield [
-    takeLatest(LOAD_ORDERS, loadOrders),
+    takeEvery(LOAD_ORDERS, loadOrders),
     takeLatest(ADD_ORDER, addOrder),
     takeLatest(DELETE_ORDER, deleteOrder),
   ];

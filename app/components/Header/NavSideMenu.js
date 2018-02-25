@@ -19,7 +19,7 @@ const NavSideMenu = (props) => (
     anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
   >
     <MenuItem primaryText={<FormattedMessage {...messages.assortment} />} />
-    <MenuItem primaryText={<FormattedMessage {...messages.orders} />} />
+    <MenuItem primaryText={<HeaderLink to="/"><FormattedMessage {...messages.orders} /></HeaderLink>} />
     <MenuItem primaryText={<HeaderLink to="/customers"><FormattedMessage {...messages.customers} /></HeaderLink>} />
     <MenuItem primaryText={<HeaderLink to="/handbooks"><FormattedMessage {...messages.handbooks} /></HeaderLink>} />
     <Divider />

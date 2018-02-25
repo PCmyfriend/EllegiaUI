@@ -8,6 +8,8 @@ import {
 
 const initialState = fromJS({
   active: [],
+  completed: [],
+  released: [],
 });
 
 export default function ordersReducer(state = initialState, action) {

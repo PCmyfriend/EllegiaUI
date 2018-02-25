@@ -11,7 +11,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -19,16 +18,20 @@ import { compose } from 'redux';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
-import messages from './messages';
+import OrdersPage from '../Orders/OrdersPage/Loadable';
 
 class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div>
-        <h1><FormattedMessage {...messages.header} /></h1>
-        <FloatingActionButton onClick={this.props.redirectToAddOrderPage}>
-          <ContentAdd />
-        </FloatingActionButton >
+        <div>
+          <OrdersPage />
+        </div>
+        <div style={{ marginTop: '20px' }}>
+          <FloatingActionButton onClick={this.props.redirectToAddOrderPage}>
+            <ContentAdd />
+          </FloatingActionButton >
+        </div>
       </div>
     );
   }
