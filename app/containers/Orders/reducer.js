@@ -14,12 +14,13 @@ const initialState = fromJS({
 
 export default function ordersReducer(state = initialState, action) {
   switch (action.type) {
-    case ADD_ORDER_SUCCESS:
+    case ADD_ORDER_SUCCESS: {
       return state
-        .set('active', fromJS([...state.active, action.order]));
+        .set('active', fromJS([...state.get('active'), action.order]));
+    }
     case DELETE_ORDER_SUCCESS:
       return state
-        .set('active', fromJS([...state.active.filter((o) => o.get('id') == action.orderId)]));
+        .set('active', fromJS([...state.get('active').filter((o) => o.get('id') == action.orderId)]));
     case LOAD_ORDERS_SUCCESS:
       return state
         .set(action.orderStatus, fromJS([...action.orders]));
