@@ -21,4 +21,16 @@ export default defineMessages({
     id: 'app.components.Orders.OrdersPage.released',
     defaultMessage: 'Released',
   },
+  print: {
+    id: 'app.components.Orders.OrdersPage.print',
+    defaultMessage: 'Print',
+  },
+  delete: {
+    id: 'app.components.Orders.OrdersPage.delete',
+    defaultMessage: 'Delete',
+  },
+  actions: {
+    id: 'app.components.Orders.OrdersPage.actions',
+    defaultMessage: 'Actions',
+  },
 });

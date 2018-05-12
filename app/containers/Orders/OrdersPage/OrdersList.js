@@ -16,7 +16,7 @@ const tableCellStyle = {
 
 const columnWidth = 210;
 
-const OrdersList = ({ orders }) => (
+const OrdersList = ({ orders, handlePreviewOrderPrintingVersionClick }) => (
   <Table bodyStyle={{ overflow: 'visible' }}>
     <TableHeader
       adjustForCheckbox={false}
@@ -38,6 +38,7 @@ const OrdersList = ({ orders }) => (
         <TableHeaderColumn width={columnWidth} style={tableCellStyle}><FormattedMessage {...orderFormMessages.quantityInKg} /></TableHeaderColumn>
         <TableHeaderColumn width={columnWidth} style={tableCellStyle}><FormattedMessage {...orderFormMessages.pricePerKg} /></TableHeaderColumn>
         <TableHeaderColumn width={columnWidth} style={tableCellStyle}><FormattedMessage {...orderMessages.totalPrice} /></TableHeaderColumn>
+        <TableHeaderColumn width={columnWidth} style={tableCellStyle}><FormattedMessage {...orderMessages.actions} /></TableHeaderColumn>
       </TableRow>
     </TableHeader>
     <TableBody
@@ -49,6 +50,7 @@ const OrdersList = ({ orders }) => (
           order={order}
           columnWidth={columnWidth}
           tableCellStyle={tableCellStyle}
+          handlePreviewOrderPrintingVersionClick={handlePreviewOrderPrintingVersionClick}
         />)
       )}
     </TableBody>
@@ -57,6 +59,7 @@ const OrdersList = ({ orders }) => (
 
 OrdersList.propTypes = {
   orders: PropTypes.object.isRequired,
+  handlePreviewOrderPrintingVersionClick: PropTypes.func.isRequired,
 };
 
 export default OrdersList;

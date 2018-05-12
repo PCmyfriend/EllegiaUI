@@ -24,7 +24,7 @@ export function* addCustomer(action) {
 }
 
 export function* deleteCustomer(action) {
-  let customerId = action.customerId;
+  const customerId = action.customerId;
   const authHeader = yield select(makeSelectToken());
   const requestUrl = `customers/${customerId}`;
 

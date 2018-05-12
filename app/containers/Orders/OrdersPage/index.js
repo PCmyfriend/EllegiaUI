@@ -17,14 +17,27 @@ import { makeSelectOrdersByStatus } from '../selectors';
 import { loadOrders } from '../actions';
 import { ACTIVE, COMPLETED, RELEASED } from '../orderStatuses';
 
+import { openRemoteFile } from '../../../api/ellegiaRemoteFileOpener';
+import { makeSelectToken } from '../../LoginPage/selectors';
+
 import OrdersList from './OrdersList';
 
 class OrdersPage extends React.PureComponent {
+
+  constructor(context, props) {
+    super(context, props);
+
+    this.handlePreviewOrderPrintingVersion = this.handlePreviewOrderPrintingVersion.bind(this);
+  }
 
   componentDidMount() {
     this.props.loadOrders(ACTIVE);
     this.props.loadOrders(COMPLETED);
     this.props.loadOrders(RELEASED);
+  }
+
+  handlePreviewOrderPrintingVersion(orderId) {
+    openRemoteFile(this.props.authHeader, `orders/${orderId}/printingVersion`);
   }
 
   render() {
@@ -36,19 +49,28 @@ class OrdersPage extends React.PureComponent {
             icon={<Assignment />}
             label={<FormattedMessage {...messages.active} />}
           >
-            <OrdersList orders={this.props.activeOrders} />
+            <OrdersList
+              orders={this.props.activeOrders}
+              handlePreviewOrderPrintingVersionClick={this.handlePreviewOrderPrintingVersion}
+            />
           </Tab>
           <Tab
             icon={<AssignmentTurnedIn />}
             label={<FormattedMessage {...messages.completed} />}
           >
-            <OrdersList orders={this.props.completedOrders} />
+            <OrdersList
+              orders={this.props.completedOrders}
+              handlePreviewOrderPrintingVersionClick={this.handlePreviewOrderPrintingVersion}
+            />
           </Tab>
           <Tab
             icon={<FlightTakeOff />}
             label={<FormattedMessage {...messages.released} />}
           >
-            <OrdersList orders={this.props.releaseOrders} />
+            <OrdersList
+              orders={this.props.releaseOrders}
+              handlePreviewOrderPrintingVersionClick={this.handlePreviewOrderPrintingVersion}
+            />
           </Tab>
         </Tabs>
       </div>
@@ -61,12 +83,14 @@ OrdersPage.propTypes = {
   completedOrders: PropTypes.object.isRequired,
   releaseOrders: PropTypes.object.isRequired,
   loadOrders: PropTypes.func.isRequired,
+  authHeader: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   activeOrders: makeSelectOrdersByStatus(ACTIVE),
   completedOrders: makeSelectOrdersByStatus(COMPLETED),
   releaseOrders: makeSelectOrdersByStatus(RELEASED),
+  authHeader: makeSelectToken(),
 });
 
 function mapDispatchToProps(dispatch) {
