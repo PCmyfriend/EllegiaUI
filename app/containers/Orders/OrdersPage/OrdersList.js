@@ -16,7 +16,7 @@ const tableCellStyle = {
 
 const columnWidth = 210;
 
-const OrdersList = ({ orders, handlePreviewOrderPrintingVersionClick }) => (
+const OrdersList = ({ orders, handlePreviewOrderPrintingVersionClick, handleDeleteOrderClick }) => (
   <Table bodyStyle={{ overflow: 'visible' }}>
     <TableHeader
       adjustForCheckbox={false}
@@ -51,6 +51,7 @@ const OrdersList = ({ orders, handlePreviewOrderPrintingVersionClick }) => (
           columnWidth={columnWidth}
           tableCellStyle={tableCellStyle}
           handlePreviewOrderPrintingVersionClick={handlePreviewOrderPrintingVersionClick}
+          handleDeleteOrderClick={handleDeleteOrderClick}
         />)
       )}
     </TableBody>
@@ -60,6 +61,7 @@ const OrdersList = ({ orders, handlePreviewOrderPrintingVersionClick }) => (
 OrdersList.propTypes = {
   orders: PropTypes.object.isRequired,
   handlePreviewOrderPrintingVersionClick: PropTypes.func.isRequired,
+  handleDeleteOrderClick: PropTypes.func.isRequired,
 };
 
 export default OrdersList;

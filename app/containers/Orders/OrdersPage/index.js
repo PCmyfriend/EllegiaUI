@@ -14,7 +14,7 @@ import injectSaga from '../../../utils/injectSaga';
 import saga from '../saga';
 import messages from './messages';
 import { makeSelectOrdersByStatus } from '../selectors';
-import { loadOrders } from '../actions';
+import { loadOrders, deleteOrder } from '../actions';
 import { ACTIVE, COMPLETED, RELEASED } from '../orderStatuses';
 
 import { openRemoteFile } from '../../../api/ellegiaRemoteFileOpener';
@@ -27,7 +27,8 @@ class OrdersPage extends React.PureComponent {
   constructor(context, props) {
     super(context, props);
 
-    this.handlePreviewOrderPrintingVersion = this.handlePreviewOrderPrintingVersion.bind(this);
+    this.handlePreviewOrderPrintingVersionClick = this.handlePreviewOrderPrintingVersionClick.bind(this);
+    this.handleDeleteOrderClick = this.handleDeleteOrderClick.bind(this);
   }
 
   componentDidMount() {
@@ -36,8 +37,12 @@ class OrdersPage extends React.PureComponent {
     this.props.loadOrders(RELEASED);
   }
 
-  handlePreviewOrderPrintingVersion(orderId) {
+  handlePreviewOrderPrintingVersionClick(orderId) {
     openRemoteFile(this.props.authHeader, `orders/${orderId}/printingVersion`);
+  }
+
+  handleDeleteOrderClick(orderId) {
+    this.props.deleteOrder(orderId);
   }
 
   render() {
@@ -51,7 +56,8 @@ class OrdersPage extends React.PureComponent {
           >
             <OrdersList
               orders={this.props.activeOrders}
-              handlePreviewOrderPrintingVersionClick={this.handlePreviewOrderPrintingVersion}
+              handlePreviewOrderPrintingVersionClick={this.handlePreviewOrderPrintingVersionClick}
+              handleDeleteOrderClick={this.handleDeleteOrderClick}
             />
           </Tab>
           <Tab
@@ -60,7 +66,8 @@ class OrdersPage extends React.PureComponent {
           >
             <OrdersList
               orders={this.props.completedOrders}
-              handlePreviewOrderPrintingVersionClick={this.handlePreviewOrderPrintingVersion}
+              handlePreviewOrderPrintingVersionClick={this.handlePreviewOrderPrintingVersionClick}
+              handleDeleteOrderClick={this.handleDeleteOrderClick}
             />
           </Tab>
           <Tab
@@ -69,7 +76,8 @@ class OrdersPage extends React.PureComponent {
           >
             <OrdersList
               orders={this.props.releaseOrders}
-              handlePreviewOrderPrintingVersionClick={this.handlePreviewOrderPrintingVersion}
+              handlePreviewOrderPrintingVersionClick={this.handlePreviewOrderPrintingVersionClick}
+              handleDeleteOrderClick={this.handleDeleteOrderClick}
             />
           </Tab>
         </Tabs>
@@ -83,6 +91,7 @@ OrdersPage.propTypes = {
   completedOrders: PropTypes.object.isRequired,
   releaseOrders: PropTypes.object.isRequired,
   loadOrders: PropTypes.func.isRequired,
+  deleteOrder: PropTypes.func.isRequired,
   authHeader: PropTypes.string.isRequired,
 };
 
@@ -96,6 +105,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     loadOrders: (orderStatus) => dispatch(loadOrders(orderStatus)),
+    deleteOrder: (orderId) => dispatch(deleteOrder(orderId)),
   };
 }
 
