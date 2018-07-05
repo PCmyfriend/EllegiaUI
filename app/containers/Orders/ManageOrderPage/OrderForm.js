@@ -28,7 +28,6 @@ const validate = (values) => {
     'thicknessInMicron',
     'thicknessInMicronError',
     'totalSum',
-    'hasCorona',
     'widthInMmError',
     'lengthInMmError',
   ];

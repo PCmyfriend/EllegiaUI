@@ -13,18 +13,20 @@ const initialState = fromJS({
 });
 
 export default function ordersReducer(state = initialState, action) {
-  switch (action.type) {
-    case ADD_ORDER_SUCCESS: {
+  if (action.type === ADD_ORDER_SUCCESS) {
+    {
       return state
         .set('active', fromJS([...state.get('active'), action.order]));
     }
-    case DELETE_ORDER_SUCCESS:
-      return state
-        .set('active', fromJS([...state.get('active').filter((o) => o.get('id') == action.orderId)]));
-    case LOAD_ORDERS_SUCCESS:
-      return state
-        .set(action.orderStatus, fromJS([...action.orders]));
-    default:
-      return state;
+  } else if (action.type === DELETE_ORDER_SUCCESS) {
+    return state
+      .set('active', fromJS([...state.get('active').filter((o) =>
+        parseInt(o.get('id'), 10) !== parseInt(action.orderId, 10))]
+      ));
+  } else if (action.type === LOAD_ORDERS_SUCCESS) {
+    return state
+      .set(action.orderStatus, fromJS([...action.orders]));
+  } else {
+    return state;
   }
 }

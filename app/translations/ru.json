@@ -73,5 +73,8 @@
   "app.components.Orders.OrdersPage.released": "Отпущенные",
   "app.components.Orders.OrdersPage.print": "Распечатать",
   "app.components.Orders.OrdersPage.delete": "Удалить",
-  "app.components.Orders.OrdersPage.actions": "Действия"
+  "app.components.Orders.OrdersPage.actions": "Действия",
+  "app.components.Orders.ManageOrderRoutes.recipient": "Получатель",
+  "app.components.Orders.ManageOrderRoutes.send": "Отправить",
+  "app.components.Orders.ManageOrderRoutes.comment": "Комментарий"
 }

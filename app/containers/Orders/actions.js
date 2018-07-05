@@ -5,6 +5,8 @@ import {
   LOAD_ORDERS_SUCCESS,
   DELETE_ORDER,
   DELETE_ORDER_SUCCESS,
+  SEND_ORDER,
+  SEND_ORDER_SUCCESS,
 } from './constants';
 
 export function addOrder(order) {
@@ -47,6 +49,22 @@ export function deleteOrderSuccess(orderId) {
   return {
     type: DELETE_ORDER_SUCCESS,
     orderId,
+  };
+}
+
+export function sendOrder(orderId, orderRoute) {
+  return {
+    type: SEND_ORDER,
+    orderRoute,
+    orderId,
+  };
+}
+
+export function sendOrderSuccess(orderId, orderRoute) {
+  return {
+    type: SEND_ORDER_SUCCESS,
+    orderId,
+    orderRoute,
   };
 }
 

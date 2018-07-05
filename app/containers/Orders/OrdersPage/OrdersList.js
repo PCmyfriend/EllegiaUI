@@ -39,6 +39,7 @@ const OrdersList = ({ orders, handlePreviewOrderPrintingVersionClick, handleDele
         <TableHeaderColumn width={columnWidth} style={tableCellStyle}><FormattedMessage {...orderFormMessages.pricePerKg} /></TableHeaderColumn>
         <TableHeaderColumn width={columnWidth} style={tableCellStyle}><FormattedMessage {...orderMessages.totalPrice} /></TableHeaderColumn>
         <TableHeaderColumn width={columnWidth} style={tableCellStyle}><FormattedMessage {...orderMessages.actions} /></TableHeaderColumn>
+        <TableHeaderColumn width={500} style={tableCellStyle}><FormattedMessage {...orderMessages.actions} /></TableHeaderColumn>
       </TableRow>
     </TableHeader>
     <TableBody

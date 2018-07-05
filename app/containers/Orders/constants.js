@@ -4,3 +4,5 @@ export const LOAD_ORDERS = 'ellegia/Orders/LOAD_ACTIVE_ORDERS';
 export const LOAD_ORDERS_SUCCESS = 'ellegia/Orders/LOAD_ACTIVE_ORDERS_SUCCESS';
 export const DELETE_ORDER = 'ellegia/Orders/DELETE_ORDER';
 export const DELETE_ORDER_SUCCESS = 'ellegia/Orders/DELETE_ORDER_SUCCESS';
+export const SEND_ORDER = 'ellegia/Orders/SEND_ORDER';
+export const SEND_ORDER_SUCCESS = 'ellegia/Orders/SEND_ORDER_SUCCESS';

@@ -4,9 +4,15 @@ import { TableRow, TableRowColumn } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 import { FormattedMessage } from 'react-intl';
 
+import ManagerOrderRoutesPage from '../ManageOrderRoutes/Loadable';
+
 import messages from './messages';
 
-const OrderListRow = ({ order, handlePreviewOrderPrintingVersionClick, handleDeleteOrderClick, columnWidth, tableCellStyle }) => {
+const OrderListRow = ({ order,
+                        handlePreviewOrderPrintingVersionClick,
+                        handleDeleteOrderClick,
+                        columnWidth,
+                        tableCellStyle }) => {
   const customer = order.get('customer');
   const productType = order.get('productType');
   return (
@@ -72,6 +78,11 @@ const OrderListRow = ({ order, handlePreviewOrderPrintingVersionClick, handleDel
               onClick={() => handleDeleteOrderClick(order.get('id'))}
             />
           </div>
+        </div>
+      </TableRowColumn>
+      <TableRowColumn width={500} style={tableCellStyle}>
+        <div>
+          <ManagerOrderRoutesPage order={order} />
         </div>
       </TableRowColumn>
     </TableRow>

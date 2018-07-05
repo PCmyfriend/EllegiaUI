@@ -1,8 +1,8 @@
 import { all, call, put, select, takeLatest, takeEvery } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 
-import { ADD_ORDER, LOAD_ORDERS, DELETE_ORDER } from './constants';
-import { addOrderSuccess, loadOrdersSuccess, deleteOrderSuccess } from './actions';
+import { ADD_ORDER, LOAD_ORDERS, DELETE_ORDER, SEND_ORDER } from './constants';
+import { addOrderSuccess, loadOrdersSuccess, deleteOrderSuccess, sendOrderSuccess } from './actions';
 import { showLoading, hideLoading } from '../../components/Progress/actions';
 import { showSuccess, showError } from '../../components/NotificationCenter/actions';
 
@@ -35,7 +35,7 @@ export function* addOrder(action) {
     standardSizeId: orderViewModel.standardSizeId,
     filmTypeOptionId: orderViewModel.filmTypeOptionId,
     colorId: orderViewModel.colorId,
-    hasCorona: orderViewModel.hasCorona,
+    hasCorona: orderViewModel.hasCorona || false,
     thicknessInMicron: orderViewModel.thicknessInMicron,
     heightInMmError: orderViewModel.heightInMmError,
     widthInMmError: orderViewModel.widthInMmError,
@@ -75,10 +75,27 @@ export function* deleteOrder(action) {
     yield all([put(hideLoading()), put(showError())]);
   }
 }
+
+export function* sendOrder(action) {
+  const orderId = action.orderId;
+  const authHeader = yield select(makeSelectToken());
+  const requestUrl = `orders/${orderId}/routes/`;
+  const orderRoute = action.orderRoute;
+
+  try {
+    yield put(showLoading());
+    yield call(apiRequest(authHeader).post, requestUrl, orderRoute);
+    yield all([put(sendOrderSuccess(orderId, orderRoute)), put(hideLoading()), put(showSuccess())]);
+  } catch (err) {
+    yield all([put(hideLoading()), put(showError())]);
+  }
+}
+
 export default function* ordersData() {
   yield [
     takeEvery(LOAD_ORDERS, loadOrders),
     takeLatest(ADD_ORDER, addOrder),
     takeLatest(DELETE_ORDER, deleteOrder),
+    takeLatest(SEND_ORDER, sendOrder),
   ];
 }
