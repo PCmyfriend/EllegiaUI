@@ -29,6 +29,10 @@ export default defineMessages({
     id: 'app.components.Orders.OrdersPage.delete',
     defaultMessage: 'Delete',
   },
+  send: {
+    id: 'app.components.Orders.OrdersPage.send',
+    defaultMessage: 'Send',
+  },
   actions: {
     id: 'app.components.Orders.OrdersPage.actions',
     defaultMessage: 'Actions',

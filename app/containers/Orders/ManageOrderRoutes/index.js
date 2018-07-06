@@ -2,20 +2,56 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { FormattedMessage } from 'react-intl';
+import FlatButton from 'material-ui/FlatButton';
 
 import { sendOrder } from '../actions';
 
-import OrderRoutesForm from './OrderRoutesForm';
+import OrderRoutesFormDialog from './OrderRoutesFormDialog';
+import messages from './messages';
 
 class ManageOrderRoutePage extends React.PureComponent {
+
+  constructor(context, props) {
+    super(context, props);
+
+    this.state = {
+      showOrderFormDialog: false,
+    };
+
+    this.handleOrderRoutesFormCancelClick = this.handleOrderRoutesFormCancelClick.bind(this);
+    this.onSubmitForm = this.onSubmitForm.bind(this);
+    this.handleSendOrderClick = this.handleSendOrderClick.bind(this);
+  }
+
+  onSubmitForm(values) {
+    this.setState({ showOrderFormDialog: false });
+
+    this.props.sendOrder(values);
+  }
+
+  handleOrderRoutesFormCancelClick() {
+    this.setState({ showOrderFormDialog: false });
+  }
+
+  handleSendOrderClick() {
+    this.setState({ showOrderFormDialog: true });
+  }
 
   render() {
     return (
       <div>
-        <OrderRoutesForm
+        <FlatButton
+          label={<FormattedMessage {...messages.send} />}
+          primary
+          onClick={this.handleSendOrderClick}
+        />
+        <OrderRoutesFormDialog
           form={`orderRoutesForm_${this.props.order.get('id')}`}
           order={this.props.order}
-          onSubmit={this.props.onSubmitForm}
+          onSubmit={this.onSubmitForm}
+          handleCancelClick={this.handleOrderRoutesFormCancelClick}
+          isVisible={this.state.showOrderFormDialog}
         />
       </div>
     );
@@ -25,12 +61,12 @@ class ManageOrderRoutePage extends React.PureComponent {
 
 ManageOrderRoutePage.propTypes = {
   order: PropTypes.object.isRequired,
-  onSubmitForm: PropTypes.func.isRequired,
+  sendOrder: PropTypes.func.isRequired,
 };
 
 export function mapDispatchToProps(dispatch, ownProps) {
   return {
-    onSubmitForm: (values) => dispatch(sendOrder(ownProps.order.get('id'), values)),
+    sendOrder: (values) => dispatch(sendOrder(ownProps.order.get('id'), values)),
   };
 }
 

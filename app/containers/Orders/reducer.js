@@ -3,7 +3,7 @@ import { fromJS } from 'immutable';
 import {
   ADD_ORDER_SUCCESS,
   LOAD_ORDERS_SUCCESS,
-  DELETE_ORDER_SUCCESS,
+  DELETE_ORDER_SUCCESS, SEND_ORDER_SUCCESS,
 } from './constants';
 
 const initialState = fromJS({
@@ -26,6 +26,19 @@ export default function ordersReducer(state = initialState, action) {
   } else if (action.type === LOAD_ORDERS_SUCCESS) {
     return state
       .set(action.orderStatus, fromJS([...action.orders]));
+  } else if (action.type === SEND_ORDER_SUCCESS) {
+    const activeOrders = state.get('active').toJS();
+
+    const newActiveOrders = [];
+    for (let i = 0; i < activeOrders.length; i += 1) {
+      const activeOrder = activeOrders[i];
+      const newOrder = parseInt(activeOrder.id, 10) === parseInt(action.orderId, 10)
+        ? Object.assign({}, activeOrder, { isMine: false })
+        : Object.assign({}, activeOrder);
+      newActiveOrders.push(newOrder);
+    }
+
+    return state.set('active', fromJS(newActiveOrders));
   } else {
     return state;
   }

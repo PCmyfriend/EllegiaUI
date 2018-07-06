@@ -4,9 +4,9 @@ import { TableRow, TableRowColumn } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 import { FormattedMessage } from 'react-intl';
 
-import ManagerOrderRoutesPage from '../ManageOrderRoutes/Loadable';
-
 import messages from './messages';
+
+import OrderRoutesFormDialog from '../ManageOrderRoutes';
 
 const OrderListRow = ({ order,
                         handlePreviewOrderPrintingVersionClick,
@@ -71,6 +71,13 @@ const OrderListRow = ({ order,
               onClick={() => handlePreviewOrderPrintingVersionClick(order.get('id'))}
             />
           </div>
+          {order.get('isMine') &&
+            <div>
+              <OrderRoutesFormDialog
+                order={order}
+              />
+            </div>
+          }
           <div>
             <FlatButton
               label={<FormattedMessage {...messages.delete} />}
@@ -78,11 +85,6 @@ const OrderListRow = ({ order,
               onClick={() => handleDeleteOrderClick(order.get('id'))}
             />
           </div>
-        </div>
-      </TableRowColumn>
-      <TableRowColumn width={500} style={tableCellStyle}>
-        <div>
-          <ManagerOrderRoutesPage order={order} />
         </div>
       </TableRowColumn>
     </TableRow>
