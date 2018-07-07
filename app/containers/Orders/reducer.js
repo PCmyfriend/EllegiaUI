@@ -14,10 +14,8 @@ const initialState = fromJS({
 
 export default function ordersReducer(state = initialState, action) {
   if (action.type === ADD_ORDER_SUCCESS) {
-    {
-      return state
+    return state
         .set('active', fromJS([...state.get('active'), action.order]));
-    }
   } else if (action.type === DELETE_ORDER_SUCCESS) {
     return state
       .set('active', fromJS([...state.get('active').filter((o) =>
@@ -39,7 +37,6 @@ export default function ordersReducer(state = initialState, action) {
     }
 
     return state.set('active', fromJS(newActiveOrders));
-  } else {
-    return state;
   }
+  return state;
 }

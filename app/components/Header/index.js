@@ -18,7 +18,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
     return (
       <AppBar
         title={<HeaderLink to="/"><FormattedMessage {...messages.header} /></HeaderLink>}
-        iconElementLeft={<HeaderLink to="/"><Avatar src={image} /></HeaderLink>}
+        iconElementLeft={<HeaderLink to="/"><Avatar src={image} backgroundColor={'rgba(0, 0, 0, 0.1)'} /></HeaderLink>}
         iconElementRight={this.props.userRole
           ? <NavSideMenu />
           : <FlatButton label={<HeaderLink to="/login"><FormattedMessage {...messages.signIn} /></HeaderLink>} />

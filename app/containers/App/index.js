@@ -13,6 +13,7 @@
 
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Switch, Route } from 'react-router-dom';
 
 import { connectedReduxRedirect } from 'redux-auth-wrapper/history4/redirect';
@@ -53,9 +54,17 @@ const userIsNotAuthenticated = connectedReduxRedirect({
   redirectAction: routerActions.replace,
 });
 
+const muiTheme = getMuiTheme({
+  palette: {
+    primary1Color: '#79B716',
+    primary2Color: '#79B716',
+    primary3Color: '#79B716',
+  },
+});
+
 export default function App() {
   return (
-    <MuiThemeProvider>
+    <MuiThemeProvider muiTheme={muiTheme}>
       <div>
         <Header />
         <Progress />
