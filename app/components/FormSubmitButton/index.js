@@ -12,7 +12,7 @@ const styles = theme => ({
   },
 });
 
-const SubmitButton = ({ classes, label }) => (
+const FormSubmitButton = ({ classes, label }) => (
   <Button
     variant="contained"
     color="primary"
@@ -23,7 +23,7 @@ const SubmitButton = ({ classes, label }) => (
   </Button>
 );
 
-SubmitButton.propTypes = {
+FormSubmitButton.propTypes = {
   label: PropTypes.oneOfType([
     PropTypes.string.isRequired,
     PropTypes.object.isRequired,
@@ -31,4 +31,4 @@ SubmitButton.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SubmitButton);
+export default withStyles(styles)(FormSubmitButton);

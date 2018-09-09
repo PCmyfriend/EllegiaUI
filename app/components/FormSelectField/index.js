@@ -16,7 +16,7 @@ const styles = theme => ({
   },
 });
 
-const FormSelectField = ({ name, label, data, onChange, classes }) => (
+const FormSelectField = ({ name, label, data = [], onChange, classes }) => (
   <FormControl className={classes.formControl}>
     <Field
       name={name}
@@ -44,7 +44,7 @@ FormSelectField.propTypes = {
     PropTypes.string.isRequired,
     PropTypes.object.isRequired,
   ]),
-  data: PropTypes.array.isRequired,
+  data: PropTypes.array,
   classes: PropTypes.object.isRequired,
   onChange: PropTypes.func,
 };

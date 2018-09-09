@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import FormTextField from '../../components/FormTextField';
 
-import SubmitButton from '../../components/FormSubmitButton/SubmitButton';
+import SubmitButton from '../../components/FormSubmitButton';
 
 const validate = values => {
   const errors = {};

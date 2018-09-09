@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
 import { reduxForm } from 'redux-form/immutable';
 import { FormattedMessage } from 'react-intl';
@@ -9,6 +8,7 @@ import messages from './messages';
 
 import FormTextField from '../../../components/FormTextField';
 import FormSelectField from '../../../components/FormSelectField';
+import SubmitButton from '../../../components/FormSubmitButton';
 
 const validate = values => {
   const errors = {};
@@ -44,11 +44,7 @@ const ContactForm = ({ contactTypes, handleSubmit }) => (
       />
     </div>
     <div>
-      <RaisedButton
-        type="submit"
-        label={<FormattedMessage {...messages.save} />}
-        primary
-      />
+      <SubmitButton label={<FormattedMessage {...messages.save} />} />
     </div>
   </form>
 );

@@ -11,7 +11,7 @@ import messages from './messages';
 import FormTextField from '../../../components/FormTextField';
 import FormSelectField from '../../../components/FormSelectField';
 import FormCheckboxField from '../../../components/FormCheckboxField';
-import SubmitButton from '../../../components/FormSubmitButton/SubmitButton';
+import SubmitButton from '../../../components/FormSubmitButton';
 
 const validate = values => {
   const errors = {};
