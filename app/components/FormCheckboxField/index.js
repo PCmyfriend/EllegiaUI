@@ -1,34 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form/immutable';
-import Checkbox from 'material-ui/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { withStyles } from '@material-ui/core/styles';
+import { Checkbox } from 'redux-form-material-ui';
+import FormControl from '@material-ui/core/FormControl';
 
-class FormCheckboxField extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    this.renderCheckbox = this.renderCheckbox.bind(this);
-  }
+const styles = theme => ({
+  formControl: {
+    margin: theme.spacing.unit,
+    width: 300,
+  },
+});
 
-  renderCheckbox({ input, label }) {
-    return (
-      <Checkbox
-        label={label}
-        checked={!!input.value}
-        onCheck={input.onChange}
-      />
-    );
-  }
-
-  render() {
-    return (
-      <Field
-        name={this.props.name}
-        label={this.props.label}
-        component={this.renderCheckbox}
-      />
-    );
-  }
-}
+const FormCheckboxField = ({ name, label, classes }) => (
+  <FormControl className={classes.formControl}>
+    <FormControlLabel
+      control={<Field name={name} component={Checkbox} />}
+      label={label}
+    />
+  </FormControl>
+);
 
 FormCheckboxField.propTypes = {
   name: PropTypes.string.isRequired,
@@ -36,6 +28,7 @@ FormCheckboxField.propTypes = {
     PropTypes.string.isRequired,
     PropTypes.object.isRequired,
   ]),
+  classes: PropTypes.object.isRequired,
 };
 
-export default FormCheckboxField;
+export default withStyles(styles)(FormCheckboxField);

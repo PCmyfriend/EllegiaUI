@@ -7,10 +7,6 @@ import { Field } from 'redux-form/immutable';
 import { TextField } from 'redux-form-material-ui';
 
 const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
