@@ -21,15 +21,15 @@ injectGlobal`
     min-height: 100%;
     min-width: 100%;
   }
-  
-  .centered-container {
-    width: 80%;
-    margin: auto;
-  }
 
   p,
   label {
     font-family: Georgia, Times, 'Times New Roman', serif;
     line-height: 1.5em;
+  }
+  
+  .centered-container {
+    width: 80%;
+    margin: auto;
   }
 `;
