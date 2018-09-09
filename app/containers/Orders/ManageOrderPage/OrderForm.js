@@ -3,8 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { fromJS } from 'immutable';
 
-import RaisedButton from 'material-ui/RaisedButton';
-import MenuItem from 'material-ui/MenuItem';
 import { reduxForm } from 'redux-form/immutable';
 import { FormattedMessage } from 'react-intl';
 
@@ -13,6 +11,7 @@ import messages from './messages';
 import FormTextField from '../../../components/FormTextField';
 import FormSelectField from '../../../components/FormSelectField';
 import FormCheckboxField from '../../../components/FormCheckboxField';
+import SubmitButton from '../../../components/FormSubmitButton/SubmitButton';
 
 const validate = values => {
   const errors = {};
@@ -68,15 +67,8 @@ class OrderForm extends React.PureComponent {
           <FormSelectField
             name="customerId"
             label={<FormattedMessage {...messages.customer} />}
-          >
-            {this.props.customers.map(c => (
-              <MenuItem
-                key={c.get('id')}
-                value={c.get('id')}
-                primaryText={c.get('name')}
-              />
-            ))}
-          </FormSelectField>
+            data={this.props.customers.toJS()}
+          />
         </div>
         <div>
           <FormTextField
@@ -88,58 +80,30 @@ class OrderForm extends React.PureComponent {
           <FormSelectField
             name="filmTypeId"
             label={<FormattedMessage {...messages.filmType} />}
-          >
-            {this.props.filmTypes.map(ft => (
-              <MenuItem
-                key={ft.get('id')}
-                value={ft.get('id')}
-                primaryText={ft.get('name')}
-              />
-            ))}
-          </FormSelectField>
+            data={this.props.filmTypes.toJS()}
+          />
         </div>
         <div>
           <FormSelectField
             name="colorId"
             label={<FormattedMessage {...messages.color} />}
-          >
-            {this.props.colors.map(c => (
-              <MenuItem
-                key={c.get('id')}
-                value={c.get('id')}
-                primaryText={c.get('name')}
-              />
-            ))}
-          </FormSelectField>
+            data={this.props.colors.toJS()}
+          />
         </div>
         <div>
           <FormSelectField
             name="plasticBagTypeId"
             onChange={this.handlePlasticBagTypeChange}
             label={<FormattedMessage {...messages.plasticBagType} />}
-          >
-            {this.props.plasticBagTypes.map(pbt => (
-              <MenuItem
-                key={pbt.get('id')}
-                value={pbt.get('id')}
-                primaryText={pbt.get('name')}
-              />
-            ))}
-          </FormSelectField>
+            data={this.props.plasticBagTypes.toJS()}
+          />
         </div>
         <div>
           <FormSelectField
             name="standardSizeId"
             label={<FormattedMessage {...messages.standardSize} />}
-          >
-            {this.state.standardSizes.map(ft => (
-              <MenuItem
-                key={ft.get('id')}
-                value={ft.get('id')}
-                primaryText={ft.get('name')}
-              />
-            ))}
-          </FormSelectField>
+            data={this.state.standardSizes.toJS()}
+          />
         </div>
         <div>
           <FormTextField
@@ -181,15 +145,8 @@ class OrderForm extends React.PureComponent {
           <FormSelectField
             name="filmTypeOptionId"
             label={<FormattedMessage {...messages.filmTypeOption} />}
-          >
-            {this.props.filmTypeOptions.map(fto => (
-              <MenuItem
-                key={fto.get('id')}
-                value={fto.get('id')}
-                primaryText={fto.get('name')}
-              />
-            ))}
-          </FormSelectField>
+            data={this.props.filmTypeOptions.toJS()}
+          />
         </div>
         <div>
           <FormTextField
@@ -204,11 +161,7 @@ class OrderForm extends React.PureComponent {
           />
         </div>
         <div>
-          <RaisedButton
-            type="submit"
-            label={<FormattedMessage {...messages.save} />}
-            primary
-          />
+          <SubmitButton label={<FormattedMessage {...messages.save} />} />
         </div>
       </form>
     );

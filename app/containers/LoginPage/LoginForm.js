@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RaisedButton from 'material-ui/RaisedButton';
 import { reduxForm } from 'redux-form/immutable';
 import { FormattedMessage } from 'react-intl';
 
-import FormTextField from '../../components/FormTextField';
 import messages from './messages';
+import FormTextField from '../../components/FormTextField';
+
+import SubmitButton from '../../components/FormSubmitButton/SubmitButton';
 
 const validate = values => {
   const errors = {};
@@ -37,11 +38,7 @@ const LoginForm = ({ handleSubmit }) => (
       />
     </div>
     <div>
-      <RaisedButton
-        type="submit"
-        label={<FormattedMessage {...messages.signIn} />}
-        primary
-      />
+      <SubmitButton label={<FormattedMessage {...messages.signIn} />} />
     </div>
   </form>
 );

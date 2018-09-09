@@ -1,50 +1,46 @@
-/* eslint-disable react/prop-types,react/no-children-prop */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import { Field } from 'redux-form/immutable';
-import SelectField from 'material-ui/SelectField';
+import { TextField } from 'redux-form-material-ui';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
 
-class FormSelectField extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    this.renderSelectField = this.renderSelectField.bind(this);
-  }
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    width: 300,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing.unit * 2,
+  },
+});
 
-  renderSelectField({
-    input,
-    label,
-    meta: { touched, error },
-    children,
-    ...custom
-  }) {
-    return (
-      <SelectField
-        floatingLabelText={label}
-        errorText={touched && error}
-        {...input}
-        onChange={(event, index, value) => {
-          input.onChange(value);
-          if (this.props.onChange) {
-            this.props.onChange(value);
-          }
-        }}
-        children={children}
-        {...custom}
-      />
-    );
-  }
-
-  render() {
-    return (
-      <Field
-        name={this.props.name}
-        label={this.props.label}
-        component={this.renderSelectField}
-        children={this.props.children}
-      />
-    );
-  }
-}
+const FormSelectField = ({ name, label, data, onChange, classes }) => (
+  <FormControl className={classes.formControl}>
+    <Field
+      name={name}
+      label={label}
+      component={TextField}
+      select
+      onChange={({ target }) => {
+        if (onChange) {
+          onChange(target.value);
+        }
+      }}
+    >
+      {data.map(pair => (
+        <MenuItem key={pair.id} value={pair.id}>
+          {pair.name}
+        </MenuItem>
+      ))}
+    </Field>
+  </FormControl>
+);
 
 FormSelectField.propTypes = {
   name: PropTypes.string.isRequired,
@@ -52,7 +48,9 @@ FormSelectField.propTypes = {
     PropTypes.string.isRequired,
     PropTypes.object.isRequired,
   ]),
+  data: PropTypes.array.isRequired,
+  classes: PropTypes.object.isRequired,
   onChange: PropTypes.func,
 };
 
-export default FormSelectField;
+export default withStyles(styles)(FormSelectField);

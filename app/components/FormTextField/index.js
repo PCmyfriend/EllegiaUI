@@ -1,45 +1,41 @@
+/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import { Field } from 'redux-form/immutable';
-import TextField from 'material-ui/TextField';
 
-class FormTextField extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    this.renderTextField = this.renderTextField.bind(this);
-  }
+import { TextField } from 'redux-form-material-ui';
 
-  renderTextField({ input, label, meta: { touched, error }, ...custom }) {
-    return (
-      <TextField
-        hintText={label}
-        floatingLabelText={label}
-        errorText={touched && error}
-        {...input}
-        {...custom}
-      />
-    );
-  }
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 300,
+  },
+});
 
-  render() {
-    return (
-      <Field
-        name={this.props.name}
-        label={this.props.label}
-        type={this.props.type}
-        component={this.renderTextField}
-      />
-    );
-  }
-}
-
+const FormTextField = ({ name, label, classes, type }) => (
+  <Field
+    name={name}
+    component={TextField}
+    label={label}
+    className={classes.textField}
+    margin="normal"
+    type={type}
+  />
+);
 FormTextField.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.oneOfType([
     PropTypes.string.isRequired,
     PropTypes.object.isRequired,
   ]),
+  classes: PropTypes.object.isRequired,
   type: PropTypes.string,
 };
 
-export default FormTextField;
+export default withStyles(styles)(FormTextField);

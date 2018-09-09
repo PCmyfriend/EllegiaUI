@@ -32,4 +32,8 @@ injectGlobal`
     width: 80%;
     margin: auto;
   }
+  
+  .nav-bar-icon {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 `;

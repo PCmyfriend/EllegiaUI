@@ -27,6 +27,7 @@ import { addOrder } from '../actions';
 import messages from './messages';
 
 import OrderForm from './OrderForm';
+import Typography from '../../../components/Typography';
 
 class Orders extends React.PureComponent {
   componentDidMount() {
@@ -41,9 +42,9 @@ class Orders extends React.PureComponent {
   render() {
     return (
       <div>
-        <h1>
+        <Typography variant="display1">
           <FormattedMessage {...messages.header} />
-        </h1>
+        </Typography>
         <OrderForm
           filmTypes={this.props.filmTypes}
           customers={this.props.customers}

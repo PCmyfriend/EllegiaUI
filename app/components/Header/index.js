@@ -1,12 +1,16 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import PropTypes from 'prop-types';
-import AppBar from 'material-ui/AppBar';
-import Avatar from 'material-ui/Avatar';
-import FlatButton from 'material-ui/FlatButton';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { withStyles } from '@material-ui/core/styles';
 
 import NavSideMenu from './NavSideMenu';
 import HeaderLink from '../A';
@@ -14,44 +18,68 @@ import messages from './messages';
 import image from '../../images/icon-512x512.png';
 import { makeSelectUserRole } from '../../containers/LoginPage/selectors';
 
+const styles = {
+  root: {
+    flexGrow: 1,
+  },
+  grow: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+};
+
 class Header extends React.Component {
   render() {
+    const { classes } = this.props;
     return (
-      <AppBar
-        title={
-          <HeaderLink to="/">
-            <FormattedMessage {...messages.header} />
-          </HeaderLink>
-        }
-        iconElementLeft={
-          <HeaderLink to="/">
-            <Avatar src={image} backgroundColor="rgba(0, 0, 0, 0.1)" />
-          </HeaderLink>
-        }
-        iconElementRight={
-          this.props.userRole ? (
-            <NavSideMenu />
-          ) : (
-            <FlatButton
-              label={
+      <div className={classes.root}>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton className={classes.menuButton} color="inherit">
+              <HeaderLink to="/">
+                <Avatar
+                  src={image}
+                  classes={{
+                    root: 'nav-bar-icon',
+                  }}
+                />
+              </HeaderLink>
+            </IconButton>
+            <Typography
+              variant="title"
+              color="inherit"
+              className={classes.grow}
+            >
+              <HeaderLink to="/">
+                <FormattedMessage {...messages.header} />
+              </HeaderLink>
+            </Typography>
+            {this.props.userRole ? (
+              <NavSideMenu />
+            ) : (
+              <Button color="inherit">
                 <HeaderLink to="/login">
                   <FormattedMessage {...messages.signIn} />
                 </HeaderLink>
-              }
-            />
-          )
-        }
-      />
+              </Button>
+            )}
+          </Toolbar>
+        </AppBar>
+      </div>
     );
   }
 }
 
 Header.propTypes = {
   userRole: PropTypes.string,
+  classes: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   userRole: makeSelectUserRole(),
 });
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(withStyles(styles)(Header));
