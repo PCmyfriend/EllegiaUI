@@ -1,13 +1,31 @@
-import { all, call, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
+import {
+  all,
+  call,
+  put,
+  select,
+  takeEvery,
+  takeLatest,
+} from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 
 import { showLoading, hideLoading } from '../../components/Progress/actions';
-import { showError, showSuccess } from '../../components/NotificationCenter/actions';
+import {
+  showError,
+  showSuccess,
+} from '../../components/NotificationCenter/actions';
 import { apiRequest } from '../../api/ellegiaRequest';
 import { makeSelectToken } from '../LoginPage/selectors';
 
-import { LOAD_HANDBOOK_VALUES, ADD_HANDBOOK_VALUE, DELETE_HANDBOOK_VALUE } from './constants';
-import { loadHandbookValuesSuccess, addHandbookValueSuccess, deleteHandbookValueSuccess } from './actions';
+import {
+  LOAD_HANDBOOK_VALUES,
+  ADD_HANDBOOK_VALUE,
+  DELETE_HANDBOOK_VALUE,
+} from './constants';
+import {
+  loadHandbookValuesSuccess,
+  addHandbookValueSuccess,
+  deleteHandbookValueSuccess,
+} from './actions';
 
 export function* loadHandbookValues(action) {
   const authHeader = yield select(makeSelectToken());
@@ -16,7 +34,10 @@ export function* loadHandbookValues(action) {
   try {
     yield put(showLoading());
     const handbookValues = yield call(apiRequest(authHeader).get, requestUrl);
-    yield all([put(loadHandbookValuesSuccess(action.name, handbookValues)), put(hideLoading())]);
+    yield all([
+      put(loadHandbookValuesSuccess(action.name, handbookValues)),
+      put(hideLoading()),
+    ]);
   } catch (err) {
     yield all([put(hideLoading()), put(showError())]);
   }
@@ -29,8 +50,17 @@ export function* addHandbookValue(action) {
 
   try {
     yield put(showLoading());
-    handbookValue = yield call(apiRequest(authHeader).post, requestUrl, handbookValue);
-    yield all([put(addHandbookValueSuccess(handbookValue)), put(hideLoading()), put(showSuccess()), put(push(`/${action.name}`))]);
+    handbookValue = yield call(
+      apiRequest(authHeader).post,
+      requestUrl,
+      handbookValue,
+    );
+    yield all([
+      put(addHandbookValueSuccess(handbookValue)),
+      put(hideLoading()),
+      put(showSuccess()),
+      put(push(`/${action.name}`)),
+    ]);
   } catch (err) {
     yield all([put(hideLoading()), put(showError())]);
   }
@@ -44,7 +74,11 @@ export function* deleteHandbookValue(action) {
   try {
     yield put(showLoading());
     yield call(apiRequest(authHeader).delete, requestUrl);
-    yield all([put(deleteHandbookValueSuccess(action.name, handbookValueId)), put(hideLoading()), put(showSuccess())]);
+    yield all([
+      put(deleteHandbookValueSuccess(action.name, handbookValueId)),
+      put(hideLoading()),
+      put(showSuccess()),
+    ]);
   } catch (err) {
     yield all([put(hideLoading()), put(showError())]);
   }

@@ -8,7 +8,7 @@ import {
   ADD_STANDARD_SIZE,
   ADD_STANDARD_SIZE_SUCCESS,
   DELETE_STANDARD_SIZE,
-  DELETE_STANDARD_SIZE_SUCCESS
+  DELETE_STANDARD_SIZE_SUCCESS,
 } from './constants';
 
 export function loadPlasticBagTypes() {

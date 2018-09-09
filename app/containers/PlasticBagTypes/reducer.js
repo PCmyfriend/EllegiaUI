@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import { fromJS } from 'immutable';
 
 import {
@@ -28,11 +29,16 @@ export default function plasticBagTypesReducer(state = initialState, action) {
     case ADD_PLASTIC_BAG_TYPE_SUCCESS:
       return fromJS([...state, action.plasticBagType]);
     case DELETE_PLASTIC_BAG_TYPE_SUCCESS:
-      return fromJS([...state.toJS().filter((pbt) => pbt.id != action.plasticBagTypeId)]);
+      return fromJS([
+        ...state.toJS().filter(pbt => pbt.id != action.plasticBagTypeId),
+      ]);
     case ADD_STANDARD_SIZE_SUCCESS: {
       plasticBagTypes = state.toJS();
-      const standardSize = action.standardSize;
-      plasticBagType = getPlasticBagTypeById(plasticBagTypes, standardSize.plasticBagTypeId);
+      const { standardSize } = action;
+      plasticBagType = getPlasticBagTypeById(
+        plasticBagTypes,
+        standardSize.plasticBagTypeId,
+      );
       plasticBagType.standardSizes.push(standardSize);
       return fromJS([...plasticBagTypes]);
     }

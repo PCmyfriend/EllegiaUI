@@ -9,11 +9,9 @@ const initialState = fromJS({
 function progressReducer(state = initialState, action) {
   switch (action.type) {
     case SHOW_LOADING:
-      return state
-        .set('loading', true);
+      return state.set('loading', true);
     case HIDE_LOADING:
-      return state
-        .set('loading', false);
+      return state.set('loading', false);
     default:
       return state;
   }

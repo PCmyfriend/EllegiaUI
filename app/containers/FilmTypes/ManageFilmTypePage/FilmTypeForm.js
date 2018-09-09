@@ -9,12 +9,10 @@ import FormTextField from '../../../components/FormTextField';
 import FormSelectField from '../../../components/FormSelectField';
 import messages from './messages';
 
-const validate = (values) => {
+const validate = values => {
   const errors = {};
-  const requiredFields = [
-    'name',
-  ];
-  requiredFields.forEach((field) => {
+  const requiredFields = ['name'];
+  requiredFields.forEach(field => {
     if (!values.get(field)) {
       errors[field] = 'Обязательное поле';
     }
@@ -29,9 +27,13 @@ const FilmTypeForm = ({ handleSubmit, filmTypes }) => (
         name="parentId"
         label={<FormattedMessage {...messages.parentFilmType} />}
       >
-        {filmTypes.map((ft) =>
-          <MenuItem key={ft.get('id')} value={ft.get('id')} primaryText={ft.get('name')} />
-        )}
+        {filmTypes.map(ft => (
+          <MenuItem
+            key={ft.get('id')}
+            value={ft.get('id')}
+            primaryText={ft.get('name')}
+          />
+        ))}
       </FormSelectField>
     </div>
     <div>
@@ -41,7 +43,11 @@ const FilmTypeForm = ({ handleSubmit, filmTypes }) => (
       />
     </div>
     <div>
-      <RaisedButton type="submit" label={<FormattedMessage {...messages.save} />} primary />
+      <RaisedButton
+        type="submit"
+        label={<FormattedMessage {...messages.save} />}
+        primary
+      />
     </div>
   </form>
 );

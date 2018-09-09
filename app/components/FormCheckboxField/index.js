@@ -4,7 +4,6 @@ import { Field } from 'redux-form/immutable';
 import Checkbox from 'material-ui/Checkbox';
 
 class FormCheckboxField extends React.Component {
-
   constructor(props, context) {
     super(props, context);
     this.renderCheckbox = this.renderCheckbox.bind(this);

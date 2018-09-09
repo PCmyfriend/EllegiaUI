@@ -11,27 +11,35 @@ import { grey400 } from 'material-ui/styles/colors';
 import ManageContactPage from '../ManageContactPage';
 
 const getContactsJsxArray = (contacts = fromJS([]), onDeleteContactClick) =>
-  contacts.map((contact) =>
-    (<ListItem
-      key={contact.get('id')}
-      rightIconButton={
-        <IconButton
-          id={contact.get('id')}
-          onClick={onDeleteContactClick}
-          touch
-        >
-          <DeleteForeverIcon color={grey400} />
-        </IconButton>
-      }
-      primaryText={contact.get('name')}
-      secondaryText={contact.get('contactType').get('name')}
-    />)
-  ).toArray();
+  contacts
+    .map(contact => (
+      <ListItem
+        key={contact.get('id')}
+        rightIconButton={
+          <IconButton
+            id={contact.get('id')}
+            onClick={onDeleteContactClick}
+            touch
+          >
+            <DeleteForeverIcon color={grey400} />
+          </IconButton>
+        }
+        primaryText={contact.get('name')}
+        secondaryText={contact.get('contactType').get('name')}
+      />
+    ))
+    .toArray();
 
-const CustomersList = ({ customers, onCustomerClick, expandedCustomers, onDeleteCustomerClick, onDeleteContactClick }) => (
+const CustomersList = ({
+  customers,
+  onCustomerClick,
+  expandedCustomers,
+  onDeleteCustomerClick,
+  onDeleteContactClick,
+}) => (
   <List>
-    {customers.map((customer) =>
-      (<ListItem
+    {customers.map(customer => (
+      <ListItem
         key={customer.get('id')}
         id={customer.get('id')}
         leftIcon={<Face />}
@@ -48,10 +56,16 @@ const CustomersList = ({ customers, onCustomerClick, expandedCustomers, onDelete
         onClick={onCustomerClick}
         open={expandedCustomers[customer.get('id')] || false}
         nestedItems={[
-          ...getContactsJsxArray(customer.get('contacts'), onDeleteContactClick),
-          <ListItem key={-customer.get('id')}><ManageContactPage customerId={customer.get('id')} /></ListItem>,
+          ...getContactsJsxArray(
+            customer.get('contacts'),
+            onDeleteContactClick,
+          ),
+          <ListItem key={-customer.get('id')}>
+            <ManageContactPage customerId={customer.get('id')} />
+          </ListItem>,
         ]}
-      />))}
+      />
+    ))}
   </List>
 );
 

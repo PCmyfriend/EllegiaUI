@@ -1,19 +1,19 @@
 import { createSelector } from 'reselect';
 import { fromJS } from 'immutable';
 
-const selectFilmTypes = (state) => state.get('filmTypes');
+const selectFilmTypes = state => state.get('filmTypes');
 
-const makeSelectFilmTypes = () => createSelector(
-  selectFilmTypes,
-  (filmTypesState) => filmTypesState,
-);
+const makeSelectFilmTypes = () =>
+  createSelector(selectFilmTypes, filmTypesState => filmTypesState);
 
-const getFilmTypes = (recursiveFilmTypes) => {
+const getFilmTypes = recursiveFilmTypes => {
   let result = [];
 
-  if (!recursiveFilmTypes) { return result; }
+  if (!recursiveFilmTypes) {
+    return result;
+  }
 
-  recursiveFilmTypes.forEach((ft) => {
+  recursiveFilmTypes.forEach(ft => {
     result.push(ft);
     result = [...result, ...getFilmTypes(ft.get('children'))];
   });
@@ -21,10 +21,10 @@ const getFilmTypes = (recursiveFilmTypes) => {
   return result;
 };
 
-const makeSelectNotRecursiveFilmTypes = () => createSelector(
-  selectFilmTypes,
-  (filmTypesState) => fromJS([...getFilmTypes(filmTypesState)])
-);
+const makeSelectNotRecursiveFilmTypes = () =>
+  createSelector(selectFilmTypes, filmTypesState =>
+    fromJS([...getFilmTypes(filmTypesState)]),
+  );
 
 export {
   selectFilmTypes,

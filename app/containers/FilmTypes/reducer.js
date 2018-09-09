@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import { fromJS } from 'immutable';
 
 import {
@@ -15,7 +16,10 @@ const getFilmTypesExcept = (filmTypes, exceptFilmTypeId) => {
 
   for (let i = 0; i < tempFilmTypes.length; i += 1) {
     if (tempFilmTypes[i].id != exceptFilmTypeId) {
-      tempFilmTypes[i].children = getFilmTypesExcept(tempFilmTypes[i].children, exceptFilmTypeId);
+      tempFilmTypes[i].children = getFilmTypesExcept(
+        tempFilmTypes[i].children,
+        exceptFilmTypeId,
+      );
       result.push(tempFilmTypes[i]);
     }
   }

@@ -17,7 +17,9 @@ class ManagePlasticBagTypePage extends React.PureComponent {
   render() {
     return (
       <div>
-        <h1><FormattedMessage {...messages.header} /></h1>
+        <h1>
+          <FormattedMessage {...messages.header} />
+        </h1>
         <PlasticBagTypeForm onSubmit={this.props.onSubmitForm} />
       </div>
     );
@@ -30,14 +32,17 @@ ManagePlasticBagTypePage.propTypes = {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onSubmitForm: (values) => {
+    onSubmitForm: values => {
       const plasticBagType = Object.assign({}, values.toJS());
       dispatch(addPlasticBagType(plasticBagType));
     },
   };
 }
 
-const withConnect = connect(null, mapDispatchToProps);
+const withConnect = connect(
+  null,
+  mapDispatchToProps,
+);
 
 const withSaga = injectSaga({ key: 'managePlasticBagType', saga });
 

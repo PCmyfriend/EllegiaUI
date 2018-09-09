@@ -4,7 +4,6 @@ import { Field } from 'redux-form/immutable';
 import TextField from 'material-ui/TextField';
 
 class FormTextField extends React.Component {
-
   constructor(props, context) {
     super(props, context);
     this.renderTextField = this.renderTextField.bind(this);

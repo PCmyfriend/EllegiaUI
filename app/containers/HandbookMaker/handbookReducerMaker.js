@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import { fromJS } from 'immutable';
 
 import {
@@ -19,7 +20,9 @@ export default function createHandbookReducer(handbookName) {
       case ADD_HANDBOOK_VALUE_SUCCESS:
         return fromJS([...state, action.value]);
       case DELETE_HANDBOOK_VALUE_SUCCESS:
-        return fromJS([...state.toJS().filter((value) => value.id != action.valueId)]);
+        return fromJS([
+          ...state.toJS().filter(value => value.id != action.valueId),
+        ]);
       default:
         return state;
     }

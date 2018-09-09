@@ -7,13 +7,10 @@ import { FormattedMessage } from 'react-intl';
 import FormTextField from '../../components/FormTextField';
 import messages from './messages';
 
-const validate = (values) => {
+const validate = values => {
   const errors = {};
-  const requiredFields = [
-    'userName',
-    'password',
-  ];
-  requiredFields.forEach((field) => {
+  const requiredFields = ['userName', 'password'];
+  requiredFields.forEach(field => {
     if (!values.get(field)) {
       errors[field] = 'Обязательное поле';
     }
@@ -40,7 +37,11 @@ const LoginForm = ({ handleSubmit }) => (
       />
     </div>
     <div>
-      <RaisedButton type="submit" label={<FormattedMessage {...messages.signIn} />} primary />
+      <RaisedButton
+        type="submit"
+        label={<FormattedMessage {...messages.signIn} />}
+        primary
+      />
     </div>
   </form>
 );

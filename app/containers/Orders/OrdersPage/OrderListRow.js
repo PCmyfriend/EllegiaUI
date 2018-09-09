@@ -8,11 +8,13 @@ import messages from './messages';
 
 import OrderRoutesFormDialog from '../ManageOrderRoutes';
 
-const OrderListRow = ({ order,
-                        handlePreviewOrderPrintingVersionClick,
-                        handleDeleteOrderClick,
-                        columnWidth,
-                        tableCellStyle }) => {
+const OrderListRow = ({
+  order,
+  handlePreviewOrderPrintingVersionClick,
+  handleDeleteOrderClick,
+  columnWidth,
+  tableCellStyle,
+}) => {
   const customer = order.get('customer');
   const productType = order.get('productType');
   return (
@@ -68,16 +70,16 @@ const OrderListRow = ({ order,
             <FlatButton
               label={<FormattedMessage {...messages.print} />}
               primary
-              onClick={() => handlePreviewOrderPrintingVersionClick(order.get('id'))}
+              onClick={() =>
+                handlePreviewOrderPrintingVersionClick(order.get('id'))
+              }
             />
           </div>
-          {order.get('isMine') &&
+          {order.get('isMine') && (
             <div>
-              <OrderRoutesFormDialog
-                order={order}
-              />
+              <OrderRoutesFormDialog order={order} />
             </div>
-          }
+          )}
           <div>
             <FlatButton
               label={<FormattedMessage {...messages.delete} />}

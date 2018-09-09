@@ -8,14 +8,10 @@ import messages from './messages';
 
 import FormTextField from '../../../components/FormTextField';
 
-const validate = (values) => {
+const validate = values => {
   const errors = {};
-  const requiredFields = [
-    'widthInMm',
-    'lengthInMm',
-    'quantityInBag',
-  ];
-  requiredFields.forEach((field) => {
+  const requiredFields = ['widthInMm', 'lengthInMm', 'quantityInBag'];
+  requiredFields.forEach(field => {
     if (!values.get(field)) {
       errors[field] = 'Обязательное поле';
     }
@@ -50,7 +46,11 @@ const StandardSizeForm = ({ handleSubmit }) => (
       />
     </div>
     <div>
-      <RaisedButton type="submit" label={<FormattedMessage {...messages.save} />} primary />
+      <RaisedButton
+        type="submit"
+        label={<FormattedMessage {...messages.save} />}
+        primary
+      />
     </div>
   </form>
 );

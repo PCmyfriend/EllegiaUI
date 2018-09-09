@@ -1,16 +1,22 @@
+/* eslint-disable react/prop-types,react/no-children-prop */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form/immutable';
 import SelectField from 'material-ui/SelectField';
 
 class FormSelectField extends React.Component {
-
   constructor(props, context) {
     super(props, context);
     this.renderSelectField = this.renderSelectField.bind(this);
   }
 
-  renderSelectField({ input, label, meta: { touched, error }, children, ...custom }) {
+  renderSelectField({
+    input,
+    label,
+    meta: { touched, error },
+    children,
+    ...custom
+  }) {
     return (
       <SelectField
         floatingLabelText={label}

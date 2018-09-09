@@ -9,8 +9,8 @@ import DeleteForeverIcon from 'material-ui/svg-icons/action/delete-forever';
 const HandbookValuesList = ({ handbookValues, onDeleteHandbookValueClick }) => (
   <div>
     <List>
-      {handbookValues.map((handbookValue) =>
-        (<ListItem
+      {handbookValues.map(handbookValue => (
+        <ListItem
           id={handbookValue.get('id')}
           key={handbookValue.get('id')}
           primaryText={handbookValue.get('name')}
@@ -23,8 +23,8 @@ const HandbookValuesList = ({ handbookValues, onDeleteHandbookValueClick }) => (
               <DeleteForeverIcon color={grey400} />
             </IconButton>
           }
-        />)
-      )}
+        />
+      ))}
     </List>
   </div>
 );

@@ -11,12 +11,10 @@ import messages from './messages';
 import FormSelectField from '../../../components/FormSelectField';
 import TextField from '../../../components/FormTextField';
 
-const validate = (values) => {
+const validate = values => {
   const errors = {};
-  const requiredFields = [
-    'recipientId',
-  ];
-  requiredFields.forEach((field) => {
+  const requiredFields = ['recipientId'];
+  requiredFields.forEach(field => {
     if (!values.get(field)) {
       errors[field] = 'Обязательное поле';
     }
@@ -24,32 +22,50 @@ const validate = (values) => {
   return errors;
 };
 
-const OrderRoutesFormDialog = ({ order, handleSubmit, handleCancelClick, isVisible }) => (
-  <Dialog
-    modal
-    open={isVisible}
-  >
-    <h2><FormattedMessage {...messages.header} /></h2>
+const OrderRoutesFormDialog = ({
+  order,
+  handleSubmit,
+  handleCancelClick,
+  isVisible,
+}) => (
+  <Dialog modal open={isVisible}>
+    <h2>
+      <FormattedMessage {...messages.header} />
+    </h2>
     <form onSubmit={handleSubmit}>
       <div>
         <FormSelectField
-          name={'recipientId'}
+          name="recipientId"
           label={<FormattedMessage {...messages.recipient} />}
         >
-          {order.get('permittedRoutes').map((pr) =>
-            <MenuItem key={pr.get('userId')} value={pr.get('userId')} primaryText={pr.get('fullName')} />
-          )}
+          {order
+            .get('permittedRoutes')
+            .map(pr => (
+              <MenuItem
+                key={pr.get('userId')}
+                value={pr.get('userId')}
+                primaryText={pr.get('fullName')}
+              />
+            ))}
         </FormSelectField>
       </div>
       <div>
         <TextField
-          name={'comment'}
+          name="comment"
           label={<FormattedMessage {...messages.comment} />}
         />
       </div>
       <div>
-        <FlatButton type="submit" label={<FormattedMessage {...messages.send} />} primary />
-        <FlatButton onClick={handleCancelClick} label={<FormattedMessage {...messages.cancel} />} secondary />
+        <FlatButton
+          type="submit"
+          label={<FormattedMessage {...messages.send} />}
+          primary
+        />
+        <FlatButton
+          onClick={handleCancelClick}
+          label={<FormattedMessage {...messages.cancel} />}
+          secondary
+        />
       </div>
     </form>
   </Dialog>

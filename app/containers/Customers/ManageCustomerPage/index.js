@@ -14,7 +14,9 @@ class ManageCustomerPage extends React.PureComponent {
   render() {
     return (
       <div>
-        <h1><FormattedMessage {...messages.header} /></h1>
+        <h1>
+          <FormattedMessage {...messages.header} />
+        </h1>
         <CustomerForm onSubmit={this.props.onSubmitForm} />
       </div>
     );
@@ -27,19 +29,24 @@ ManageCustomerPage.propTypes = {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onSubmitForm: (values) => {
-      const customer = Object.assign({}, values.toJS(), { id: 0, contacts: [] });
+    onSubmitForm: values => {
+      const customer = Object.assign({}, values.toJS(), {
+        id: 0,
+        contacts: [],
+      });
       dispatch(addCustomer(customer));
     },
   };
 }
 
-
-const withConnect = connect(null, mapDispatchToProps);
+const withConnect = connect(
+  null,
+  mapDispatchToProps,
+);
 
 const withSaga = injectSaga({ key: 'manageCustomer', saga });
 
 export default compose(
   withSaga,
-  withConnect
+  withConnect,
 )(ManageCustomerPage);

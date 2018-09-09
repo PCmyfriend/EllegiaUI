@@ -29,7 +29,6 @@ import messages from './messages';
 import OrderForm from './OrderForm';
 
 class Orders extends React.PureComponent {
-
   componentDidMount() {
     this.props.loadCustomers();
     this.props.loadCustomers();
@@ -42,7 +41,9 @@ class Orders extends React.PureComponent {
   render() {
     return (
       <div>
-        <h1><FormattedMessage {...messages.header} /></h1>
+        <h1>
+          <FormattedMessage {...messages.header} />
+        </h1>
         <OrderForm
           filmTypes={this.props.filmTypes}
           customers={this.props.customers}
@@ -80,7 +81,7 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onSubmitForm: (values) => {
+    onSubmitForm: values => {
       dispatch(addOrder(values));
     },
     loadCustomers: () => dispatch(loadCustomers()),
@@ -91,13 +92,19 @@ export function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
 
 const withCustomersSaga = injectSaga({ key: 'customers', saga: customersSaga });
 const withFilmTypesSaga = injectSaga({ key: 'filmTypes', saga: filmTypesSaga });
 const withOrdersSaga = injectSaga({ key: 'orders', saga: ordersSaga });
 const withHandbookSaga = injectSaga({ key: 'handbook', saga: handbooksSaga });
-const withPlasticBagTypesSaga = injectSaga({ key: 'plasticBagTypes', saga: plasticBagTypesSaga });
+const withPlasticBagTypesSaga = injectSaga({
+  key: 'plasticBagTypes',
+  saga: plasticBagTypesSaga,
+});
 
 export default compose(
   withOrdersSaga,
@@ -105,5 +112,5 @@ export default compose(
   withFilmTypesSaga,
   withHandbookSaga,
   withPlasticBagTypesSaga,
-  withConnect
+  withConnect,
 )(Orders);

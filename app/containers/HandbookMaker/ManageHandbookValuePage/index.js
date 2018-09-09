@@ -14,8 +14,14 @@ class ManageHandbookValuePage extends React.PureComponent {
   render() {
     return (
       <div>
-        <h1><FormattedMessage {...messages.header} />{' '}<FormattedMessage {...messages[this.props.handbookSingularName]} /></h1>
-        <HandbookValueForm onSubmit={this.props.onSubmitForm} handbookSingularName={this.props.handbookSingularName} />
+        <h1>
+          <FormattedMessage {...messages.header} />{' '}
+          <FormattedMessage {...messages[this.props.handbookSingularName]} />
+        </h1>
+        <HandbookValueForm
+          onSubmit={this.props.onSubmitForm}
+          handbookSingularName={this.props.handbookSingularName}
+        />
       </div>
     );
   }
@@ -28,18 +34,21 @@ ManageHandbookValuePage.propTypes = {
 
 export function mapDispatchToProps(dispatch, ownProps) {
   return {
-    onSubmitForm: (values) => {
+    onSubmitForm: values => {
       const handbookValue = Object.assign({}, values.toJS());
       dispatch(addHandbookValue(ownProps.handbookName, handbookValue));
     },
   };
 }
 
-const withConnect = connect(null, mapDispatchToProps);
+const withConnect = connect(
+  null,
+  mapDispatchToProps,
+);
 
 const withSaga = injectSaga({ key: 'manageHandbookValue', saga });
 
 export default compose(
   withSaga,
-  withConnect
+  withConnect,
 )(ManageHandbookValuePage);

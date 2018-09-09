@@ -11,8 +11,7 @@ import { loginUser } from './actions';
 import saga from './saga';
 import reducer from './reducer';
 
-class LoginPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-
+class LoginPage extends React.PureComponent {
   render() {
     return (
       <div>
@@ -33,13 +32,16 @@ LoginPage.propTypes = {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onSubmitForm: (values) => {
+    onSubmitForm: values => {
       dispatch(loginUser(values.toJS()));
     },
   };
 }
 
-const withConnect = connect(null, mapDispatchToProps);
+const withConnect = connect(
+  null,
+  mapDispatchToProps,
+);
 
 const withReducer = injectReducer({ key: 'user', reducer });
 const withSaga = injectSaga({ key: 'user', saga });
@@ -47,5 +49,5 @@ const withSaga = injectSaga({ key: 'user', saga });
 export default compose(
   withReducer,
   withSaga,
-  withConnect
+  withConnect,
 )(LoginPage);

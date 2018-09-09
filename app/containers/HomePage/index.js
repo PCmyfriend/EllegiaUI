@@ -20,7 +20,8 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import OrdersPage from '../Orders/OrdersPage/Loadable';
 
-class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+class HomePage extends React.PureComponent {
+  // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div>
@@ -30,7 +31,7 @@ class HomePage extends React.PureComponent { // eslint-disable-line react/prefer
         <div style={{ marginTop: '20px' }}>
           <FloatingActionButton onClick={this.props.redirectToAddOrderPage}>
             <ContentAdd />
-          </FloatingActionButton >
+          </FloatingActionButton>
         </div>
       </div>
     );
@@ -47,8 +48,9 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(null, mapDispatchToProps);
+const withConnect = connect(
+  null,
+  mapDispatchToProps,
+);
 
-export default compose(
-  withConnect,
-)(HomePage);
+export default compose(withConnect)(HomePage);

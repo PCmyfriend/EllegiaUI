@@ -1,3 +1,4 @@
+/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -6,13 +7,9 @@ import Notifications from 'react-notification-system-redux';
 
 import { makeSelectNotifications } from './selectors';
 
-class NotificationsCenter extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class NotificationsCenter extends React.Component {
   render() {
-    return (
-      <Notifications
-        notifications={this.props.notifications}
-      />
-    );
+    return <Notifications notifications={this.props.notifications} />;
   }
 }
 

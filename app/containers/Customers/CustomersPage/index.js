@@ -20,7 +20,6 @@ import manageCustomerSaga from '../ManageCustomerPage/saga';
 import CustomerList from './CustomersList';
 
 class CustomersPage extends React.PureComponent {
-
   constructor(context, state) {
     super(context, state);
 
@@ -37,7 +36,7 @@ class CustomersPage extends React.PureComponent {
 
   handleCustomerClick(event) {
     const customerId = event.currentTarget.id;
-    const expandedCustomers = this.state.expandedCustomers;
+    const { expandedCustomers } = this.state;
     expandedCustomers[customerId] = !expandedCustomers[customerId];
     this.setState({ expandedCustomers: Object.assign({}, expandedCustomers) });
   }
@@ -45,7 +44,9 @@ class CustomersPage extends React.PureComponent {
   render() {
     return (
       <div>
-        <h1><FormattedMessage {...messages.header} /></h1>
+        <h1>
+          <FormattedMessage {...messages.header} />
+        </h1>
         <CustomerList
           customers={this.props.customers}
           onCustomerClick={this.handleCustomerClick}
@@ -55,7 +56,7 @@ class CustomersPage extends React.PureComponent {
         />
         <FloatingActionButton onClick={this.props.redirectToAddCustomerPage}>
           <ContentAdd />
-        </FloatingActionButton >
+        </FloatingActionButton>
       </div>
     );
   }
@@ -77,18 +78,26 @@ function mapDispatchToProps(dispatch) {
   return {
     loadCustomers: () => dispatch(loadCustomers()),
     redirectToAddCustomerPage: () => dispatch(push('/customer')),
-    handleDeleteCustomerClick: (event) => dispatch(deleteCustomer(event.currentTarget.id)),
-    handleDeleteContactClick: (event) => dispatch(deleteContact(event.currentTarget.id)),
+    handleDeleteCustomerClick: event =>
+      dispatch(deleteCustomer(event.currentTarget.id)),
+    handleDeleteContactClick: event =>
+      dispatch(deleteContact(event.currentTarget.id)),
   };
 }
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
 
 const withSaga = injectSaga({ key: 'customers', saga });
-const withManageCustomerSaga = injectSaga({ key: 'manageCustomer', saga: manageCustomerSaga });
+const withManageCustomerSaga = injectSaga({
+  key: 'manageCustomer',
+  saga: manageCustomerSaga,
+});
 
 export default compose(
   withSaga,
   withManageCustomerSaga,
-  withConnect
+  withConnect,
 )(CustomersPage);

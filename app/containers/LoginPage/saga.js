@@ -4,7 +4,10 @@ import qs from 'qs';
 import { LOGIN_USER } from './constants';
 import { loginUserSuccess } from './actions';
 import { showLoading, hideLoading } from '../../components/Progress/actions';
-import { showSuccess, showError } from '../../components/NotificationCenter/actions';
+import {
+  showSuccess,
+  showError,
+} from '../../components/NotificationCenter/actions';
 
 import { request } from '../../api/ellegiaRequest';
 import IdTokenParser from '../../utils/idTokenParser';
@@ -24,9 +27,14 @@ export function* loginUser() {
       request().post,
       requestUrl,
       urlEncodedCredentials,
-      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } },
+    );
     authPayload.idTokenInfo = IdTokenParser.parse(authPayload.id_token);
-    yield all([put(loginUserSuccess(authPayload)), put(hideLoading()), put(showSuccess())]);
+    yield all([
+      put(loginUserSuccess(authPayload)),
+      put(hideLoading()),
+      put(showSuccess()),
+    ]);
   } catch (err) {
     yield all([put(hideLoading()), put(showError())]);
   }

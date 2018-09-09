@@ -2,12 +2,19 @@ import { all, call, put, select, takeLatest } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 
 import { showLoading, hideLoading } from '../../components/Progress/actions';
-import { showError, showSuccess } from '../../components/NotificationCenter/actions';
+import {
+  showError,
+  showSuccess,
+} from '../../components/NotificationCenter/actions';
 import { apiRequest } from '../../api/ellegiaRequest';
 import { makeSelectToken } from '../LoginPage/selectors';
 
-import { ADD_FILM_TYPE, DELETE_FILM_TYPE, LOAD_FILM_TYPES} from './constants';
-import { loadFilmTypesSuccess, addFilmTypeSuccess, deleteFilmTypeSuccess} from './actions';
+import { ADD_FILM_TYPE, DELETE_FILM_TYPE, LOAD_FILM_TYPES } from './constants';
+import {
+  loadFilmTypesSuccess,
+  addFilmTypeSuccess,
+  deleteFilmTypeSuccess,
+} from './actions';
 
 export function* loadFilmTypes() {
   const authHeader = yield select(makeSelectToken());
@@ -23,28 +30,37 @@ export function* loadFilmTypes() {
 }
 
 export function* addFilmType(action) {
-  let filmType = action.filmType;
+  let { filmType } = action;
   const authHeader = yield select(makeSelectToken());
   const requestUrl = 'filmTypes';
 
   try {
     yield put(showLoading());
     filmType = yield call(apiRequest(authHeader).post, requestUrl, filmType);
-    yield all([put(addFilmTypeSuccess(filmType)), put(hideLoading()), put(showSuccess()), put(push('/filmTypes'))]);
+    yield all([
+      put(addFilmTypeSuccess(filmType)),
+      put(hideLoading()),
+      put(showSuccess()),
+      put(push('/filmTypes')),
+    ]);
   } catch (err) {
     yield all([put(hideLoading()), put(showError())]);
   }
 }
 
 export function* deleteFilmType(action) {
-  const filmTypeId = action.filmTypeId;
+  const { filmTypeId } = action;
   const authHeader = yield select(makeSelectToken());
   const requestUrl = `filmTypes/${filmTypeId}`;
 
   try {
     yield put(showLoading());
     yield call(apiRequest(authHeader).delete, requestUrl);
-    yield all([put(deleteFilmTypeSuccess(filmTypeId)), put(hideLoading()), put(showSuccess())]);
+    yield all([
+      put(deleteFilmTypeSuccess(filmTypeId)),
+      put(hideLoading()),
+      put(showSuccess()),
+    ]);
   } catch (err) {
     yield all([put(hideLoading()), put(showError())]);
   }

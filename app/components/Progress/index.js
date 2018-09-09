@@ -8,11 +8,14 @@ import injectReducer from '../../utils/injectReducer';
 import reducer from './reducer';
 import { makeSelectLoading } from './selectors';
 
-class Progress extends React.Component { // eslint-disable-line react/prefer-stateless-function
+/* eslint-disable react/prefer-stateless-function */
+class Progress extends React.Component {
   render() {
     return (
       <div>
-        {this.props.loading && <LinearProgress mode="indeterminate" color="red" />}
+        {this.props.loading && (
+          <LinearProgress mode="indeterminate" color="red" />
+        )}
       </div>
     );
   }
@@ -32,5 +35,5 @@ const withReducer = injectReducer({ key: 'progress', reducer });
 
 export default compose(
   withConnect,
-  withReducer
+  withReducer,
 )(Progress);

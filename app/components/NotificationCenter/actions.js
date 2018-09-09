@@ -1,6 +1,9 @@
 import { error, success } from 'react-notification-system-redux';
 
-export function showSuccess(title = 'Успех', message = 'Операция успешно выполнена.') {
+export function showSuccess(
+  title = 'Успех',
+  message = 'Операция успешно выполнена.',
+) {
   return success({
     title,
     message,
@@ -9,7 +12,10 @@ export function showSuccess(title = 'Успех', message = 'Операция у
   });
 }
 
-export function showError(title = 'Ошибка', message = 'Произошла ошибка при выполнении операции.') {
+export function showError(
+  title = 'Ошибка',
+  message = 'Произошла ошибка при выполнении операции.',
+) {
   return error({
     title,
     message,

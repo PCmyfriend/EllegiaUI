@@ -10,12 +10,10 @@ import messages from './messages';
 import FormTextField from '../../../components/FormTextField';
 import FormSelectField from '../../../components/FormSelectField';
 
-const validate = (values) => {
+const validate = values => {
   const errors = {};
-  const requiredFields = [
-    'name',
-  ];
-  requiredFields.forEach((field) => {
+  const requiredFields = ['name'];
+  requiredFields.forEach(field => {
     if (!values.get(field)) {
       errors[field] = 'Обязательное поле';
     }
@@ -30,9 +28,13 @@ const ContactForm = ({ contactTypes, handleSubmit }) => (
         name="contactTypeId"
         label={<FormattedMessage {...messages.contactType} />}
       >
-        {contactTypes.map((ct) =>
-          <MenuItem key={ct.get('id')} value={ct.get('id')} primaryText={ct.get('name')} />
-          )}
+        {contactTypes.map(ct => (
+          <MenuItem
+            key={ct.get('id')}
+            value={ct.get('id')}
+            primaryText={ct.get('name')}
+          />
+        ))}
       </FormSelectField>
     </div>
     <div>
@@ -42,7 +44,11 @@ const ContactForm = ({ contactTypes, handleSubmit }) => (
       />
     </div>
     <div>
-      <RaisedButton type="submit" label={<FormattedMessage {...messages.save} />} primary />
+      <RaisedButton
+        type="submit"
+        label={<FormattedMessage {...messages.save} />}
+        primary
+      />
     </div>
   </form>
 );

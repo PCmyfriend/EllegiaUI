@@ -2,7 +2,10 @@ import { all, call, put, select, takeLatest } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 
 import { showLoading, hideLoading } from '../../components/Progress/actions';
-import { showError, showSuccess } from '../../components/NotificationCenter/actions';
+import {
+  showError,
+  showSuccess,
+} from '../../components/NotificationCenter/actions';
 import { apiRequest } from '../../api/ellegiaRequest';
 import { makeSelectToken } from '../LoginPage/selectors';
 
@@ -29,20 +32,27 @@ export function* loadPlasticBagTypes() {
   try {
     yield put(showLoading());
     const plasticBagTypes = yield call(apiRequest(authHeader).get, requestUrl);
-    yield all([put(loadPlasticBagTypesSuccess(plasticBagTypes)), put(hideLoading())]);
+    yield all([
+      put(loadPlasticBagTypesSuccess(plasticBagTypes)),
+      put(hideLoading()),
+    ]);
   } catch (err) {
     yield all([put(hideLoading()), put(showError())]);
   }
 }
 
 export function* addPlasticBagType(action) {
-  let plasticBagType = action.plasticBagType;
+  let { plasticBagType } = action;
   const authHeader = yield select(makeSelectToken());
   const requestUrl = 'plasticBagTypes';
 
   try {
     yield put(showLoading());
-    plasticBagType = yield call(apiRequest(authHeader).post, requestUrl, plasticBagType);
+    plasticBagType = yield call(
+      apiRequest(authHeader).post,
+      requestUrl,
+      plasticBagType,
+    );
     yield all([
       put(addPlasticBagTypeSuccess(plasticBagType)),
       put(hideLoading()),
@@ -55,27 +65,37 @@ export function* addPlasticBagType(action) {
 }
 
 export function* deletePlasticBagType(action) {
-  const plasticBagTypeId = action.plasticBagTypeId;
+  const { plasticBagTypeId } = action;
   const authHeader = yield select(makeSelectToken());
   const requestUrl = `plasticBagTypes/${plasticBagTypeId}`;
 
   try {
     yield put(showLoading());
     yield call(apiRequest(authHeader).delete, requestUrl);
-    yield all([put(deletePlasticBagTypeSuccess(plasticBagTypeId)), put(hideLoading()), put(showSuccess())]);
+    yield all([
+      put(deletePlasticBagTypeSuccess(plasticBagTypeId)),
+      put(hideLoading()),
+      put(showSuccess()),
+    ]);
   } catch (err) {
     yield all([put(hideLoading()), put(showError())]);
   }
 }
 
 export function* addStandardSize(action) {
-  let standardSize = action.standardSize;
+  let { standardSize } = action;
   const authHeader = yield select(makeSelectToken());
-  const requestUrl = `plasticBagTypes/${standardSize.plasticBagTypeId}/standardSizes/`;
+  const requestUrl = `plasticBagTypes/${
+    standardSize.plasticBagTypeId
+  }/standardSizes/`;
 
   try {
     yield put(showLoading());
-    standardSize = yield call(apiRequest(authHeader).post, requestUrl, standardSize);
+    standardSize = yield call(
+      apiRequest(authHeader).post,
+      requestUrl,
+      standardSize,
+    );
     yield all([
       put(addStandardSizeSuccess(standardSize)),
       put(hideLoading()),
@@ -87,15 +107,18 @@ export function* addStandardSize(action) {
 }
 
 export function* deleteStandardSize(action) {
-  const standardSizeId = action.standardSizeId;
-  const plasticBagTypeId = action.plasticBagTypeId;
+  const { standardSizeId, plasticBagTypeId } = action;
   const authHeader = yield select(makeSelectToken());
   const requestUrl = `plasticBagTypes/${plasticBagTypeId}/standardSizes/${standardSizeId}`;
 
   try {
     yield put(showLoading());
     yield call(apiRequest(authHeader).delete, requestUrl);
-    yield all([put(deleteStandardSizeSuccess(standardSizeId)), put(hideLoading()), put(showSuccess())]);
+    yield all([
+      put(deleteStandardSizeSuccess(standardSizeId)),
+      put(hideLoading()),
+      put(showSuccess()),
+    ]);
   } catch (err) {
     yield all([put(hideLoading()), put(showError())]);
   }

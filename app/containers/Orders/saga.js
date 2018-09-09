@@ -1,24 +1,42 @@
-import { all, call, put, select, takeLatest, takeEvery } from 'redux-saga/effects';
+import {
+  all,
+  call,
+  put,
+  select,
+  takeLatest,
+  takeEvery,
+} from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 
 import { ADD_ORDER, LOAD_ORDERS, DELETE_ORDER, SEND_ORDER } from './constants';
-import { addOrderSuccess, loadOrdersSuccess, deleteOrderSuccess, sendOrderSuccess } from './actions';
+import {
+  addOrderSuccess,
+  loadOrdersSuccess,
+  deleteOrderSuccess,
+  sendOrderSuccess,
+} from './actions';
 import { showLoading, hideLoading } from '../../components/Progress/actions';
-import { showSuccess, showError } from '../../components/NotificationCenter/actions';
+import {
+  showSuccess,
+  showError,
+} from '../../components/NotificationCenter/actions';
 
 import { apiRequest } from '../../api/ellegiaRequest';
 
 import { makeSelectToken } from '../LoginPage/selectors';
 
 export function* loadOrders(action) {
-  const orderStatus = action.orderStatus;
+  const { orderStatus } = action;
   const authHeader = yield select(makeSelectToken());
   const requestUrl = `orders/${orderStatus}`;
 
   try {
     yield put(showLoading());
     const orders = yield call(apiRequest(authHeader).get, requestUrl);
-    yield all([put(loadOrdersSuccess(orderStatus, orders)), put(hideLoading())]);
+    yield all([
+      put(loadOrdersSuccess(orderStatus, orders)),
+      put(hideLoading()),
+    ]);
   } catch (err) {
     yield all([put(hideLoading()), put(showError())]);
   }
@@ -53,39 +71,55 @@ export function* addOrder(action) {
 
   try {
     yield put(showLoading());
-    productType = yield call(apiRequest(authHeader).post, productTypeRequestUrl, productType);
+    productType = yield call(
+      apiRequest(authHeader).post,
+      productTypeRequestUrl,
+      productType,
+    );
     order.productTypeId = productType.id;
     order = yield call(apiRequest(authHeader).post, orderRequestUrl, order);
-    yield all([put(addOrderSuccess(order)), put(hideLoading()), put(showSuccess()), put(push('/'))]);
+    yield all([
+      put(addOrderSuccess(order)),
+      put(hideLoading()),
+      put(showSuccess()),
+      put(push('/')),
+    ]);
   } catch (err) {
     yield all([put(hideLoading()), put(showError())]);
   }
 }
 
 export function* deleteOrder(action) {
-  const orderId = action.orderId;
+  const { orderId } = action;
   const authHeader = yield select(makeSelectToken());
   const requestUrl = `orders/${orderId}`;
 
   try {
     yield put(showLoading());
     yield call(apiRequest(authHeader).delete, requestUrl);
-    yield all([put(deleteOrderSuccess(orderId)), put(hideLoading()), put(showSuccess())]);
+    yield all([
+      put(deleteOrderSuccess(orderId)),
+      put(hideLoading()),
+      put(showSuccess()),
+    ]);
   } catch (err) {
     yield all([put(hideLoading()), put(showError())]);
   }
 }
 
 export function* sendOrder(action) {
-  const orderId = action.orderId;
+  const { orderId, orderRoute } = action;
   const authHeader = yield select(makeSelectToken());
   const requestUrl = `orders/${orderId}/routes/`;
-  const orderRoute = action.orderRoute;
 
   try {
     yield put(showLoading());
     yield call(apiRequest(authHeader).post, requestUrl, orderRoute);
-    yield all([put(sendOrderSuccess(orderId, orderRoute)), put(hideLoading()), put(showSuccess())]);
+    yield all([
+      put(sendOrderSuccess(orderId, orderRoute)),
+      put(hideLoading()),
+      put(showSuccess()),
+    ]);
   } catch (err) {
     yield all([put(hideLoading()), put(showError())]);
   }

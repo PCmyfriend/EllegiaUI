@@ -23,11 +23,12 @@ import { makeSelectToken } from '../../LoginPage/selectors';
 import OrdersList from './OrdersList';
 
 class OrdersPage extends React.PureComponent {
-
   constructor(context, props) {
     super(context, props);
 
-    this.handlePreviewOrderPrintingVersionClick = this.handlePreviewOrderPrintingVersionClick.bind(this);
+    this.handlePreviewOrderPrintingVersionClick = this.handlePreviewOrderPrintingVersionClick.bind(
+      this,
+    );
     this.handleDeleteOrderClick = this.handleDeleteOrderClick.bind(this);
   }
 
@@ -48,7 +49,9 @@ class OrdersPage extends React.PureComponent {
   render() {
     return (
       <div>
-        <h1><FormattedMessage {...messages.header} /></h1>
+        <h1>
+          <FormattedMessage {...messages.header} />
+        </h1>
         <Tabs>
           <Tab
             icon={<Assignment />}
@@ -56,7 +59,9 @@ class OrdersPage extends React.PureComponent {
           >
             <OrdersList
               orders={this.props.activeOrders}
-              handlePreviewOrderPrintingVersionClick={this.handlePreviewOrderPrintingVersionClick}
+              handlePreviewOrderPrintingVersionClick={
+                this.handlePreviewOrderPrintingVersionClick
+              }
               handleDeleteOrderClick={this.handleDeleteOrderClick}
             />
           </Tab>
@@ -66,7 +71,9 @@ class OrdersPage extends React.PureComponent {
           >
             <OrdersList
               orders={this.props.completedOrders}
-              handlePreviewOrderPrintingVersionClick={this.handlePreviewOrderPrintingVersionClick}
+              handlePreviewOrderPrintingVersionClick={
+                this.handlePreviewOrderPrintingVersionClick
+              }
               handleDeleteOrderClick={this.handleDeleteOrderClick}
             />
           </Tab>
@@ -76,7 +83,9 @@ class OrdersPage extends React.PureComponent {
           >
             <OrdersList
               orders={this.props.releaseOrders}
-              handlePreviewOrderPrintingVersionClick={this.handlePreviewOrderPrintingVersionClick}
+              handlePreviewOrderPrintingVersionClick={
+                this.handlePreviewOrderPrintingVersionClick
+              }
               handleDeleteOrderClick={this.handleDeleteOrderClick}
             />
           </Tab>
@@ -104,12 +113,15 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    loadOrders: (orderStatus) => dispatch(loadOrders(orderStatus)),
-    deleteOrder: (orderId) => dispatch(deleteOrder(orderId)),
+    loadOrders: orderStatus => dispatch(loadOrders(orderStatus)),
+    deleteOrder: orderId => dispatch(deleteOrder(orderId)),
   };
 }
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
 const withSaga = injectSaga({ key: 'orders', saga });
 
 export default compose(

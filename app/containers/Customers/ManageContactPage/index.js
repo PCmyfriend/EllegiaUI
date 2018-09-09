@@ -15,7 +15,6 @@ import { loadContactTypes } from '../../ContactTypes/actions';
 import { makeSelectContactTypes } from '../../ContactTypes/selectors';
 
 class ManageContactPage extends React.PureComponent {
-
   componentDidMount() {
     this.props.loadContactTypes();
   }
@@ -46,19 +45,28 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch, ownProps) {
   return {
-    onSubmitForm: (values) => {
-      const contact = Object.assign({}, values.toJS(), { id: 0, customerId: ownProps.customerId });
+    onSubmitForm: values => {
+      const contact = Object.assign({}, values.toJS(), {
+        id: 0,
+        customerId: ownProps.customerId,
+      });
       dispatch(addContact(contact));
     },
     loadContactTypes: () => dispatch(loadContactTypes()),
   };
 }
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
 
-const withContactTypesSaga = injectSaga({ key: 'contactTypes', saga: contactTypesSaga });
+const withContactTypesSaga = injectSaga({
+  key: 'contactTypes',
+  saga: contactTypesSaga,
+});
 
 export default compose(
   withContactTypesSaga,
-  withConnect
+  withConnect,
 )(ManageContactPage);

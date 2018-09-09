@@ -1,6 +1,8 @@
 import {
   ADD_FILM_TYPE,
-  ADD_FILM_TYPE_SUCCESS, DELETE_FILM_TYPE, DELETE_FILM_TYPE_SUCCESS,
+  ADD_FILM_TYPE_SUCCESS,
+  DELETE_FILM_TYPE,
+  DELETE_FILM_TYPE_SUCCESS,
   LOAD_FILM_TYPES,
   LOAD_FILM_TYPES_SUCCESS,
 } from './constants';
@@ -21,7 +23,7 @@ export function loadFilmTypesSuccess(filmTypes) {
 export function addFilmType(filmType) {
   return {
     type: ADD_FILM_TYPE,
-    filmType
+    filmType,
   };
 }
 

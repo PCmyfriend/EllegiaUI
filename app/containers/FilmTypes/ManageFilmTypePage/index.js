@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { FormattedMessage } from 'react-intl';
-import { createStructuredSelector}  from 'reselect';
+import { createStructuredSelector } from 'reselect';
 import injectSaga from '../../../utils/injectSaga';
 import { addFilmType, loadFilmTypes } from '../actions';
 import saga from '../saga';
@@ -17,8 +17,13 @@ class ManageFilmTypesPage extends React.PureComponent {
   render() {
     return (
       <div>
-        <h1><FormattedMessage {...messages.header} /></h1>
-        <FilmTypeForm onSubmit={this.props.onSubmitForm} filmTypes={this.props.filmTypes} />
+        <h1>
+          <FormattedMessage {...messages.header} />
+        </h1>
+        <FilmTypeForm
+          onSubmit={this.props.onSubmitForm}
+          filmTypes={this.props.filmTypes}
+        />
       </div>
     );
   }
@@ -35,7 +40,7 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onSubmitForm: (values) => {
+    onSubmitForm: values => {
       const filmType = Object.assign({}, values.toJS());
       dispatch(addFilmType(filmType));
     },
@@ -43,11 +48,14 @@ export function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
 
 const withSaga = injectSaga({ key: 'manageFilmTypes', saga });
 
 export default compose(
   withSaga,
-  withConnect
+  withConnect,
 )(ManageFilmTypesPage);

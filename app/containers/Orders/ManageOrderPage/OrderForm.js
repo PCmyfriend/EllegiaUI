@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { fromJS } from 'immutable';
@@ -13,7 +14,7 @@ import FormTextField from '../../../components/FormTextField';
 import FormSelectField from '../../../components/FormSelectField';
 import FormCheckboxField from '../../../components/FormCheckboxField';
 
-const validate = (values) => {
+const validate = values => {
   const errors = {};
   const requiredFields = [
     'customerId',
@@ -31,7 +32,7 @@ const validate = (values) => {
     'widthInMmError',
     'lengthInMmError',
   ];
-  requiredFields.forEach((field) => {
+  requiredFields.forEach(field => {
     if (!values.get(field)) {
       errors[field] = 'Обязательное поле';
     }
@@ -40,7 +41,6 @@ const validate = (values) => {
 };
 
 class OrderForm extends React.PureComponent {
-
   constructor(props) {
     super(props);
 
@@ -48,11 +48,15 @@ class OrderForm extends React.PureComponent {
       standardSizes: fromJS([]),
     };
 
-    this.handlePlasticBagTypeChange = this.handlePlasticBagTypeChange.bind(this);
+    this.handlePlasticBagTypeChange = this.handlePlasticBagTypeChange.bind(
+      this,
+    );
   }
 
   handlePlasticBagTypeChange(value) {
-    const plasticBagType = this.props.plasticBagTypes.filter((pbt) => pbt.get('id') == value).get(0);
+    const plasticBagType = this.props.plasticBagTypes
+      .filter(pbt => pbt.get('id') == value)
+      .get(0);
     const standardSizes = fromJS(plasticBagType.get('standardSizes') || []);
     return this.setState({ standardSizes });
   }
@@ -65,9 +69,13 @@ class OrderForm extends React.PureComponent {
             name="customerId"
             label={<FormattedMessage {...messages.customer} />}
           >
-            {this.props.customers.map((c) =>
-              <MenuItem key={c.get('id')} value={c.get('id')} primaryText={c.get('name')} />
-            )}
+            {this.props.customers.map(c => (
+              <MenuItem
+                key={c.get('id')}
+                value={c.get('id')}
+                primaryText={c.get('name')}
+              />
+            ))}
           </FormSelectField>
         </div>
         <div>
@@ -81,9 +89,13 @@ class OrderForm extends React.PureComponent {
             name="filmTypeId"
             label={<FormattedMessage {...messages.filmType} />}
           >
-            {this.props.filmTypes.map((ft) =>
-              <MenuItem key={ft.get('id')} value={ft.get('id')} primaryText={ft.get('name')} />
-            )}
+            {this.props.filmTypes.map(ft => (
+              <MenuItem
+                key={ft.get('id')}
+                value={ft.get('id')}
+                primaryText={ft.get('name')}
+              />
+            ))}
           </FormSelectField>
         </div>
         <div>
@@ -91,9 +103,13 @@ class OrderForm extends React.PureComponent {
             name="colorId"
             label={<FormattedMessage {...messages.color} />}
           >
-            {this.props.colors.map((c) =>
-              <MenuItem key={c.get('id')} value={c.get('id')} primaryText={c.get('name')} />
-            )}
+            {this.props.colors.map(c => (
+              <MenuItem
+                key={c.get('id')}
+                value={c.get('id')}
+                primaryText={c.get('name')}
+              />
+            ))}
           </FormSelectField>
         </div>
         <div>
@@ -102,9 +118,13 @@ class OrderForm extends React.PureComponent {
             onChange={this.handlePlasticBagTypeChange}
             label={<FormattedMessage {...messages.plasticBagType} />}
           >
-            {this.props.plasticBagTypes.map((pbt) =>
-              <MenuItem key={pbt.get('id')} value={pbt.get('id')} primaryText={pbt.get('name')} />
-            )}
+            {this.props.plasticBagTypes.map(pbt => (
+              <MenuItem
+                key={pbt.get('id')}
+                value={pbt.get('id')}
+                primaryText={pbt.get('name')}
+              />
+            ))}
           </FormSelectField>
         </div>
         <div>
@@ -112,9 +132,13 @@ class OrderForm extends React.PureComponent {
             name="standardSizeId"
             label={<FormattedMessage {...messages.standardSize} />}
           >
-            {this.state.standardSizes.map((ft) =>
-              <MenuItem key={ft.get('id')} value={ft.get('id')} primaryText={ft.get('name')} />
-         )}
+            {this.state.standardSizes.map(ft => (
+              <MenuItem
+                key={ft.get('id')}
+                value={ft.get('id')}
+                primaryText={ft.get('name')}
+              />
+            ))}
           </FormSelectField>
         </div>
         <div>
@@ -158,9 +182,13 @@ class OrderForm extends React.PureComponent {
             name="filmTypeOptionId"
             label={<FormattedMessage {...messages.filmTypeOption} />}
           >
-            {this.props.filmTypeOptions.map((fto) =>
-              <MenuItem key={fto.get('id')} value={fto.get('id')} primaryText={fto.get('name')} />
-            )}
+            {this.props.filmTypeOptions.map(fto => (
+              <MenuItem
+                key={fto.get('id')}
+                value={fto.get('id')}
+                primaryText={fto.get('name')}
+              />
+            ))}
           </FormSelectField>
         </div>
         <div>
@@ -176,9 +204,14 @@ class OrderForm extends React.PureComponent {
           />
         </div>
         <div>
-          <RaisedButton type="submit" label={<FormattedMessage {...messages.save} />} primary />
+          <RaisedButton
+            type="submit"
+            label={<FormattedMessage {...messages.save} />}
+            primary
+          />
         </div>
-      </form>);
+      </form>
+    );
   }
 }
 
@@ -195,4 +228,3 @@ export default reduxForm({
   form: 'orderForm',
   validate,
 })(OrderForm);
-

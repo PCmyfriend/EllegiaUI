@@ -9,19 +9,39 @@ import { FormattedMessage } from 'react-intl';
 import HeaderLink from '../A';
 import messages from './messages';
 
-const NavSideMenu = (props) => (
+const NavSideMenu = props => (
   <IconMenu
     {...props}
     iconButtonElement={
-      <IconButton><MoreVertIcon /></IconButton>
+      <IconButton>
+        <MoreVertIcon />
+      </IconButton>
     }
     targetOrigin={{ horizontal: 'right', vertical: 'top' }}
     anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
   >
     <MenuItem primaryText={<FormattedMessage {...messages.assortment} />} />
-    <MenuItem primaryText={<HeaderLink to="/"><FormattedMessage {...messages.orders} /></HeaderLink>} />
-    <MenuItem primaryText={<HeaderLink to="/customers"><FormattedMessage {...messages.customers} /></HeaderLink>} />
-    <MenuItem primaryText={<HeaderLink to="/handbooks"><FormattedMessage {...messages.handbooks} /></HeaderLink>} />
+    <MenuItem
+      primaryText={
+        <HeaderLink to="/">
+          <FormattedMessage {...messages.orders} />
+        </HeaderLink>
+      }
+    />
+    <MenuItem
+      primaryText={
+        <HeaderLink to="/customers">
+          <FormattedMessage {...messages.customers} />
+        </HeaderLink>
+      }
+    />
+    <MenuItem
+      primaryText={
+        <HeaderLink to="/handbooks">
+          <FormattedMessage {...messages.handbooks} />
+        </HeaderLink>
+      }
+    />
     <Divider />
     <MenuItem primaryText={<FormattedMessage {...messages.signOut} />} />
   </IconMenu>

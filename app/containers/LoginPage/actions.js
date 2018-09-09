@@ -1,7 +1,4 @@
-import {
-  LOGIN_USER,
-  LOGIN_USER_SUCCESS,
-} from './constants';
+import { LOGIN_USER, LOGIN_USER_SUCCESS } from './constants';
 
 export function loginUser(credentials) {
   return {
@@ -16,4 +13,3 @@ export function loginUserSuccess(authPayload) {
     authPayload,
   };
 }
-

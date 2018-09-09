@@ -20,7 +20,6 @@ import HandbookValuesList from './HandbookValuesList';
 import messages from '../ManageHandbookValuePage/messages';
 
 class HandbookValuesPage extends React.PureComponent {
-
   componentDidMount() {
     this.props.loadHandbookValues();
   }
@@ -28,14 +27,18 @@ class HandbookValuesPage extends React.PureComponent {
   render() {
     return (
       <div>
-        <h1><FormattedMessage {...messages[this.props.handbookName]} /></h1>
+        <h1>
+          <FormattedMessage {...messages[this.props.handbookName]} />
+        </h1>
         <HandbookValuesList
           handbookValues={this.props.handbookValues}
           onDeleteHandbookValueClick={this.props.handleDeleteHandbookValueClick}
         />
-        <FloatingActionButton onClick={this.props.redirectToAddHandbookValuePage}>
+        <FloatingActionButton
+          onClick={this.props.redirectToAddHandbookValuePage}
+        >
           <ContentAdd />
-        </FloatingActionButton >
+        </FloatingActionButton>
       </div>
     );
   }
@@ -49,19 +52,28 @@ HandbookValuesPage.propTypes = {
   handleDeleteHandbookValueClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => createStructuredSelector({
-  handbookValues: makeSelectHandbookValues(ownProps.handbookName),
-});
+const mapStateToProps = (state, ownProps) =>
+  createStructuredSelector({
+    handbookValues: makeSelectHandbookValues(ownProps.handbookName),
+  });
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
-    loadHandbookValues: () => dispatch(loadHandbookValues(ownProps.handbookName)),
-    redirectToAddHandbookValuePage: () => dispatch(push(`/${ownProps.handbookSingularName}`)),
-    handleDeleteHandbookValueClick: (event) => dispatch(deleteHandbookValue(ownProps.handbookName, event.currentTarget.id)),
+    loadHandbookValues: () =>
+      dispatch(loadHandbookValues(ownProps.handbookName)),
+    redirectToAddHandbookValuePage: () =>
+      dispatch(push(`/${ownProps.handbookSingularName}`)),
+    handleDeleteHandbookValueClick: event =>
+      dispatch(
+        deleteHandbookValue(ownProps.handbookName, event.currentTarget.id),
+      ),
   };
 }
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
 
 const withSaga = injectSaga({ key: 'handbookValues', saga });
 
@@ -69,4 +81,3 @@ export default compose(
   withSaga,
   withConnect,
 )(HandbookValuesPage);
-

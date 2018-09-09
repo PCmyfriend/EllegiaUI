@@ -9,33 +9,40 @@ import { grey400 } from 'material-ui/styles/colors';
 
 import ManageStandardSizePage from '../ManageStandardSizePage';
 
-const getStandardSizesJsxArray = (standardSizes = fromJS([]), onDeleteStandardSizeClick) =>
-  standardSizes.map((standardSize) =>
-    (<ListItem
-      key={standardSize.get('id')}
-      rightIconButton={
-        <IconButton
-          id={`${standardSize.get('plasticBagTypeId')}-${standardSize.get('id')}`}
-          onClick={onDeleteStandardSizeClick}
-          touch
-        >
-          <DeleteForeverIcon color={grey400} />
-        </IconButton>
-      }
-      primaryText={`${standardSize.get('name')}`}
-    />)
-  ).toArray();
+const getStandardSizesJsxArray = (
+  standardSizes = fromJS([]),
+  onDeleteStandardSizeClick,
+) =>
+  standardSizes
+    .map(standardSize => (
+      <ListItem
+        key={standardSize.get('id')}
+        rightIconButton={
+          <IconButton
+            id={`${standardSize.get('plasticBagTypeId')}-${standardSize.get(
+              'id',
+            )}`}
+            onClick={onDeleteStandardSizeClick}
+            touch
+          >
+            <DeleteForeverIcon color={grey400} />
+          </IconButton>
+        }
+        primaryText={`${standardSize.get('name')}`}
+      />
+    ))
+    .toArray();
 
 const PlasticBagTypeList = ({
-    plasticBagTypes,
-    onPlasticBagTypeClick,
-    expendedPlasticBagTypes,
-    onDeletePlasticBagTypeClick,
-    onDeleteStandardSizeClick,
-  }) => (
-    <List>
-      {plasticBagTypes.map((plasticBagType) =>
-      (<ListItem
+  plasticBagTypes,
+  onPlasticBagTypeClick,
+  expendedPlasticBagTypes,
+  onDeletePlasticBagTypeClick,
+  onDeleteStandardSizeClick,
+}) => (
+  <List>
+    {plasticBagTypes.map(plasticBagType => (
+      <ListItem
         key={plasticBagType.get('id')}
         id={plasticBagType.get('id')}
         rightIconButton={
@@ -51,11 +58,19 @@ const PlasticBagTypeList = ({
         onClick={onPlasticBagTypeClick}
         open={expendedPlasticBagTypes[plasticBagType.get('id')] || false}
         nestedItems={[
-          ...getStandardSizesJsxArray(plasticBagType.get('standardSizes'), onDeleteStandardSizeClick),
-          <ListItem key={-plasticBagType.get('id')}><ManageStandardSizePage plasticBagTypeId={plasticBagType.get('id')} /></ListItem>,
+          ...getStandardSizesJsxArray(
+            plasticBagType.get('standardSizes'),
+            onDeleteStandardSizeClick,
+          ),
+          <ListItem key={-plasticBagType.get('id')}>
+            <ManageStandardSizePage
+              plasticBagTypeId={plasticBagType.get('id')}
+            />
+          </ListItem>,
         ]}
-      />))}
-    </List>
+      />
+    ))}
+  </List>
 );
 
 PlasticBagTypeList.propTypes = {

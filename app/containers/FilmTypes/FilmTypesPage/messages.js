@@ -4,5 +4,5 @@ export default defineMessages({
   header: {
     id: 'app.components.FilmTypesPage.header',
     defaultMessage: 'Film types',
-  }
+  },
 });

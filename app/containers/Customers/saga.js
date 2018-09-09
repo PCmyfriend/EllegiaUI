@@ -1,12 +1,19 @@
 import { all, call, put, select, takeLatest } from 'redux-saga/effects';
 
 import { showLoading, hideLoading } from '../../components/Progress/actions';
-import { showError, showSuccess } from '../../components/NotificationCenter/actions';
+import {
+  showError,
+  showSuccess,
+} from '../../components/NotificationCenter/actions';
 import { apiRequest } from '../../api/ellegiaRequest';
 import { makeSelectToken } from '../LoginPage/selectors';
 
 import { ADD_CONTACT, LOAD_CUSTOMERS, DELETE_CONTACT } from './constants';
-import { loadCustomersSuccess, deleteContactSuccess, addContactSuccess } from './actions';
+import {
+  loadCustomersSuccess,
+  deleteContactSuccess,
+  addContactSuccess,
+} from './actions';
 import { makeSelectContactById } from './selectors';
 
 export function* loadCustomers() {
@@ -23,7 +30,7 @@ export function* loadCustomers() {
 }
 
 export function* addContact(action) {
-  let contact = action.contact;
+  let { contact } = action;
   const authHeader = yield select(makeSelectToken());
   const requestUrl = `customers/${contact.customerId}/contacts/`;
 
@@ -37,15 +44,21 @@ export function* addContact(action) {
 }
 
 export function* deleteContact(action) {
-  const contactId = action.contactId;
+  const { contactId } = action;
   const contact = yield select(makeSelectContactById(contactId));
   const authHeader = yield select(makeSelectToken());
-  const requestUrl = `customers/${contact.get('customerId')}/contacts/${contact.get('id')}`;
+  const requestUrl = `customers/${contact.get(
+    'customerId',
+  )}/contacts/${contact.get('id')}`;
 
   try {
     yield put(showLoading());
     yield call(apiRequest(authHeader).delete, requestUrl);
-    yield all([put(deleteContactSuccess(contact)), put(hideLoading()), put(showSuccess())]);
+    yield all([
+      put(deleteContactSuccess(contact)),
+      put(hideLoading()),
+      put(showSuccess()),
+    ]);
   } catch (err) {
     yield all([put(hideLoading()), put(showError())]);
   }

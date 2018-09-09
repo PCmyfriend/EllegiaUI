@@ -11,7 +11,6 @@ import OrderRoutesFormDialog from './OrderRoutesFormDialog';
 import messages from './messages';
 
 class ManageOrderRoutePage extends React.PureComponent {
-
   constructor(context, props) {
     super(context, props);
 
@@ -19,7 +18,9 @@ class ManageOrderRoutePage extends React.PureComponent {
       showOrderFormDialog: false,
     };
 
-    this.handleOrderRoutesFormCancelClick = this.handleOrderRoutesFormCancelClick.bind(this);
+    this.handleOrderRoutesFormCancelClick = this.handleOrderRoutesFormCancelClick.bind(
+      this,
+    );
     this.onSubmitForm = this.onSubmitForm.bind(this);
     this.handleSendOrderClick = this.handleSendOrderClick.bind(this);
   }
@@ -56,7 +57,6 @@ class ManageOrderRoutePage extends React.PureComponent {
       </div>
     );
   }
-
 }
 
 ManageOrderRoutePage.propTypes = {
@@ -66,12 +66,13 @@ ManageOrderRoutePage.propTypes = {
 
 export function mapDispatchToProps(dispatch, ownProps) {
   return {
-    sendOrder: (values) => dispatch(sendOrder(ownProps.order.get('id'), values)),
+    sendOrder: values => dispatch(sendOrder(ownProps.order.get('id'), values)),
   };
 }
 
-const withConnect = connect(null, mapDispatchToProps);
+const withConnect = connect(
+  null,
+  mapDispatchToProps,
+);
 
-export default compose(
-  withConnect
-)(ManageOrderRoutePage);
+export default compose(withConnect)(ManageOrderRoutePage);

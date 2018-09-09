@@ -11,7 +11,11 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import injectSaga from '../../../utils/injectSaga';
 
-import { loadPlasticBagTypes, deletePlasticBagType, deleteStandardSize } from '../actions';
+import {
+  loadPlasticBagTypes,
+  deletePlasticBagType,
+  deleteStandardSize,
+} from '../actions';
 import { makeSelectPlasticBagTypes } from '../selectors';
 import messages from './messages';
 import saga from '../saga';
@@ -19,7 +23,6 @@ import saga from '../saga';
 import PlasticBagTypeList from './PlasticBagTypeList';
 
 class PlasticBagTypesPage extends React.PureComponent {
-
   constructor(context, state) {
     super(context, state);
 
@@ -36,25 +39,35 @@ class PlasticBagTypesPage extends React.PureComponent {
 
   handlePlasticBagTypeClick(event) {
     const plasticBagTypeId = event.currentTarget.id;
-    const expandedPlasticBagTypes = this.state.expandedPlasticBagTypes;
-    expandedPlasticBagTypes[plasticBagTypeId] = !expandedPlasticBagTypes[plasticBagTypeId];
-    this.setState({ expandedPlasticBagTypes: Object.assign({}, expandedPlasticBagTypes) });
+    const { expandedPlasticBagTypes } = this.state;
+    expandedPlasticBagTypes[plasticBagTypeId] = !expandedPlasticBagTypes[
+      plasticBagTypeId
+    ];
+    this.setState({
+      expandedPlasticBagTypes: Object.assign({}, expandedPlasticBagTypes),
+    });
   }
 
   render() {
     return (
       <div>
-        <h1><FormattedMessage {...messages.header} /></h1>
+        <h1>
+          <FormattedMessage {...messages.header} />
+        </h1>
         <PlasticBagTypeList
           plasticBagTypes={this.props.plasticBagTypes}
           onPlasticBagTypeClick={this.handlePlasticBagTypeClick}
-          onDeletePlasticBagTypeClick={this.props.handleDeletePlasticBagTypeClick}
+          onDeletePlasticBagTypeClick={
+            this.props.handleDeletePlasticBagTypeClick
+          }
           onDeleteStandardSizeClick={this.props.handleDeleteStandardSizeClick}
           expendedPlasticBagTypes={this.state.expandedPlasticBagTypes}
         />
-        <FloatingActionButton onClick={this.props.redirectToAddPlasticBagTypePage}>
+        <FloatingActionButton
+          onClick={this.props.redirectToAddPlasticBagTypePage}
+        >
           <ContentAdd />
-        </FloatingActionButton >
+        </FloatingActionButton>
       </div>
     );
   }
@@ -76,19 +89,30 @@ function mapDispatchToProps(dispatch) {
   return {
     loadPlasticBagTypes: () => dispatch(loadPlasticBagTypes()),
     redirectToAddPlasticBagTypePage: () => dispatch(push('/plasticBagType')),
-    handleDeletePlasticBagTypeClick: (event) => dispatch(deletePlasticBagType(event.currentTarget.id)),
-    handleDeleteStandardSizeClick: (event) => {
-      const plasticBagTypeAndStandardSizeIds = event.currentTarget.id.split('-');
-      dispatch(deleteStandardSize(plasticBagTypeAndStandardSizeIds[0], plasticBagTypeAndStandardSizeIds[1]));
+    handleDeletePlasticBagTypeClick: event =>
+      dispatch(deletePlasticBagType(event.currentTarget.id)),
+    handleDeleteStandardSizeClick: event => {
+      const plasticBagTypeAndStandardSizeIds = event.currentTarget.id.split(
+        '-',
+      );
+      dispatch(
+        deleteStandardSize(
+          plasticBagTypeAndStandardSizeIds[0],
+          plasticBagTypeAndStandardSizeIds[1],
+        ),
+      );
     },
   };
 }
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
 
 const withSaga = injectSaga({ key: 'plasticBagTypes', saga });
 
 export default compose(
   withSaga,
-  withConnect
+  withConnect,
 )(PlasticBagTypesPage);

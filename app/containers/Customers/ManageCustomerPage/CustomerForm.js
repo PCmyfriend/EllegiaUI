@@ -7,12 +7,10 @@ import { FormattedMessage } from 'react-intl';
 import FormTextField from '../../../components/FormTextField';
 import messages from './messages';
 
-const validate = (values) => {
+const validate = values => {
   const errors = {};
-  const requiredFields = [
-    'name',
-  ];
-  requiredFields.forEach((field) => {
+  const requiredFields = ['name'];
+  requiredFields.forEach(field => {
     if (!values.get(field)) {
       errors[field] = 'Обязательное поле';
     }
@@ -29,7 +27,11 @@ const CustomerForm = ({ handleSubmit }) => (
       />
     </div>
     <div>
-      <RaisedButton type="submit" label={<FormattedMessage {...messages.save} />} primary />
+      <RaisedButton
+        type="submit"
+        label={<FormattedMessage {...messages.save} />}
+        primary
+      />
     </div>
   </form>
 );

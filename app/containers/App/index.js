@@ -39,7 +39,8 @@ import ManagaOrderPage from '../../containers/Orders/ManageOrderPage/Loadable';
 
 const userIsAuthenticated = connectedReduxRedirect({
   redirectPath: '/login',
-  authenticatedSelector: (state) => !!(state.get('user') && state.get('user').get('authPayload')),
+  authenticatedSelector: state =>
+    !!(state.get('user') && state.get('user').get('authPayload')),
   wrapperDisplayName: 'UserIsAuthenticated',
   redirectAction: routerActions.replace,
 });
@@ -47,9 +48,11 @@ const userIsAuthenticated = connectedReduxRedirect({
 const locationHelper = locationHelperBuilder({});
 
 const userIsNotAuthenticated = connectedReduxRedirect({
-  redirectPath: (state, ownProps) => locationHelper.getRedirectQueryParam(ownProps) || '/',
+  redirectPath: (state, ownProps) =>
+    locationHelper.getRedirectQueryParam(ownProps) || '/',
   allowRedirectBack: false,
-  authenticatedSelector: (state) => !state.get('user') || !state.get('user').get('authPayload'),
+  authenticatedSelector: state =>
+    !state.get('user') || !state.get('user').get('authPayload'),
   wrapperDisplayName: 'UserIsNotAuthenticated',
   redirectAction: routerActions.replace,
 });
@@ -72,22 +75,51 @@ export default function App() {
         <div className="centered-container">
           <Switch>
             <Route exact path="/" component={userIsAuthenticated(HomePage)} />
-            <Route path="/login" component={userIsNotAuthenticated(LoginPage)} />
-            <Route path="/handbooks" component={userIsAuthenticated(HandbooksPage)} />
-            <Route path="/customers" component={userIsAuthenticated(CustomersPage)} />
-            <Route path="/customer" component={userIsAuthenticated(ManageCustomerPage)} />
-            <Route path="/filmTypes" component={userIsAuthenticated(FilmTypesPage)} />
-            <Route path="/filmType" component={userIsAuthenticated(ManageFilmTypePage)} />
-            <Route path="/order" component={userIsAuthenticated(ManagaOrderPage)} />
+            <Route
+              path="/login"
+              component={userIsNotAuthenticated(LoginPage)}
+            />
+            <Route
+              path="/handbooks"
+              component={userIsAuthenticated(HandbooksPage)}
+            />
+            <Route
+              path="/customers"
+              component={userIsAuthenticated(CustomersPage)}
+            />
+            <Route
+              path="/customer"
+              component={userIsAuthenticated(ManageCustomerPage)}
+            />
+            <Route
+              path="/filmTypes"
+              component={userIsAuthenticated(FilmTypesPage)}
+            />
+            <Route
+              path="/filmType"
+              component={userIsAuthenticated(ManageFilmTypePage)}
+            />
+            <Route
+              path="/order"
+              component={userIsAuthenticated(ManagaOrderPage)}
+            />
             <Route
               path="/colors"
-              component={userIsAuthenticated(() =>
-                <HandbookValuesPage handbookName={'colors'} handbookSingularName={'color'} />)}
+              component={userIsAuthenticated(() => (
+                <HandbookValuesPage
+                  handbookName="colors"
+                  handbookSingularName="color"
+                />
+              ))}
             />
             <Route
               path="/color"
-              component={userIsAuthenticated(() =>
-                <ManageHandbookValuePage handbookName={'colors'} handbookSingularName={'color'} />)}
+              component={userIsAuthenticated(() => (
+                <ManageHandbookValuePage
+                  handbookName="colors"
+                  handbookSingularName="color"
+                />
+              ))}
             />
             <Route
               path="/plasticBagTypes"
@@ -99,13 +131,21 @@ export default function App() {
             />
             <Route
               path="/filmTypeOptions"
-              component={userIsAuthenticated(() =>
-                <HandbookValuesPage handbookName={'filmTypeOptions'} handbookSingularName={'filmTypeOption'} />)}
+              component={userIsAuthenticated(() => (
+                <HandbookValuesPage
+                  handbookName="filmTypeOptions"
+                  handbookSingularName="filmTypeOption"
+                />
+              ))}
             />
             <Route
               path="/filmTypeOption"
-              component={userIsAuthenticated(() =>
-                (<ManageHandbookValuePage handbookName={'filmTypeOptions'} handbookSingularName={'filmTypeOption'} />))}
+              component={userIsAuthenticated(() => (
+                <ManageHandbookValuePage
+                  handbookName="filmTypeOptions"
+                  handbookSingularName="filmTypeOption"
+                />
+              ))}
             />
             <Route component={NotFoundPage} />
           </Switch>

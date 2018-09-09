@@ -20,7 +20,6 @@ import saga from '../saga';
 import FilmTypesList from './FilmTypesList';
 
 class FilmTypesPage extends React.PureComponent {
-
   constructor(context, state) {
     super(context, state);
 
@@ -37,7 +36,7 @@ class FilmTypesPage extends React.PureComponent {
 
   handleFilmTypeClick(event) {
     const filmTypeId = event.currentTarget.id;
-    const expandedFilmTypes = this.state.expandedFilmTypes;
+    const { expandedFilmTypes } = this.state;
     expandedFilmTypes[filmTypeId] = !expandedFilmTypes[filmTypeId];
     this.setState({ expandedFilmTypes: Object.assign({}, expandedFilmTypes) });
   }
@@ -45,7 +44,9 @@ class FilmTypesPage extends React.PureComponent {
   render() {
     return (
       <div>
-        <h1><FormattedMessage {...messages.header} /></h1>
+        <h1>
+          <FormattedMessage {...messages.header} />
+        </h1>
         <FilmTypesList
           filmTypes={this.props.filmTypes}
           onDeleteFilmTypeClick={this.props.handleDeleteFilmTypeClick}
@@ -54,7 +55,7 @@ class FilmTypesPage extends React.PureComponent {
         />
         <FloatingActionButton onClick={this.props.redirectToAddFilmTypePage}>
           <ContentAdd />
-        </FloatingActionButton >
+        </FloatingActionButton>
       </div>
     );
   }
@@ -75,11 +76,15 @@ function mapDispatchToProps(dispatch) {
   return {
     loadFilmTypes: () => dispatch(loadFilmTypes()),
     redirectToAddFilmTypePage: () => dispatch(push('/filmType')),
-    handleDeleteFilmTypeClick: (event) => dispatch(deleteFilmType(event.currentTarget.id)),
+    handleDeleteFilmTypeClick: event =>
+      dispatch(deleteFilmType(event.currentTarget.id)),
   };
 }
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
 
 const withSaga = injectSaga({ key: 'filmTypes', saga });
 
@@ -87,4 +92,3 @@ export default compose(
   withSaga,
   withConnect,
 )(FilmTypesPage);
-
