@@ -15,10 +15,8 @@ import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
-
 import OrdersPage from '../Orders/OrdersPage/Loadable';
+import ContentAddButton from '../../components/Buttons/ContentAddButton';
 
 class HomePage extends React.PureComponent {
   // eslint-disable-line react/prefer-stateless-function
@@ -29,9 +27,7 @@ class HomePage extends React.PureComponent {
           <OrdersPage />
         </div>
         <div style={{ marginTop: '20px' }}>
-          <FloatingActionButton onClick={this.props.redirectToAddOrderPage}>
-            <ContentAdd />
-          </FloatingActionButton>
+          <ContentAddButton onClick={this.props.redirectToAddOrderPage} />
         </div>
       </div>
     );

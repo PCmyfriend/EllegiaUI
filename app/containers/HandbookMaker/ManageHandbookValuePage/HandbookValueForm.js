@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RaisedButton from 'material-ui/RaisedButton';
 import { reduxForm } from 'redux-form/immutable';
 import { FormattedMessage } from 'react-intl';
 
 import FormTextField from '../../../components/FormTextField';
+import SubmitButton from '../../../components/FormSubmitButton';
 import messages from './messages';
 
 const validate = values => {
@@ -27,11 +27,7 @@ const HandbookValueForm = ({ handleSubmit, handbookSingularName }) => (
       />
     </div>
     <div>
-      <RaisedButton
-        type="submit"
-        label={<FormattedMessage {...messages.save} />}
-        primary
-      />
+      <SubmitButton label={<FormattedMessage {...messages.save} />} />
     </div>
   </form>
 );

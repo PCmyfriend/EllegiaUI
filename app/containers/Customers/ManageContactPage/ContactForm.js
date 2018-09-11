@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MenuItem from 'material-ui/MenuItem';
 import { reduxForm } from 'redux-form/immutable';
 import { FormattedMessage } from 'react-intl';
 
@@ -26,16 +25,13 @@ const ContactForm = ({ contactTypes, handleSubmit }) => (
     <div>
       <FormSelectField
         name="contactTypeId"
-        label={<FormattedMessage {...messages.contactType} />}
-      >
-        {contactTypes.map(ct => (
-          <MenuItem
-            key={ct.get('id')}
-            value={ct.get('id')}
-            primaryText={ct.get('name')}
+        label={
+          <FormattedMessage
+            {...messages.contactType}
+            data={contactTypes.toJS()}
           />
-        ))}
-      </FormSelectField>
+        }
+      />
     </div>
     <div>
       <FormTextField

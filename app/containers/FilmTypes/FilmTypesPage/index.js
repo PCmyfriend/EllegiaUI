@@ -6,9 +6,6 @@ import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
-
 import injectSaga from '../../../utils/injectSaga';
 
 import { makeSelectFilmTypes } from '../../FilmTypes/selectors';
@@ -18,10 +15,11 @@ import messages from './messages';
 import saga from '../saga';
 
 import FilmTypesList from './FilmTypesList';
+import ContentAddButton from '../../../components/Buttons/ContentAddButton';
 
 class FilmTypesPage extends React.PureComponent {
-  constructor(context, state) {
-    super(context, state);
+  constructor(context, props) {
+    super(context, props);
 
     this.state = {
       expandedFilmTypes: {},
@@ -53,9 +51,7 @@ class FilmTypesPage extends React.PureComponent {
           expendedFilmTypes={this.state.expandedFilmTypes}
           onFilmTypeClick={this.handleFilmTypeClick}
         />
-        <FloatingActionButton onClick={this.props.redirectToAddFilmTypePage}>
-          <ContentAdd />
-        </FloatingActionButton>
+        <ContentAddButton onClick={this.props.redirectToAddFilmTypePage} />
       </div>
     );
   }

@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RaisedButton from 'material-ui/RaisedButton';
 import { reduxForm } from 'redux-form/immutable';
 import { FormattedMessage } from 'react-intl';
-import MenuItem from 'material-ui/MenuItem';
 
 import FormTextField from '../../../components/FormTextField';
 import FormSelectField from '../../../components/FormSelectField';
 import messages from './messages';
+import SubmitButton from '../../../components/FormSubmitButton';
 
 const validate = values => {
   const errors = {};
@@ -26,15 +25,8 @@ const FilmTypeForm = ({ handleSubmit, filmTypes }) => (
       <FormSelectField
         name="parentId"
         label={<FormattedMessage {...messages.parentFilmType} />}
-      >
-        {filmTypes.map(ft => (
-          <MenuItem
-            key={ft.get('id')}
-            value={ft.get('id')}
-            primaryText={ft.get('name')}
-          />
-        ))}
-      </FormSelectField>
+        data={filmTypes.toJS()}
+      />
     </div>
     <div>
       <FormTextField
@@ -43,11 +35,7 @@ const FilmTypeForm = ({ handleSubmit, filmTypes }) => (
       />
     </div>
     <div>
-      <RaisedButton
-        type="submit"
-        label={<FormattedMessage {...messages.save} />}
-        primary
-      />
+      <SubmitButton label={<FormattedMessage {...messages.save} />} />
     </div>
   </form>
 );
