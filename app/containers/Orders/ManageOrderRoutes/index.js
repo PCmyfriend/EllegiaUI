@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { FormattedMessage } from 'react-intl';
-import FlatButton from 'material-ui/FlatButton';
 
 import { sendOrder } from '../actions';
 
 import OrderRoutesFormDialog from './OrderRoutesFormDialog';
 import messages from './messages';
+import InfoButton from '../../../components/Buttons/InfoButton';
 
 class ManageOrderRoutePage extends React.PureComponent {
   constructor(context, props) {
@@ -42,9 +42,9 @@ class ManageOrderRoutePage extends React.PureComponent {
   render() {
     return (
       <div>
-        <FlatButton
+        <InfoButton
+          variant="text"
           label={<FormattedMessage {...messages.send} />}
-          primary
           onClick={this.handleSendOrderClick}
         />
         <OrderRoutesFormDialog

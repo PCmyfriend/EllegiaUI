@@ -1,75 +1,86 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TableRow, TableRowColumn } from 'material-ui/Table';
-import FlatButton from 'material-ui/FlatButton';
+import { withStyles } from '@material-ui/core/styles';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
 import { FormattedMessage } from 'react-intl';
 
 import messages from './messages';
 
 import OrderRoutesFormDialog from '../ManageOrderRoutes';
+import InfoButton from '../../../components/Buttons/InfoButton';
+import CancelButton from '../../../components/Buttons/CancelButton';
+
+const styles = () => ({
+  cell: {
+    width: '240px',
+    textAlign: 'center',
+    borderLeft: '1px solid lightGrey',
+    borderRight: '1px solid lightGrey',
+  },
+});
 
 const OrderListRow = ({
   order,
   handlePreviewOrderPrintingVersionClick,
   handleDeleteOrderClick,
-  columnWidth,
-  tableCellStyle,
+  classes,
 }) => {
   const customer = order.get('customer');
   const productType = order.get('productType');
   return (
     <TableRow>
-      <TableRowColumn width={columnWidth} style={tableCellStyle}>
+      <TableCell className={classes.cell}>
         <span>{customer.get('name')}</span>
-      </TableRowColumn>
-      <TableRowColumn width={columnWidth} style={tableCellStyle}>
+      </TableCell>
+      <TableCell className={classes.cell}>
         <span>{productType.get('name')}</span>
-      </TableRowColumn>
-      <TableRowColumn width={columnWidth} style={tableCellStyle}>
+      </TableCell>
+      <TableCell className={classes.cell}>
         <span>{productType.get('color').get('name')}</span>
-      </TableRowColumn>
-      <TableRowColumn width={columnWidth} style={tableCellStyle}>
+      </TableCell>
+      <TableCell className={classes.cell}>
         <span>{productType.get('standardSize').get('name')}</span>
-      </TableRowColumn>
-      <TableRowColumn width={columnWidth} style={tableCellStyle}>
+      </TableCell>
+      <TableCell className={classes.cell}>
         <span>{productType.get('standardSize').get('name')}</span>
-      </TableRowColumn>
-      <TableRowColumn width={columnWidth} style={tableCellStyle}>
+      </TableCell>
+      <TableCell className={classes.cell}>
         <span>{productType.get('widthInMmError')}</span>
-      </TableRowColumn>
-      <TableRowColumn width={columnWidth} style={tableCellStyle}>
+      </TableCell>
+      <TableCell className={classes.cell}>
         <span>{productType.get('lengthInMmError')}</span>
-      </TableRowColumn>
-      <TableRowColumn width={columnWidth} style={tableCellStyle}>
+      </TableCell>
+      <TableCell className={classes.cell}>
         <span>{productType.get('heightInMmError')}</span>
-      </TableRowColumn>
-      <TableRowColumn width={columnWidth} style={tableCellStyle}>
+      </TableCell>
+      <TableCell className={classes.cell}>
         <span>{productType.get('thicknessInMicron')}</span>
-      </TableRowColumn>
-      <TableRowColumn width={columnWidth} style={tableCellStyle}>
+      </TableCell>
+      <TableCell className={classes.cell}>
         <span>{productType.get('thicknessInMicronError')}</span>
-      </TableRowColumn>
-      <TableRowColumn width={columnWidth} style={tableCellStyle}>
+      </TableCell>
+      <TableCell className={classes.cell}>
         <span>{productType.get('hasCorona')}</span>
-      </TableRowColumn>
-      <TableRowColumn width={columnWidth} style={tableCellStyle}>
+      </TableCell>
+      <TableCell className={classes.cell}>
         <span>{productType.get('filmTypeOption').get('name')}</span>
-      </TableRowColumn>
-      <TableRowColumn width={columnWidth} style={tableCellStyle}>
+      </TableCell>
+      <TableCell className={classes.cell}>
         <span>{order.get('quantityInKg')}</span>
-      </TableRowColumn>
-      <TableRowColumn width={columnWidth} style={tableCellStyle}>
+      </TableCell>
+      <TableCell className={classes.cell}>
         <span>{order.get('pricePerKg')}</span>
-      </TableRowColumn>
-      <TableRowColumn width={columnWidth} style={tableCellStyle}>
+      </TableCell>
+      <TableCell className={classes.cell}>
         <span>{order.get('totalPrice')}</span>
-      </TableRowColumn>
-      <TableRowColumn width={columnWidth} style={tableCellStyle}>
+      </TableCell>
+      <TableCell className={classes.cell}>
         <div>
           <div>
-            <FlatButton
+            <InfoButton
+              variant="text"
               label={<FormattedMessage {...messages.print} />}
-              primary
               onClick={() =>
                 handlePreviewOrderPrintingVersionClick(order.get('id'))
               }
@@ -81,24 +92,23 @@ const OrderListRow = ({
             </div>
           )}
           <div>
-            <FlatButton
+            <CancelButton
+              variant="text"
               label={<FormattedMessage {...messages.delete} />}
-              secondary
               onClick={() => handleDeleteOrderClick(order.get('id'))}
             />
           </div>
         </div>
-      </TableRowColumn>
+      </TableCell>
     </TableRow>
   );
 };
 
 OrderListRow.propTypes = {
   order: PropTypes.object.isRequired,
-  columnWidth: PropTypes.number.isRequired,
-  tableCellStyle: PropTypes.object.isRequired,
   handlePreviewOrderPrintingVersionClick: PropTypes.func.isRequired,
   handleDeleteOrderClick: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
 };
 
-export default OrderListRow;
+export default withStyles(styles)(OrderListRow);

@@ -45,7 +45,7 @@ It might be used in another component like this:
 ```javascript
 // HomePage.js
 
-import Button from './Button';
+import Button from InfoButton;
 
 class HomePage extends React.Component {
   render() {
@@ -101,9 +101,9 @@ This is our Jest setup:
 ```javascript
 import React from 'react';
 import { shallow } from 'enzyme';
-import Button from '../Button.react';
+import Button from InfoButton;
 
-describe('<Button />', () => {
+describe(InfoButton, () => {
   it('renders a <button>', () => {});
 
   it('renders its children', () => {});

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { withStyles } from '@material-ui/core/styles';
+
 import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
@@ -12,24 +14,25 @@ const styles = theme => ({
   },
 });
 
-const FormSubmitButton = ({ classes, label, variant = 'contained' }) => (
+const CustomButton = ({ onClick, label, classes, variant = 'contained' }) => (
   <Button
-    variant={variant}
-    color="primary"
-    type="submit"
     className={classes.button}
+    variant={variant}
+    onClick={onClick}
+    color="primary"
   >
     {label}
   </Button>
 );
 
-FormSubmitButton.propTypes = {
+CustomButton.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
   label: PropTypes.oneOfType([
     PropTypes.string.isRequired,
     PropTypes.object.isRequired,
   ]),
-  classes: PropTypes.object.isRequired,
   variant: PropTypes.string,
 };
 
-export default withStyles(styles)(FormSubmitButton);
+export default withStyles(styles)(CustomButton);

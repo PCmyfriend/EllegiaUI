@@ -5,7 +5,7 @@ import { fromJS } from 'immutable';
 import { List, ListItem } from 'material-ui';
 import { grey400 } from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
-import DeleteForeverIcon from 'material-ui/svg-icons/action/delete-forever';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 const renderFilmTypes = (
   filmTypes = fromJS([]),
@@ -33,7 +33,7 @@ const renderFilmTypes = (
             onClick={onDeleteFilmTypeClick}
             touch
           >
-            <DeleteForeverIcon color={grey400} />
+            <DeleteForeverIcon />
           </IconButton>
         }
       />

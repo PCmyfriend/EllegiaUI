@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm } from 'redux-form/immutable';
 import { FormattedMessage } from 'react-intl';
-import FlatButton from 'material-ui/FlatButton';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -13,6 +12,7 @@ import messages from './messages';
 import FormSelectField from '../../../components/FormSelectField';
 import TextField from '../../../components/FormTextField';
 import SubmitButton from '../../../components/FormSubmitButton';
+import CancelButton from '../../../components/Buttons/CancelButton';
 
 const validate = values => {
   const errors = {};
@@ -50,16 +50,20 @@ const OrderRoutesFormDialog = ({
             .map(pr => ({ id: pr.userId, name: pr.fullName }))}
         />
         <TextField
+          fullWidth
           name="comment"
           label={<FormattedMessage {...messages.comment} />}
         />
       </DialogContent>
       <DialogActions>
-        <SubmitButton label={<FormattedMessage {...messages.send} />} />
-        <FlatButton
+        <CancelButton
           onClick={handleCancelClick}
           label={<FormattedMessage {...messages.cancel} />}
-          secondary
+          variant="outlined"
+        />
+        <SubmitButton
+          label={<FormattedMessage {...messages.send} />}
+          variant="outlined"
         />
       </DialogActions>
     </form>

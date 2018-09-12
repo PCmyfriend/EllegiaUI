@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Tabs, Tab } from 'material-ui/Tabs';
-import AssignmentTurnedIn from 'material-ui/svg-icons/action/assignment-turned-in';
-import Assignment from 'material-ui/svg-icons/action/assignment';
-import FlightTakeOff from 'material-ui/svg-icons/action/flight-takeoff';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Paper from '@material-ui/core/Paper';
+import AssignmentTurnedIn from '@material-ui/icons/AssignmentTurnedIn';
+import Assignment from '@material-ui/icons/Assignment';
+import FlightTakeOff from '@material-ui/icons/FlightTakeoff';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
@@ -26,10 +28,16 @@ class OrdersPage extends React.PureComponent {
   constructor(context, props) {
     super(context, props);
 
+    this.state = {
+      selectedTab: 0,
+    };
+
     this.handlePreviewOrderPrintingVersionClick = this.handlePreviewOrderPrintingVersionClick.bind(
       this,
     );
     this.handleDeleteOrderClick = this.handleDeleteOrderClick.bind(this);
+    this.handleTabChange = this.handleTabChange.bind(this);
+    this.getOrdersBySelectedTab = this.getOrdersBySelectedTab.bind(this);
   }
 
   componentDidMount() {
@@ -46,50 +54,55 @@ class OrdersPage extends React.PureComponent {
     this.props.deleteOrder(orderId);
   }
 
+  handleTabChange(event, value) {
+    this.setState({ selectedTab: value });
+  }
+
+  getOrdersBySelectedTab() {
+    const { selectedTab } = this.state;
+    if (selectedTab === 0) {
+      return this.props.activeOrders;
+    } else if (selectedTab === 1) {
+      return this.props.completedOrders;
+    }
+    return this.props.releaseOrders;
+  }
+
   render() {
     return (
       <div>
         <h1>
           <FormattedMessage {...messages.header} />
         </h1>
-        <Tabs>
-          <Tab
-            icon={<Assignment />}
-            label={<FormattedMessage {...messages.active} />}
+        <Paper>
+          <Tabs
+            value={this.state.selectedTab}
+            onChange={this.handleTabChange}
+            indicatorColor="primary"
+            textColor="primary"
+            fullWidth
           >
-            <OrdersList
-              orders={this.props.activeOrders}
-              handlePreviewOrderPrintingVersionClick={
-                this.handlePreviewOrderPrintingVersionClick
-              }
-              handleDeleteOrderClick={this.handleDeleteOrderClick}
+            <Tab
+              icon={<Assignment />}
+              label={<FormattedMessage {...messages.active} />}
             />
-          </Tab>
-          <Tab
-            icon={<AssignmentTurnedIn />}
-            label={<FormattedMessage {...messages.completed} />}
-          >
-            <OrdersList
-              orders={this.props.completedOrders}
-              handlePreviewOrderPrintingVersionClick={
-                this.handlePreviewOrderPrintingVersionClick
-              }
-              handleDeleteOrderClick={this.handleDeleteOrderClick}
+            <Tab
+              icon={<AssignmentTurnedIn />}
+              label={<FormattedMessage {...messages.completed} />}
             />
-          </Tab>
-          <Tab
-            icon={<FlightTakeOff />}
-            label={<FormattedMessage {...messages.released} />}
-          >
-            <OrdersList
-              orders={this.props.releaseOrders}
-              handlePreviewOrderPrintingVersionClick={
-                this.handlePreviewOrderPrintingVersionClick
-              }
-              handleDeleteOrderClick={this.handleDeleteOrderClick}
+            <Tab
+              icon={<FlightTakeOff />}
+              label={<FormattedMessage {...messages.released} />}
             />
-          </Tab>
-        </Tabs>
+          </Tabs>
+          <OrdersList
+            orders={this.getOrdersBySelectedTab()}
+            handlePreviewOrderPrintingVersionClick={
+              this.handlePreviewOrderPrintingVersionClick
+            }
+            handleDeleteOrderClick={this.handleDeleteOrderClick}
+          />
+        </Paper>
       </div>
     );
   }

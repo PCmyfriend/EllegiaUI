@@ -106,7 +106,7 @@ into a JavaScript:
 
 ```js
 import React from "react";
-import "./Button.css"; // Tell Webpack that Button.js uses these styles
+import InfoButton; InfoButton
 
 class Button extends React.Component {
   render() {
@@ -160,7 +160,7 @@ The key difference in CSS Modules is that you import styles to a variable.
 
 ```js
 import React from "react";
-import styles from "./Button.css"; // different import compared to stylesheets
+import styles from InfoButton; // different import compared to stylesheets
 
 class Button extends React.Component {
   render() {
@@ -214,7 +214,7 @@ $error-color: red;
 
 ```js
 import React from "react";
-import "./Button.scss";
+import InfoButton;
 
 class Button extends React.Component {
   render() {

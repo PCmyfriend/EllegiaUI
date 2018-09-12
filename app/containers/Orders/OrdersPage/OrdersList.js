@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Table,
-  TableBody,
-  TableRow,
-  TableHeader,
-  TableHeaderColumn,
-} from 'material-ui/Table';
+import { withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableHead from '@material-ui/core/TableHead';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 import { FormattedMessage } from 'react-intl';
 
 import OrderListRow from './OrderListRow';
@@ -14,93 +14,98 @@ import OrderListRow from './OrderListRow';
 import orderMessages from './messages';
 import orderFormMessages from '../ManageOrderPage/messages';
 
-const tableCellStyle = {
-  textAlign: 'center',
-  borderLeft: '1px solid lightGrey',
-  borderRight: '1px solid lightGrey',
-};
-
-const columnWidth = 210;
+const styles = () => ({
+  paper: {
+    width: '100%',
+    overflowX: 'auto',
+  },
+  cell: {
+    borderLeft: '1px solid lightGrey',
+    borderRight: '1px solid lightGrey',
+  },
+});
 
 const OrdersList = ({
   orders,
   handlePreviewOrderPrintingVersionClick,
   handleDeleteOrderClick,
+  classes,
 }) => (
-  <Table bodyStyle={{ overflow: 'visible' }}>
-    <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-      <TableRow>
-        <TableHeaderColumn width={columnWidth} style={tableCellStyle}>
-          <FormattedMessage {...orderFormMessages.customer} />
-        </TableHeaderColumn>
-        <TableHeaderColumn width={columnWidth} style={tableCellStyle}>
-          <FormattedMessage {...orderFormMessages.filmType} />
-        </TableHeaderColumn>
-        <TableHeaderColumn width={columnWidth} style={tableCellStyle}>
-          <FormattedMessage {...orderFormMessages.color} />
-        </TableHeaderColumn>
-        <TableHeaderColumn width={columnWidth} style={tableCellStyle}>
-          <FormattedMessage {...orderFormMessages.plasticBagType} />
-        </TableHeaderColumn>
-        <TableHeaderColumn width={columnWidth} style={tableCellStyle}>
-          <FormattedMessage {...orderFormMessages.standardSize} />
-        </TableHeaderColumn>
-        <TableHeaderColumn width={columnWidth} style={tableCellStyle}>
-          <FormattedMessage {...orderFormMessages.widthInMmError} />
-        </TableHeaderColumn>
-        <TableHeaderColumn width={columnWidth} style={tableCellStyle}>
-          <FormattedMessage {...orderFormMessages.lengthInMmError} />
-        </TableHeaderColumn>
-        <TableHeaderColumn width={columnWidth} style={tableCellStyle}>
-          <FormattedMessage {...orderFormMessages.heightInMmError} />
-        </TableHeaderColumn>
-        <TableHeaderColumn width={columnWidth} style={tableCellStyle}>
-          <FormattedMessage {...orderFormMessages.thicknessInMicron} />
-        </TableHeaderColumn>
-        <TableHeaderColumn width={columnWidth} style={tableCellStyle}>
-          <FormattedMessage {...orderFormMessages.thicknessInMicronError} />
-        </TableHeaderColumn>
-        <TableHeaderColumn width={columnWidth} style={tableCellStyle}>
-          <FormattedMessage {...orderFormMessages.hasCorona} />
-        </TableHeaderColumn>
-        <TableHeaderColumn width={columnWidth} style={tableCellStyle}>
-          <FormattedMessage {...orderFormMessages.filmTypeOption} />
-        </TableHeaderColumn>
-        <TableHeaderColumn width={columnWidth} style={tableCellStyle}>
-          <FormattedMessage {...orderFormMessages.quantityInKg} />
-        </TableHeaderColumn>
-        <TableHeaderColumn width={columnWidth} style={tableCellStyle}>
-          <FormattedMessage {...orderFormMessages.pricePerKg} />
-        </TableHeaderColumn>
-        <TableHeaderColumn width={columnWidth} style={tableCellStyle}>
-          <FormattedMessage {...orderMessages.totalPrice} />
-        </TableHeaderColumn>
-        <TableHeaderColumn width={columnWidth} style={tableCellStyle}>
-          <FormattedMessage {...orderMessages.actions} />
-        </TableHeaderColumn>
-      </TableRow>
-    </TableHeader>
-    <TableBody displayRowCheckbox={false}>
-      {orders.map(order => (
-        <OrderListRow
-          key={order.get('id')}
-          order={order}
-          columnWidth={columnWidth}
-          tableCellStyle={tableCellStyle}
-          handlePreviewOrderPrintingVersionClick={
-            handlePreviewOrderPrintingVersionClick
-          }
-          handleDeleteOrderClick={handleDeleteOrderClick}
-        />
-      ))}
-    </TableBody>
-  </Table>
+  <Paper className={classes.paper}>
+    <Table className={classes.table}>
+      <TableHead>
+        <TableRow>
+          <TableCell className={classes.cell}>
+            <FormattedMessage {...orderFormMessages.customer} />
+          </TableCell>
+          <TableCell className={classes.cell}>
+            <FormattedMessage {...orderFormMessages.filmType} />
+          </TableCell>
+          <TableCell className={classes.cell}>
+            <FormattedMessage {...orderFormMessages.color} />
+          </TableCell>
+          <TableCell className={classes.cell}>
+            <FormattedMessage {...orderFormMessages.plasticBagType} />
+          </TableCell>
+          <TableCell className={classes.cell}>
+            <FormattedMessage {...orderFormMessages.standardSize} />
+          </TableCell>
+          <TableCell className={classes.cell}>
+            <FormattedMessage {...orderFormMessages.widthInMmError} />
+          </TableCell>
+          <TableCell className={classes.cell}>
+            <FormattedMessage {...orderFormMessages.lengthInMmError} />
+          </TableCell>
+          <TableCell className={classes.cell}>
+            <FormattedMessage {...orderFormMessages.heightInMmError} />
+          </TableCell>
+          <TableCell className={classes.cell}>
+            <FormattedMessage {...orderFormMessages.thicknessInMicron} />
+          </TableCell>
+          <TableCell className={classes.cell}>
+            <FormattedMessage {...orderFormMessages.thicknessInMicronError} />
+          </TableCell>
+          <TableCell className={classes.cell}>
+            <FormattedMessage {...orderFormMessages.hasCorona} />
+          </TableCell>
+          <TableCell className={classes.cell}>
+            <FormattedMessage {...orderFormMessages.filmTypeOption} />
+          </TableCell>
+          <TableCell className={classes.cell}>
+            <FormattedMessage {...orderFormMessages.quantityInKg} />
+          </TableCell>
+          <TableCell className={classes.cell}>
+            <FormattedMessage {...orderFormMessages.pricePerKg} />
+          </TableCell>
+          <TableCell className={classes.cell}>
+            <FormattedMessage {...orderMessages.totalPrice} />
+          </TableCell>
+          <TableCell className={classes.cell}>
+            <FormattedMessage {...orderMessages.actions} />
+          </TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {orders.map(order => (
+          <OrderListRow
+            key={order.get('id')}
+            order={order}
+            handlePreviewOrderPrintingVersionClick={
+              handlePreviewOrderPrintingVersionClick
+            }
+            handleDeleteOrderClick={handleDeleteOrderClick}
+          />
+        ))}
+      </TableBody>
+    </Table>
+  </Paper>
 );
 
 OrdersList.propTypes = {
   orders: PropTypes.object.isRequired,
   handlePreviewOrderPrintingVersionClick: PropTypes.func.isRequired,
   handleDeleteOrderClick: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
 };
 
-export default OrdersList;
+export default withStyles(styles)(OrdersList);
