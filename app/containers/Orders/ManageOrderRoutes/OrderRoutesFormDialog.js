@@ -44,10 +44,10 @@ const OrderRoutesFormDialog = ({
         <FormSelectField
           name="recipientId"
           label={<FormattedMessage {...messages.recipient} />}
-          data={order
-            .get('permittedRoutes')
-            .toJS()
-            .map(pr => ({ id: pr.userId, name: pr.fullName }))}
+          data={order.permittedRoutes.map(pr => ({
+            id: pr.userId,
+            name: pr.fullName,
+          }))}
         />
         <TextField
           fullWidth

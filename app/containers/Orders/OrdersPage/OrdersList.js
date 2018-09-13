@@ -1,18 +1,18 @@
+/* eslint-disable react/prop-types */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableHead from '@material-ui/core/TableHead';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { FormattedMessage } from 'react-intl';
-
-import OrderListRow from './OrderListRow';
+import ReactTable from 'react-table';
+import 'react-table/react-table.css';
 
 import orderMessages from './messages';
 import orderFormMessages from '../ManageOrderPage/messages';
+import InfoButton from '../../../components/Buttons/InfoButton';
+import OrderRoutesFormDialog from '../ManageOrderRoutes';
+import CancelButton from '../../../components/Buttons/CancelButton';
 
 const styles = () => ({
   paper: {
@@ -25,6 +25,8 @@ const styles = () => ({
   },
 });
 
+const columnWidth = 240;
+
 const OrdersList = ({
   orders,
   handlePreviewOrderPrintingVersionClick,
@@ -32,72 +34,134 @@ const OrdersList = ({
   classes,
 }) => (
   <Paper className={classes.paper}>
-    <Table className={classes.table}>
-      <TableHead>
-        <TableRow>
-          <TableCell className={classes.cell}>
-            <FormattedMessage {...orderFormMessages.customer} />
-          </TableCell>
-          <TableCell className={classes.cell}>
-            <FormattedMessage {...orderFormMessages.filmType} />
-          </TableCell>
-          <TableCell className={classes.cell}>
-            <FormattedMessage {...orderFormMessages.color} />
-          </TableCell>
-          <TableCell className={classes.cell}>
-            <FormattedMessage {...orderFormMessages.plasticBagType} />
-          </TableCell>
-          <TableCell className={classes.cell}>
-            <FormattedMessage {...orderFormMessages.standardSize} />
-          </TableCell>
-          <TableCell className={classes.cell}>
-            <FormattedMessage {...orderFormMessages.widthInMmError} />
-          </TableCell>
-          <TableCell className={classes.cell}>
-            <FormattedMessage {...orderFormMessages.lengthInMmError} />
-          </TableCell>
-          <TableCell className={classes.cell}>
-            <FormattedMessage {...orderFormMessages.heightInMmError} />
-          </TableCell>
-          <TableCell className={classes.cell}>
-            <FormattedMessage {...orderFormMessages.thicknessInMicron} />
-          </TableCell>
-          <TableCell className={classes.cell}>
+    <ReactTable
+      columns={[
+        {
+          id: 'customer',
+          Header: <FormattedMessage {...orderFormMessages.customer} />,
+          accessor: o => o.customer.name,
+          width: columnWidth,
+        },
+        {
+          id: 'filmType',
+          Header: <FormattedMessage {...orderFormMessages.filmType} />,
+          accessor: o => o.productType.name,
+          width: columnWidth,
+        },
+        {
+          id: 'color',
+          Header: <FormattedMessage {...orderFormMessages.color} />,
+          accessor: o => o.productType.color.name,
+          width: columnWidth,
+        },
+        {
+          id: 'plasticBagType',
+          Header: <FormattedMessage {...orderFormMessages.plasticBagType} />,
+          accessor: o => o.productType.color.name,
+          width: columnWidth,
+        },
+        {
+          id: 'standardSize',
+          Header: <FormattedMessage {...orderFormMessages.standardSize} />,
+          accessor: o => o.productType.standardSize.name,
+          width: columnWidth,
+        },
+        {
+          id: 'widthInMmError',
+          Header: <FormattedMessage {...orderFormMessages.widthInMmError} />,
+          accessor: o => o.productType.widthInMmError,
+          width: columnWidth,
+        },
+        {
+          id: 'lengthInMmError',
+          Header: <FormattedMessage {...orderFormMessages.lengthInMmError} />,
+          accessor: o => o.productType.lengthInMmError,
+          width: columnWidth,
+        },
+        {
+          id: 'heightInMmError',
+          Header: <FormattedMessage {...orderFormMessages.heightInMmError} />,
+          accessor: o => o.productType.heightInMmError,
+          width: columnWidth,
+        },
+        {
+          id: 'thicknessInMicron',
+          Header: <FormattedMessage {...orderFormMessages.thicknessInMicron} />,
+          accessor: o => o.productType.thicknessInMicron,
+          width: columnWidth,
+        },
+        {
+          id: 'thicknessInMicronError',
+          Header: (
             <FormattedMessage {...orderFormMessages.thicknessInMicronError} />
-          </TableCell>
-          <TableCell className={classes.cell}>
-            <FormattedMessage {...orderFormMessages.hasCorona} />
-          </TableCell>
-          <TableCell className={classes.cell}>
-            <FormattedMessage {...orderFormMessages.filmTypeOption} />
-          </TableCell>
-          <TableCell className={classes.cell}>
-            <FormattedMessage {...orderFormMessages.quantityInKg} />
-          </TableCell>
-          <TableCell className={classes.cell}>
-            <FormattedMessage {...orderFormMessages.pricePerKg} />
-          </TableCell>
-          <TableCell className={classes.cell}>
-            <FormattedMessage {...orderMessages.totalPrice} />
-          </TableCell>
-          <TableCell className={classes.cell}>
-            <FormattedMessage {...orderMessages.actions} />
-          </TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {orders.map(order => (
-          <OrderListRow
-            key={order.get('id')}
-            order={order}
-            handlePreviewOrderPrintingVersionClick={
-              handlePreviewOrderPrintingVersionClick
-            }
-            handleDeleteOrderClick={handleDeleteOrderClick}
-          />
-        ))}
-      </TableBody>
-    </Table>
+          ),
+          accessor: o => o.productType.thicknessInMicronError,
+          width: columnWidth,
+        },
+        {
+          id: 'hasCorona',
+          Header: <FormattedMessage {...orderFormMessages.hasCorona} />,
+          accessor: o => o.productType.hasCorona,
+          width: columnWidth,
+        },
+        {
+          id: 'filmTypeOption',
+          Header: <FormattedMessage {...orderFormMessages.filmTypeOption} />,
+          accessor: o => o.productType.filmTypeOption.name,
+          width: columnWidth,
+        },
+        {
+          id: 'quantityInKg',
+          Header: <FormattedMessage {...orderFormMessages.quantityInKg} />,
+          accessor: o => o.quantityInKg,
+          width: columnWidth,
+        },
+        {
+          id: 'pricePerKg',
+          Header: <FormattedMessage {...orderFormMessages.pricePerKg} />,
+          accessor: o => o.pricePerKg,
+          width: columnWidth,
+        },
+        {
+          id: 'totalPrice',
+          Header: <FormattedMessage {...orderFormMessages.totalSum} />,
+          accessor: o => o.totalPrice,
+          width: columnWidth,
+        },
+        {
+          id: 'actions',
+          Header: <FormattedMessage {...orderMessages.actions} />,
+          width: columnWidth,
+          accessor: o => o,
+          Cell: ({ value: order }) => (
+            <div>
+              <div>
+                <InfoButton
+                  variant="text"
+                  label={<FormattedMessage {...orderMessages.print} />}
+                  onClick={() =>
+                    handlePreviewOrderPrintingVersionClick(order.id)
+                  }
+                />
+              </div>
+              {order.isMine && (
+                <div>
+                  <OrderRoutesFormDialog order={order} />
+                </div>
+              )}
+              <div>
+                <CancelButton
+                  variant="text"
+                  label={<FormattedMessage {...orderMessages.delete} />}
+                  onClick={() => handleDeleteOrderClick(order.id)}
+                />
+              </div>
+            </div>
+          ),
+        },
+      ]}
+      data={orders.toJS()}
+    />
   </Paper>
 );
 

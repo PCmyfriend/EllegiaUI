@@ -48,7 +48,7 @@ class ManageOrderRoutePage extends React.PureComponent {
           onClick={this.handleSendOrderClick}
         />
         <OrderRoutesFormDialog
-          form={`orderRoutesForm_${this.props.order.get('id')}`}
+          form={`orderRoutesForm_${this.props.order.id}`}
           order={this.props.order}
           onSubmit={this.onSubmitForm}
           handleCancelClick={this.handleOrderRoutesFormCancelClick}
@@ -66,7 +66,7 @@ ManageOrderRoutePage.propTypes = {
 
 export function mapDispatchToProps(dispatch, ownProps) {
   return {
-    sendOrder: values => dispatch(sendOrder(ownProps.order.get('id'), values)),
+    sendOrder: values => dispatch(sendOrder(ownProps.order.id, values)),
   };
 }
 
