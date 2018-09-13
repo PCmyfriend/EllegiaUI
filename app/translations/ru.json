@@ -79,5 +79,6 @@
   "app.components.Orders.ManageOrderRoutes.send": "Отправить",
   "app.components.Orders.ManageOrderRoutes.comment": "Комментарий",
   "app.components.Orders.ManageOrderRoutes.header": "Отправка заказа",
-  "app.components.Orders.ManageOrderRoutes.cancel": "Отменить"
+  "app.components.Orders.ManageOrderRoutes.cancel": "Отменить",
+  "app.components.Header.greeting": "Привет, "
 }

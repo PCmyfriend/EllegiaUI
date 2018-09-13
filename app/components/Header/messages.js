@@ -35,4 +35,8 @@ export default defineMessages({
     id: 'app.components.Header.signOut',
     defaultMessage: 'Sign out',
   },
+  greeting: {
+    id: 'app.components.Header.greeting',
+    defaultMessage: 'Hello, ',
+  },
 });

@@ -14,6 +14,15 @@ const makeSelectUserRole = () =>
     return authPayload ? authPayload.idTokenInfo.role : null;
   });
 
+const makeSelectUserName = () =>
+  createSelector(selectUser, userState => {
+    if (!userState) {
+      return null;
+    }
+    const authPayload = userState.get('authPayload');
+    return authPayload ? authPayload.idTokenInfo.name : null;
+  });
+
 const makeSelectToken = () =>
   createSelector(selectUser, userState => {
     if (!userState) {
@@ -29,5 +38,6 @@ export {
   selectUser,
   makeSelectCredentials,
   makeSelectUserRole,
+  makeSelectUserName,
   makeSelectToken,
 };

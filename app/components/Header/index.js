@@ -16,7 +16,7 @@ import NavSideMenu from './NavSideMenu';
 import HeaderLink from '../A';
 import messages from './messages';
 import image from '../../images/icon-512x512.png';
-import { makeSelectUserRole } from '../../containers/LoginPage/selectors';
+import { makeSelectUserRole, makeSelectUserName } from '../../containers/LoginPage/selectors';
 
 const styles = {
   root: {
@@ -58,7 +58,7 @@ class Header extends React.Component {
               </HeaderLink>
             </Typography>
             {this.props.userRole ? (
-              <NavSideMenu />
+              <NavSideMenu userName={this.props.userName} />
             ) : (
               <Button color="inherit">
                 <HeaderLink to="/login">
@@ -76,10 +76,12 @@ class Header extends React.Component {
 Header.propTypes = {
   userRole: PropTypes.string,
   classes: PropTypes.object.isRequired,
+  userName: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
   userRole: makeSelectUserRole(),
+  userName: makeSelectUserName(),
 });
 
 export default connect(mapStateToProps)(withStyles(styles)(Header));
