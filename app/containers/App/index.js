@@ -12,9 +12,7 @@
  */
 
 import React from 'react';
-import LegacyMuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Switch, Route } from 'react-router-dom';
 
 import { connectedReduxRedirect } from 'redux-auth-wrapper/history4/redirect';
@@ -36,7 +34,7 @@ import HandbookValuesPage from '../../containers/HandbookMaker/HandbookValuesPag
 import ManageHandbookValuePage from '../../containers/HandbookMaker/ManageHandbookValuePage/Loadable';
 import PlasticBagTypesPage from '../../containers/PlasticBagTypes/PlasticBagTypesPage/Loadable';
 import ManagePlasticBagTypePage from '../../containers/PlasticBagTypes/ManagePlasticBagTypePage/Loadable';
-import ManagaOrderPage from '../../containers/Orders/ManageOrderPage/Loadable';
+import ManageOrderPage from '../../containers/Orders/ManageOrderPage/Loadable';
 
 const userIsAuthenticated = connectedReduxRedirect({
   redirectPath: '/login',
@@ -58,14 +56,6 @@ const userIsNotAuthenticated = connectedReduxRedirect({
   redirectAction: routerActions.replace,
 });
 
-const legacyMuiTheme = getMuiTheme({
-  palette: {
-    primary1Color: '#79B716',
-    primary2Color: '#79B716',
-    primary3Color: '#79B716',
-  },
-});
-
 const muiTheme = createMuiTheme({
   palette: {
     primary: {
@@ -77,92 +67,90 @@ const muiTheme = createMuiTheme({
 
 export default function App() {
   return (
-    <LegacyMuiThemeProvider muiTheme={legacyMuiTheme}>
-      <MuiThemeProvider theme={muiTheme}>
-        <div>
-          <Header />
-          <Progress />
-          <NotificationsCenter />
-          <div className="centered-container">
-            <Switch>
-              <Route exact path="/" component={userIsAuthenticated(HomePage)} />
-              <Route
-                path="/login"
-                component={userIsNotAuthenticated(LoginPage)}
-              />
-              <Route
-                path="/handbooks"
-                component={userIsAuthenticated(HandbooksPage)}
-              />
-              <Route
-                path="/customers"
-                component={userIsAuthenticated(CustomersPage)}
-              />
-              <Route
-                path="/customer"
-                component={userIsAuthenticated(ManageCustomerPage)}
-              />
-              <Route
-                path="/filmTypes"
-                component={userIsAuthenticated(FilmTypesPage)}
-              />
-              <Route
-                path="/filmType"
-                component={userIsAuthenticated(ManageFilmTypePage)}
-              />
-              <Route
-                path="/order"
-                component={userIsAuthenticated(ManagaOrderPage)}
-              />
-              <Route
-                path="/colors"
-                component={userIsAuthenticated(() => (
-                  <HandbookValuesPage
-                    handbookName="colors"
-                    handbookSingularName="color"
-                  />
-                ))}
-              />
-              <Route
-                path="/color"
-                component={userIsAuthenticated(() => (
-                  <ManageHandbookValuePage
-                    handbookName="colors"
-                    handbookSingularName="color"
-                  />
-                ))}
-              />
-              <Route
-                path="/plasticBagTypes"
-                component={userIsAuthenticated(PlasticBagTypesPage)}
-              />
-              <Route
-                path="/plasticBagType"
-                component={userIsAuthenticated(ManagePlasticBagTypePage)}
-              />
-              <Route
-                path="/filmTypeOptions"
-                component={userIsAuthenticated(() => (
-                  <HandbookValuesPage
-                    handbookName="filmTypeOptions"
-                    handbookSingularName="filmTypeOption"
-                  />
-                ))}
-              />
-              <Route
-                path="/filmTypeOption"
-                component={userIsAuthenticated(() => (
-                  <ManageHandbookValuePage
-                    handbookName="filmTypeOptions"
-                    handbookSingularName="filmTypeOption"
-                  />
-                ))}
-              />
-              <Route component={NotFoundPage} />
-            </Switch>
-          </div>
+    <MuiThemeProvider theme={muiTheme}>
+      <div>
+        <Header />
+        <Progress />
+        <NotificationsCenter />
+        <div className="centered-container">
+          <Switch>
+            <Route exact path="/" component={userIsAuthenticated(HomePage)} />
+            <Route
+              path="/login"
+              component={userIsNotAuthenticated(LoginPage)}
+            />
+            <Route
+              path="/handbooks"
+              component={userIsAuthenticated(HandbooksPage)}
+            />
+            <Route
+              path="/customers"
+              component={userIsAuthenticated(CustomersPage)}
+            />
+            <Route
+              path="/customer"
+              component={userIsAuthenticated(ManageCustomerPage)}
+            />
+            <Route
+              path="/filmTypes"
+              component={userIsAuthenticated(FilmTypesPage)}
+            />
+            <Route
+              path="/filmType"
+              component={userIsAuthenticated(ManageFilmTypePage)}
+            />
+            <Route
+              path="/order"
+              component={userIsAuthenticated(ManageOrderPage)}
+            />
+            <Route
+              path="/colors"
+              component={userIsAuthenticated(() => (
+                <HandbookValuesPage
+                  handbookName="colors"
+                  handbookSingularName="color"
+                />
+              ))}
+            />
+            <Route
+              path="/color"
+              component={userIsAuthenticated(() => (
+                <ManageHandbookValuePage
+                  handbookName="colors"
+                  handbookSingularName="color"
+                />
+              ))}
+            />
+            <Route
+              path="/plasticBagTypes"
+              component={userIsAuthenticated(PlasticBagTypesPage)}
+            />
+            <Route
+              path="/plasticBagType"
+              component={userIsAuthenticated(ManagePlasticBagTypePage)}
+            />
+            <Route
+              path="/filmTypeOptions"
+              component={userIsAuthenticated(() => (
+                <HandbookValuesPage
+                  handbookName="filmTypeOptions"
+                  handbookSingularName="filmTypeOption"
+                />
+              ))}
+            />
+            <Route
+              path="/filmTypeOption"
+              component={userIsAuthenticated(() => (
+                <ManageHandbookValuePage
+                  handbookName="filmTypeOptions"
+                  handbookSingularName="filmTypeOption"
+                />
+              ))}
+            />
+            <Route component={NotFoundPage} />
+          </Switch>
         </div>
-      </MuiThemeProvider>
-    </LegacyMuiThemeProvider>
+      </div>
+    </MuiThemeProvider>
   );
 }

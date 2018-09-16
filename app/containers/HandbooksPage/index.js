@@ -2,15 +2,20 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { List, ListItem } from 'material-ui/List';
-import ContentInbox from 'material-ui/svg-icons/content/inbox';
-import ActionGrade from 'material-ui/svg-icons/action/grade';
-import ContentSend from 'material-ui/svg-icons/content/send';
-import ContentDrafts from 'material-ui/svg-icons/content/drafts';
+import ContentInbox from '@material-ui/icons/Inbox';
+import ActionGrade from '@material-ui/icons/Grade';
+import ContentSend from '@material-ui/icons/Send';
+import ContentDrafts from '@material-ui/icons/Drafts';
+import { withStyles } from '@material-ui/core/styles';
+import ListItemText from '@material-ui/core/ListItemText';
+
 import Link from '../../components/A';
 import messages from './messages';
 
-export default class CommonHandbooksPage extends React.PureComponent {
+import List from '../../components/List/List';
+import ListItem from '../../components/List/ListItem';
+
+class CommonHandbooksPage extends React.PureComponent {
   render() {
     return (
       <div>
@@ -18,40 +23,50 @@ export default class CommonHandbooksPage extends React.PureComponent {
           <FormattedMessage {...messages.header} />
         </h1>
         <List>
-          <ListItem
-            primaryText={
-              <Link to="/filmTypes">
-                <FormattedMessage {...messages.filmTypes} />
-              </Link>
-            }
-            leftIcon={<ActionGrade />}
-          />
-          <ListItem
-            primaryText={
-              <Link to="/filmTypeOptions">
-                <FormattedMessage {...messages.filmOptions} />
-              </Link>
-            }
-            leftIcon={<ContentSend />}
-          />
-          <ListItem
-            primaryText={
-              <Link to="/plasticBagTypes">
-                <FormattedMessage {...messages.plasticBagTypes} />
-              </Link>
-            }
-            leftIcon={<ContentDrafts />}
-          />
-          <ListItem
-            primaryText={
-              <Link to="/colors">
-                <FormattedMessage {...messages.colors} />
-              </Link>
-            }
-            leftIcon={<ContentInbox />}
-          />
+          <ListItem>
+            <ListItemText
+              primary={
+                <Link to="/filmTypes">
+                  <FormattedMessage {...messages.filmTypes} />
+                </Link>
+              }
+            />
+            <ActionGrade />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary={
+                <Link to="/filmTypeOptions">
+                  <FormattedMessage {...messages.filmOptions} />
+                </Link>
+              }
+            />
+            <ContentSend />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary={
+                <Link to="/plasticBagTypes">
+                  <FormattedMessage {...messages.plasticBagTypes} />
+                </Link>
+              }
+            />
+            <ContentDrafts />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary={
+                <Link to="/colors">
+                  <FormattedMessage {...messages.colors} />
+                </Link>
+              }
+            />
+            <ContentInbox />
+          </ListItem>
         </List>
       </div>
     );
   }
 }
+
+export default withStyles({})(CommonHandbooksPage);

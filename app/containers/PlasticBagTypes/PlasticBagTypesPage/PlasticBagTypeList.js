@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { fromJS } from 'immutable';
-import { List, ListItem } from 'material-ui/List';
 
-import IconButton from 'material-ui/IconButton';
-import DeleteForeverIcon from 'material-ui/svg-icons/action/delete-forever';
-import { grey400 } from 'material-ui/styles/colors';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import { withStyles } from '@material-ui/core/styles';
+import ListItemText from '@material-ui/core/ListItemText';
 
-import ManageStandardSizePage from '../ManageStandardSizePage';
+import List from '../../../components/List/List';
+import ListItem from '../../../components/List/ListItem';
 
 const getStandardSizesJsxArray = (
   standardSizes = fromJS([]),
@@ -16,6 +17,7 @@ const getStandardSizesJsxArray = (
   standardSizes
     .map(standardSize => (
       <ListItem
+        nested
         key={standardSize.get('id')}
         rightIconButton={
           <IconButton
@@ -23,62 +25,55 @@ const getStandardSizesJsxArray = (
               'id',
             )}`}
             onClick={onDeleteStandardSizeClick}
-            touch
           >
-            <DeleteForeverIcon color={grey400} />
+            <DeleteForeverIcon />
           </IconButton>
         }
-        primaryText={`${standardSize.get('name')}`}
-      />
+      >
+        <ListItemText primary={`${standardSize.get('name')}`} />
+      </ListItem>
     ))
     .toArray();
 
 const PlasticBagTypeList = ({
   plasticBagTypes,
-  onPlasticBagTypeClick,
-  expendedPlasticBagTypes,
   onDeletePlasticBagTypeClick,
   onDeleteStandardSizeClick,
 }) => (
   <List>
     {plasticBagTypes.map(plasticBagType => (
       <ListItem
+        expandable={
+          !!plasticBagType.get('standardSizes') &&
+          plasticBagType.get('standardSizes').size > 0
+        }
         key={plasticBagType.get('id')}
         id={plasticBagType.get('id')}
-        rightIconButton={
+        secondaryActions={
           <IconButton
             id={plasticBagType.get('id')}
-            touch
             onClick={onDeletePlasticBagTypeClick}
           >
-            <DeleteForeverIcon color={grey400} />
+            <DeleteForeverIcon />
           </IconButton>
         }
-        primaryText={plasticBagType.get('name')}
-        onClick={onPlasticBagTypeClick}
-        open={expendedPlasticBagTypes[plasticBagType.get('id')] || false}
         nestedItems={[
           ...getStandardSizesJsxArray(
             plasticBagType.get('standardSizes'),
             onDeleteStandardSizeClick,
           ),
-          <ListItem key={-plasticBagType.get('id')}>
-            <ManageStandardSizePage
-              plasticBagTypeId={plasticBagType.get('id')}
-            />
-          </ListItem>,
         ]}
-      />
+      >
+        <ListItemText primary={plasticBagType.get('name')} />
+      </ListItem>
     ))}
   </List>
 );
 
 PlasticBagTypeList.propTypes = {
   plasticBagTypes: PropTypes.object.isRequired,
-  onPlasticBagTypeClick: PropTypes.func.isRequired,
-  expendedPlasticBagTypes: PropTypes.object.isRequired,
   onDeletePlasticBagTypeClick: PropTypes.func.isRequired,
   onDeleteStandardSizeClick: PropTypes.func.isRequired,
 };
 
-export default PlasticBagTypeList;
+export default withStyles({})(PlasticBagTypeList);

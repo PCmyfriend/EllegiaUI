@@ -6,8 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import { compose } from 'redux';
 import { push } from 'react-router-redux';
 
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import ContentAddButton from '../../../components/Buttons/ContentAddButton';
 
 import injectSaga from '../../../utils/injectSaga';
 
@@ -23,29 +22,8 @@ import saga from '../saga';
 import PlasticBagTypeList from './PlasticBagTypeList';
 
 class PlasticBagTypesPage extends React.PureComponent {
-  constructor(context, state) {
-    super(context, state);
-
-    this.state = {
-      expandedPlasticBagTypes: {},
-    };
-
-    this.handlePlasticBagTypeClick = this.handlePlasticBagTypeClick.bind(this);
-  }
-
   componentDidMount() {
     this.props.loadPlasticBagTypes();
-  }
-
-  handlePlasticBagTypeClick(event) {
-    const plasticBagTypeId = event.currentTarget.id;
-    const { expandedPlasticBagTypes } = this.state;
-    expandedPlasticBagTypes[plasticBagTypeId] = !expandedPlasticBagTypes[
-      plasticBagTypeId
-    ];
-    this.setState({
-      expandedPlasticBagTypes: Object.assign({}, expandedPlasticBagTypes),
-    });
   }
 
   render() {
@@ -56,18 +34,14 @@ class PlasticBagTypesPage extends React.PureComponent {
         </h1>
         <PlasticBagTypeList
           plasticBagTypes={this.props.plasticBagTypes}
-          onPlasticBagTypeClick={this.handlePlasticBagTypeClick}
           onDeletePlasticBagTypeClick={
             this.props.handleDeletePlasticBagTypeClick
           }
           onDeleteStandardSizeClick={this.props.handleDeleteStandardSizeClick}
-          expendedPlasticBagTypes={this.state.expandedPlasticBagTypes}
         />
-        <FloatingActionButton
+        <ContentAddButton
           onClick={this.props.redirectToAddPlasticBagTypePage}
-        >
-          <ContentAdd />
-        </FloatingActionButton>
+        />
       </div>
     );
   }

@@ -17,26 +17,9 @@ import saga from '../saga';
 import FilmTypesList from './FilmTypesList';
 import ContentAddButton from '../../../components/Buttons/ContentAddButton';
 
-class FilmTypesPage extends React.PureComponent {
-  constructor(context, props) {
-    super(context, props);
-
-    this.state = {
-      expandedFilmTypes: {},
-    };
-
-    this.handleFilmTypeClick = this.handleFilmTypeClick.bind(this);
-  }
-
+class FilmTypesPage extends React.Component {
   componentDidMount() {
     this.props.loadFilmTypes();
-  }
-
-  handleFilmTypeClick(event) {
-    const filmTypeId = event.currentTarget.id;
-    const { expandedFilmTypes } = this.state;
-    expandedFilmTypes[filmTypeId] = !expandedFilmTypes[filmTypeId];
-    this.setState({ expandedFilmTypes: Object.assign({}, expandedFilmTypes) });
   }
 
   render() {
@@ -48,8 +31,6 @@ class FilmTypesPage extends React.PureComponent {
         <FilmTypesList
           filmTypes={this.props.filmTypes}
           onDeleteFilmTypeClick={this.props.handleDeleteFilmTypeClick}
-          expendedFilmTypes={this.state.expandedFilmTypes}
-          onFilmTypeClick={this.handleFilmTypeClick}
         />
         <ContentAddButton onClick={this.props.redirectToAddFilmTypePage} />
       </div>

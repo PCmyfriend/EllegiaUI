@@ -16,7 +16,10 @@ import NavSideMenu from './NavSideMenu';
 import HeaderLink from '../A';
 import messages from './messages';
 import image from '../../images/icon-512x512.png';
-import { makeSelectUserRole, makeSelectUserName } from '../../containers/LoginPage/selectors';
+import {
+  makeSelectUserRole,
+  makeSelectUserName,
+} from '../../containers/LoginPage/selectors';
 
 const styles = {
   root: {

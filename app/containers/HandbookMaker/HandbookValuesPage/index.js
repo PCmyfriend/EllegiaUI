@@ -6,9 +6,6 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { FormattedMessage } from 'react-intl';
 
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
-
 import injectSaga from '../../../utils/injectSaga';
 
 import { makeSelectHandbookValues } from '../selectors';
@@ -18,6 +15,8 @@ import saga from '../saga';
 
 import HandbookValuesList from './HandbookValuesList';
 import messages from '../ManageHandbookValuePage/messages';
+
+import ContentAddButton from '../../../components/Buttons/ContentAddButton';
 
 class HandbookValuesPage extends React.PureComponent {
   componentDidMount() {
@@ -34,11 +33,7 @@ class HandbookValuesPage extends React.PureComponent {
           handbookValues={this.props.handbookValues}
           onDeleteHandbookValueClick={this.props.handleDeleteHandbookValueClick}
         />
-        <FloatingActionButton
-          onClick={this.props.redirectToAddHandbookValuePage}
-        >
-          <ContentAdd />
-        </FloatingActionButton>
+        <ContentAddButton onClick={this.props.redirectToAddHandbookValuePage} />
       </div>
     );
   }

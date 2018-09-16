@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { List, ListItem } from 'material-ui';
-import { grey400 } from 'material-ui/styles/colors';
-import IconButton from 'material-ui/IconButton';
-import DeleteForeverIcon from 'material-ui/svg-icons/action/delete-forever';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import { withStyles } from '@material-ui/core/styles';
+import ListItemText from '@material-ui/core/ListItemText';
+
+import List from '../../../components/List/List';
+import ListItem from '../../../components/List/ListItem';
 
 const HandbookValuesList = ({ handbookValues, onDeleteHandbookValueClick }) => (
   <div>
@@ -13,17 +16,17 @@ const HandbookValuesList = ({ handbookValues, onDeleteHandbookValueClick }) => (
         <ListItem
           id={handbookValue.get('id')}
           key={handbookValue.get('id')}
-          primaryText={handbookValue.get('name')}
-          rightIconButton={
+          secondaryActions={
             <IconButton
               id={handbookValue.get('id')}
               onClick={onDeleteHandbookValueClick}
-              touch
             >
-              <DeleteForeverIcon color={grey400} />
+              <DeleteForeverIcon />
             </IconButton>
           }
-        />
+        >
+          <ListItemText primary={handbookValue.get('name')} />
+        </ListItem>
       ))}
     </List>
   </div>
@@ -34,4 +37,4 @@ HandbookValuesList.propTypes = {
   onDeleteHandbookValueClick: PropTypes.func.isRequired,
 };
 
-export default HandbookValuesList;
+export default withStyles({})(HandbookValuesList);

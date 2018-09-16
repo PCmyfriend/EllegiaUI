@@ -6,9 +6,6 @@ import { FormattedMessage } from 'react-intl';
 import { compose } from 'redux';
 import { push } from 'react-router-redux';
 
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
-
 import injectSaga from '../../../utils/injectSaga';
 
 import { loadCustomers, deleteCustomer, deleteContact } from '../actions';
@@ -17,28 +14,13 @@ import messages from './messages';
 import saga from '../saga';
 import manageCustomerSaga from '../ManageCustomerPage/saga';
 
+import ContentAddButton from '../../../components/Buttons/ContentAddButton';
+
 import CustomerList from './CustomersList';
 
-class CustomersPage extends React.PureComponent {
-  constructor(context, state) {
-    super(context, state);
-
-    this.state = {
-      expandedCustomers: {},
-    };
-
-    this.handleCustomerClick = this.handleCustomerClick.bind(this);
-  }
-
+class CustomersPage extends React.Component {
   componentDidMount() {
     this.props.loadCustomers();
-  }
-
-  handleCustomerClick(event) {
-    const customerId = event.currentTarget.id;
-    const { expandedCustomers } = this.state;
-    expandedCustomers[customerId] = !expandedCustomers[customerId];
-    this.setState({ expandedCustomers: Object.assign({}, expandedCustomers) });
   }
 
   render() {
@@ -49,14 +31,10 @@ class CustomersPage extends React.PureComponent {
         </h1>
         <CustomerList
           customers={this.props.customers}
-          onCustomerClick={this.handleCustomerClick}
           onDeleteCustomerClick={this.props.handleDeleteCustomerClick}
           onDeleteContactClick={this.props.handleDeleteContactClick}
-          expandedCustomers={this.state.expandedCustomers}
         />
-        <FloatingActionButton onClick={this.props.redirectToAddCustomerPage}>
-          <ContentAdd />
-        </FloatingActionButton>
+        <ContentAddButton onClick={this.props.redirectToAddCustomerPage} />
       </div>
     );
   }

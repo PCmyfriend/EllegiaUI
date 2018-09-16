@@ -2,65 +2,51 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { fromJS } from 'immutable';
 
-import { List, ListItem } from 'material-ui';
-import { grey400 } from 'material-ui/styles/colors';
-import IconButton from 'material-ui/IconButton';
+import { withStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import ListItemText from '@material-ui/core/ListItemText';
+
+import List from '../../../components/List/List';
+import ListItem from '../../../components/List/ListItem';
 
 const renderFilmTypes = (
   filmTypes = fromJS([]),
   onDeleteFilmTypeClick,
-  expendedFilmTypes,
-  onFilmTypeClick,
+  nested = false,
 ) =>
   filmTypes
     .map(filmType => (
       <ListItem
+        expandable={
+          !!filmType.get('children') && filmType.get('children').size > 0
+        }
+        nested={nested}
         id={filmType.get('id')}
         key={filmType.get('id')}
-        primaryText={filmType.get('name')}
         nestedItems={renderFilmTypes(
           filmType.get('children'),
           onDeleteFilmTypeClick,
-          expendedFilmTypes,
-          onFilmTypeClick,
+          true,
         )}
-        open={expendedFilmTypes[filmType.get('id')] || false}
-        onClick={onFilmTypeClick}
-        rightIconButton={
-          <IconButton
-            id={filmType.get('id')}
-            onClick={onDeleteFilmTypeClick}
-            touch
-          >
+        secondaryActions={
+          <IconButton id={filmType.get('id')} onClick={onDeleteFilmTypeClick}>
             <DeleteForeverIcon />
           </IconButton>
         }
-      />
+      >
+        <ListItemText primary={filmType.get('name')} />
+      </ListItem>
     ))
     .toArray();
 
-const FilmTypesList = ({
-  filmTypes,
-  expendedFilmTypes,
-  onFilmTypeClick,
-  onDeleteFilmTypeClick,
-}) => (
-  <List>
-    {renderFilmTypes(
-      filmTypes,
-      onDeleteFilmTypeClick,
-      expendedFilmTypes,
-      onFilmTypeClick,
-    )}
-  </List>
+const FilmTypesList = ({ filmTypes, onDeleteFilmTypeClick }) => (
+  <List>{renderFilmTypes(filmTypes, onDeleteFilmTypeClick)}</List>
 );
 
 FilmTypesList.propTypes = {
   filmTypes: PropTypes.object.isRequired,
   onDeleteFilmTypeClick: PropTypes.func.isRequired,
-  onFilmTypeClick: PropTypes.func.isRequired,
-  expendedFilmTypes: PropTypes.object.isRequired,
 };
 
-export default FilmTypesList;
+export default withStyles({})(FilmTypesList);
