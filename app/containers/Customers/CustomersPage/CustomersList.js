@@ -8,11 +8,11 @@ import IconButton from '@material-ui/core/IconButton';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import DeleteIcon from '@material-ui/icons/DeleteForever';
-import AddContactIcon from '@material-ui/icons/ContactMail';
 import Face from '@material-ui/icons/Face';
 
 import List from '../../../components/List/List';
 import ListItem from '../../../components/List/ListItem';
+import ManageContactPage from '../../../containers/Customers/ManageContactPage';
 
 const getContactsJsxArray = (contacts = fromJS([]), onDeleteContactClick) =>
   contacts
@@ -52,13 +52,7 @@ const CustomersList = ({
           ),
         ]}
         secondaryActions={[
-          <IconButton
-            id={customer.get('id')}
-            key={1}
-            onClick={onDeleteCustomerClick}
-          >
-            <AddContactIcon />
-          </IconButton>,
+          <ManageContactPage key={1} customerId={customer.get('id')} />,
           <IconButton
             id={customer.get('id')}
             key={2}

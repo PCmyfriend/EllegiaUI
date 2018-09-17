@@ -18,7 +18,7 @@ const CustomButton = ({ onClick, label, classes, variant = 'contained' }) => (
   <Button
     className={classes.button}
     variant={variant}
-    onClick={onClick}
+    onClick={onClick || (() => {})}
     color="primary"
   >
     {label}
@@ -26,7 +26,7 @@ const CustomButton = ({ onClick, label, classes, variant = 'contained' }) => (
 );
 
 CustomButton.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   classes: PropTypes.object.isRequired,
   label: PropTypes.oneOfType([
     PropTypes.string.isRequired,

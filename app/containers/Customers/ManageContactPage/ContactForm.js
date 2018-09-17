@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { reduxForm } from 'redux-form/immutable';
 import { FormattedMessage } from 'react-intl';
+import IconButton from '@material-ui/core/IconButton/IconButton';
+import AddContactIcon from '@material-ui/icons/ContactMail';
 
 import messages from './messages';
 
 import FormTextField from '../../../components/FormTextField';
 import FormSelectField from '../../../components/FormSelectField';
-import SubmitButton from '../../../components/FormSubmitButton';
+import FormDialog from '../../../components/FormDialog';
 
 const validate = values => {
   const errors = {};
@@ -21,8 +22,25 @@ const validate = values => {
 };
 
 const ContactForm = ({ contactTypes, handleSubmit }) => (
-  <form onSubmit={handleSubmit}>
+  <FormDialog
+    title="Контакты"
+    onSubmit={handleSubmit}
+    cancelButtonTitle={<FormattedMessage {...messages.cancel} />}
+    submitButtonTitle={<FormattedMessage {...messages.save} />}
+    openingButton={
+      <IconButton>
+        <AddContactIcon />
+      </IconButton>
+    }
+    validate={validate}
+  >
     <div>
+      <div>
+        <FormTextField
+          name="name"
+          label={<FormattedMessage {...messages.contact} />}
+        />
+      </div>
       <FormSelectField
         name="contactTypeId"
         label={
@@ -31,18 +49,10 @@ const ContactForm = ({ contactTypes, handleSubmit }) => (
             data={contactTypes.toJS()}
           />
         }
+        data={contactTypes.toJS()}
       />
     </div>
-    <div>
-      <FormTextField
-        name="name"
-        label={<FormattedMessage {...messages.contact} />}
-      />
-    </div>
-    <div>
-      <SubmitButton label={<FormattedMessage {...messages.save} />} />
-    </div>
-  </form>
+  </FormDialog>
 );
 
 ContactForm.propTypes = {
@@ -50,6 +60,4 @@ ContactForm.propTypes = {
   contactTypes: PropTypes.object.isRequired,
 };
 
-export default reduxForm({
-  validate,
-})(ContactForm);
+export default ContactForm;

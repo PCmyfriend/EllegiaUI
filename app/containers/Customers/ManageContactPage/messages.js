@@ -13,4 +13,8 @@ export default defineMessages({
     id: 'app.components.ManageContactPage.save',
     defaultMessage: 'Save',
   },
+  cancel: {
+    id: 'app.components.ManageContactPage.cancel',
+    defaultMessage: 'Cancel',
+  },
 });

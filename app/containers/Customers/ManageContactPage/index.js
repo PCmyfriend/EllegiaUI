@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
@@ -21,13 +22,10 @@ class ManageContactPage extends React.PureComponent {
 
   render() {
     return (
-      <div>
-        <ContactForm
-          form={`contactsForm_${this.props.customerId}`}
-          contactTypes={this.props.contactTypes}
-          onSubmit={this.props.onSubmitForm}
-        />
-      </div>
+      <ContactForm
+        contactTypes={this.props.contactTypes}
+        handleSubmit={this.props.onSubmitForm}
+      />
     );
   }
 }
