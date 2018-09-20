@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import IconButton from '@material-ui/core/IconButton/IconButton';
-import AddStandardSizeIcon from '@material-ui/icons/MailOutline';
+import AddStandardSizeIcon from '@material-ui/icons/Add';
 
 import messages from './messages';
 
