@@ -25,4 +25,8 @@ export default defineMessages({
     id: 'app.components.PlasticBagTypes.ManageStandardSize.save',
     defaultMessage: 'Save',
   },
+  cancel: {
+    id: 'app.components.PlasticBagTypes.ManageStandardSize.cancel',
+    defaultMessage: 'Cancel',
+  },
 });

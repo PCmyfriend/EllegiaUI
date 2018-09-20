@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { reduxForm } from 'redux-form/immutable';
 import { FormattedMessage } from 'react-intl';
+import IconButton from '@material-ui/core/IconButton/IconButton';
+import AddStandardSizeIcon from '@material-ui/icons/MailOutline';
 
 import messages from './messages';
 
 import FormTextField from '../../../components/FormTextField';
-import SubmitButton from '../../../components/FormSubmitButton';
+
+import FormDialog from '../../../components/FormDialog';
 
 const validate = values => {
   const errors = {};
@@ -20,7 +22,18 @@ const validate = values => {
 };
 
 const StandardSizeForm = ({ handleSubmit }) => (
-  <form onSubmit={handleSubmit}>
+  <FormDialog
+    openingButton={
+      <IconButton>
+        <AddStandardSizeIcon />
+      </IconButton>
+    }
+    title={<FormattedMessage {...messages.header} />}
+    onSubmitForm={handleSubmit}
+    submitButtonTitle={<FormattedMessage {...messages.save} />}
+    cancelButtonTitle={<FormattedMessage {...messages.cancel} />}
+    validate={validate}
+  >
     <div>
       <FormTextField
         name="widthInMm"
@@ -45,16 +58,11 @@ const StandardSizeForm = ({ handleSubmit }) => (
         label={<FormattedMessage {...messages.quantityInBag} />}
       />
     </div>
-    <div>
-      <SubmitButton label={<FormattedMessage {...messages.save} />} />
-    </div>
-  </form>
+  </FormDialog>
 );
 
 StandardSizeForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
 };
 
-export default reduxForm({
-  validate,
-})(StandardSizeForm);
+export default StandardSizeForm;

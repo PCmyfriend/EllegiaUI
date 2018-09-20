@@ -10,6 +10,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import List from '../../../components/List/List';
 import ListItem from '../../../components/List/ListItem';
 
+import StandardSizeFormDialog from '../ManageStandardSizePage';
+
 const getStandardSizesJsxArray = (
   standardSizes = fromJS([]),
   onDeleteStandardSizeClick,
@@ -19,7 +21,7 @@ const getStandardSizesJsxArray = (
       <ListItem
         nested
         key={standardSize.get('id')}
-        rightIconButton={
+        secondaryActions={
           <IconButton
             id={`${standardSize.get('plasticBagTypeId')}-${standardSize.get(
               'id',
@@ -49,14 +51,17 @@ const PlasticBagTypeList = ({
         }
         key={plasticBagType.get('id')}
         id={plasticBagType.get('id')}
-        secondaryActions={
+        secondaryActions={[
+          <StandardSizeFormDialog
+            plasticBagTypeId={plasticBagType.get('id')}
+          />,
           <IconButton
             id={plasticBagType.get('id')}
             onClick={onDeletePlasticBagTypeClick}
           >
             <DeleteForeverIcon />
-          </IconButton>
-        }
+          </IconButton>,
+        ]}
         nestedItems={[
           ...getStandardSizesJsxArray(
             plasticBagType.get('standardSizes'),

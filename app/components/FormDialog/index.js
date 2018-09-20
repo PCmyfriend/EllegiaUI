@@ -41,6 +41,7 @@ class ManageFormDialogPage extends React.Component {
         handleCancelClick={this.handleCancelClick}
         handleShowFormClick={this.handleShowFormClick}
         onSubmit={this.handleSubmit}
+        validate={this.props.validate || (() => {})}
       />
     );
   }
@@ -55,6 +56,7 @@ ManageFormDialogPage.propTypes = {
   cancelButtonTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
     .isRequired,
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
+  validate: PropTypes.func,
 };
 
 export default ManageFormDialogPage;

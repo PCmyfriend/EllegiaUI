@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
@@ -9,14 +10,7 @@ import { addStandardSize } from '../actions';
 
 class ManageStandardSizePage extends React.PureComponent {
   render() {
-    return (
-      <div>
-        <StandardSizeForm
-          form={`standardSizeForm_${this.props.plasticBagTypeId}`}
-          onSubmit={this.props.onSubmitForm}
-        />
-      </div>
-    );
+    return <StandardSizeForm handleSubmit={this.props.onSubmitForm} />;
   }
 }
 

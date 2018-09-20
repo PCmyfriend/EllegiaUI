@@ -15,12 +15,15 @@
   "app.components.FilmTypesPage.header": "Марки пленки",
   "app.components.ManageFilmTypePage.header": "Форма марки пленки",
   "app.components.ManageFilmTypesPage.filmType": "Марка пленки",
-  "app.components.ManageFilmTypesPage.parentFilmType": "Родительская марка пленки",
+  "app.components.ManageFilmTypesPage.parentFilmType":
+    "Родительская марка пленки",
   "app.components.ManageFilmTypesPage.save": "Сохранить",
   "app.components.CustomersPage.header": "Заказчики",
   "app.components.ManageCustomerPage.header": "Форма заказчика",
   "app.components.ManageCustomerPage.customerName": "Имя заказчика",
   "app.components.ManageCustomerPage.save": "Сохранить",
+  "app.components.ManageContactPage.cancel": "Отменить",
+  "app.components.ManageContactPage.header": "Форма контакта",
   "app.components.ManageContactPage.contact": "Контакт",
   "app.components.ManageContactPage.contactType": "Тип контакта",
   "app.components.ManageContactPage.save": "Сохранить",
@@ -38,13 +41,17 @@
   "app.components.ManageHandbookValuePage.plasticBagType": "Вид пакета",
   "app.components.ManageHandbookValuePage.filmTypeOptions": "Варианты пленки",
   "app.components.ManageHandbookValuePage.filmTypeOption": "Вариант пленки",
-  "app.components.PlasticBagTypes.ManageStandardSize.header": "Форма стандартных размеров",
+  "app.components.PlasticBagTypes.ManageStandardSize.header":
+    "Форма стандартного размера",
   "app.components.PlasticBagTypes.ManageStandardSize.widthInMm": "Ширина в мм",
   "app.components.PlasticBagTypes.ManageStandardSize.lengthInMm": "Длина в мм",
   "app.components.PlasticBagTypes.ManageStandardSize.heightInMm": "Высота в мм",
-  "app.components.PlasticBagTypes.ManageStandardSize.quantityInBag": "Количество в сумке",
+  "app.components.PlasticBagTypes.ManageStandardSize.quantityInBag":
+    "Количество в сумке",
   "app.components.PlasticBagTypes.ManageStandardSize.save": "Сохранить",
-  "app.components.PlasticBagTypes.ManagePlasticBagTypePage.header": "Форма вида пакета",
+  "app.components.PlasticBagTypes.ManageStandardSize.cancel": "Отменить",
+  "app.components.PlasticBagTypes.ManagePlasticBagTypePage.header":
+    "Форма вида пакета",
   "app.components.PlasticBagTypes.ManagePlasticBagTypePage.name": "Вид пакета",
   "app.components.PlasticBagTypes.ManagePlasticBagTypePage.save": "Сохранить",
   "app.components.PlasticBagTypes.PlasticBagTypesPage.header": "Виды пакетов",
@@ -57,15 +64,20 @@
   "app.components.Orders.ManageOrderPage.filmType": "Марка пленки",
   "app.components.Orders.ManageOrderPage.plasticBagType": "Вид пакета",
   "app.components.Orders.ManageOrderPage.name": "Наименование",
-  "app.components.Orders.ManageOrderPage.thicknessInMicron": "Толщина в микронах",
+  "app.components.Orders.ManageOrderPage.thicknessInMicron":
+    "Толщина в микронах",
   "app.components.Orders.ManageOrderPage.quantityInKg": "Количество в кг",
   "app.components.Orders.ManageOrderPage.pricePerKg": "Цена за кг",
   "app.components.Orders.ManageOrderPage.totalSum": "Общая стоимость",
   "app.components.Orders.ManageOrderPage.hasCorona": "Корона",
-  "app.components.Orders.ManageOrderPage.widthInMmError": "Погрешность ширины в мм",
-  "app.components.Orders.ManageOrderPage.heightInMmError": "Погрешность высоты в мм",
-  "app.components.Orders.ManageOrderPage.lengthInMmError": "Погрешность длины в мм",
-  "app.components.Orders.ManageOrderPage.thicknessInMicronError": "Погрешность толщины в мк",
+  "app.components.Orders.ManageOrderPage.widthInMmError":
+    "Погрешность ширины в мм",
+  "app.components.Orders.ManageOrderPage.heightInMmError":
+    "Погрешность высоты в мм",
+  "app.components.Orders.ManageOrderPage.lengthInMmError":
+    "Погрешность длины в мм",
+  "app.components.Orders.ManageOrderPage.thicknessInMicronError":
+    "Погрешность толщины в мк",
   "app.components.Orders.OrdersPage.header": "Заказы",
   "app.components.Orders.OrdersPage.totalPrice": "Итоговая цена",
   "app.components.Orders.OrdersPage.active": "Активные",

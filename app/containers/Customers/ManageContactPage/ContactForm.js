@@ -23,7 +23,7 @@ const validate = values => {
 
 const ContactForm = ({ contactTypes, handleSubmit }) => (
   <ManageFormDialogPage
-    title="Контакты"
+    title={<FormattedMessage {...messages.header} />}
     onSubmitForm={handleSubmit}
     cancelButtonTitle={<FormattedMessage {...messages.cancel} />}
     submitButtonTitle={<FormattedMessage {...messages.save} />}

@@ -1,6 +1,10 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
+  header: {
+    id: 'app.components.ManageContactPage.header',
+    defaultMessage: 'Contact form',
+  },
   contact: {
     id: 'app.components.ManageContactPage.contact',
     defaultMessage: 'Contact',
