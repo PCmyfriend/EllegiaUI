@@ -8,7 +8,7 @@ import messages from './messages';
 
 import FormTextField from '../../../components/FormTextField';
 import FormSelectField from '../../../components/FormSelectField';
-import FormDialog from '../../../components/FormDialog';
+import ManageFormDialogPage from '../../../components/FormDialog';
 
 const validate = values => {
   const errors = {};
@@ -22,9 +22,9 @@ const validate = values => {
 };
 
 const ContactForm = ({ contactTypes, handleSubmit }) => (
-  <FormDialog
+  <ManageFormDialogPage
     title="Контакты"
-    onSubmit={handleSubmit}
+    onSubmitForm={handleSubmit}
     cancelButtonTitle={<FormattedMessage {...messages.cancel} />}
     submitButtonTitle={<FormattedMessage {...messages.save} />}
     openingButton={
@@ -35,12 +35,6 @@ const ContactForm = ({ contactTypes, handleSubmit }) => (
     validate={validate}
   >
     <div>
-      <div>
-        <FormTextField
-          name="name"
-          label={<FormattedMessage {...messages.contact} />}
-        />
-      </div>
       <FormSelectField
         name="contactTypeId"
         label={
@@ -52,7 +46,13 @@ const ContactForm = ({ contactTypes, handleSubmit }) => (
         data={contactTypes.toJS()}
       />
     </div>
-  </FormDialog>
+    <div>
+      <FormTextField
+        name="name"
+        label={<FormattedMessage {...messages.contact} />}
+      />
+    </div>
+  </ManageFormDialogPage>
 );
 
 ContactForm.propTypes = {

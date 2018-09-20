@@ -7,7 +7,7 @@ import messages from './messages';
 import FormSelectField from '../../../components/FormSelectField';
 import TextField from '../../../components/FormTextField';
 
-import FormDialog from '../../../components/FormDialog';
+import ManageFormDialogPage from '../../../components/FormDialog';
 import InfoButton from '../../../components/Buttons/InfoButton';
 
 const validate = values => {
@@ -22,11 +22,11 @@ const validate = values => {
 };
 
 const OrderRoutesFormDialog = ({ order, handleSubmit }) => (
-  <FormDialog
+  <ManageFormDialogPage
     title={<FormattedMessage {...messages.header} />}
     cancelButtonTitle={<FormattedMessage {...messages.cancel} />}
     submitButtonTitle={<FormattedMessage {...messages.send} />}
-    onSubmit={handleSubmit}
+    onSubmitForm={handleSubmit}
     openingButton={
       <InfoButton
         variant="text"
@@ -48,7 +48,7 @@ const OrderRoutesFormDialog = ({ order, handleSubmit }) => (
       name="comment"
       label={<FormattedMessage {...messages.comment} />}
     />
-  </FormDialog>
+  </ManageFormDialogPage>
 );
 
 OrderRoutesFormDialog.propTypes = {
