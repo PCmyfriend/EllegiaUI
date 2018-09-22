@@ -7,9 +7,9 @@ import { sendOrder } from '../actions';
 
 import OrderRoutesFormDialog from './OrderRoutesFormDialog';
 
-class ManageOrderRoutePage extends React.PureComponent {
-  constructor(context, props) {
-    super(context, props);
+class ManageOrderRoutePage extends React.Component {
+  constructor(props) {
+    super(props);
 
     this.onSubmitForm = this.onSubmitForm.bind(this);
   }

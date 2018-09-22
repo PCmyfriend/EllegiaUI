@@ -5,16 +5,17 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { FormattedMessage } from 'react-intl';
+import IconButton from '@material-ui/core/IconButton';
+import PrintIcon from '@material-ui/icons/Print';
+import DeleteIcon from '@material-ui/icons/DeleteForever';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 
 import orderMessages from './messages';
 import orderFormMessages from '../ManageOrderPage/messages';
-import InfoButton from '../../../components/Buttons/InfoButton';
 import OrderRoutesFormDialog from '../ManageOrderRoutes';
-import CancelButton from '../../../components/Buttons/CancelButton';
 
-const styles = () => ({
+const styles = theme => ({
   paper: {
     width: '100%',
     overflowX: 'auto',
@@ -22,6 +23,9 @@ const styles = () => ({
   cell: {
     borderLeft: '1px solid lightGrey',
     borderRight: '1px solid lightGrey',
+  },
+  button: {
+    margin: theme.spacing.unit,
   },
 });
 
@@ -135,32 +139,30 @@ const OrdersList = ({
           accessor: o => o,
           Cell: ({ value: order }) => (
             <div>
-              <div>
-                <InfoButton
-                  variant="text"
-                  label={<FormattedMessage {...orderMessages.print} />}
-                  onClick={() =>
-                    handlePreviewOrderPrintingVersionClick(order.id)
-                  }
-                />
-              </div>
-              {order.isMine && (
-                <div>
-                  <OrderRoutesFormDialog order={order} />
-                </div>
-              )}
-              <div>
-                <CancelButton
-                  variant="text"
-                  label={<FormattedMessage {...orderMessages.delete} />}
-                  onClick={() => handleDeleteOrderClick(order.id)}
-                />
-              </div>
+              <IconButton
+                className={classes.button}
+                onClick={() => handlePreviewOrderPrintingVersionClick(order.id)}
+              >
+                <PrintIcon />
+              </IconButton>
+              {order.isMine && <OrderRoutesFormDialog order={order} />}
+              <IconButton
+                className={classes.button}
+                onClick={() => handleDeleteOrderClick(order.id)}
+              >
+                <DeleteIcon />
+              </IconButton>
             </div>
           ),
         },
       ]}
       data={orders.toJS()}
+      previousText={<FormattedMessage {...orderMessages.previousText} />}
+      nextText={<FormattedMessage {...orderMessages.nextText} />}
+      noDataText={<FormattedMessage {...orderMessages.noRowsFound} />}
+      pageText={<FormattedMessage {...orderMessages.pageText} />}
+      ofText={<FormattedMessage {...orderMessages.ofText} />}
+      rowsText="строк"
     />
   </Paper>
 );

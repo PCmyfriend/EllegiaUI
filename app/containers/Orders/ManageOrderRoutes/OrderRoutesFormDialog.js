@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import IconButton from '@material-ui/core/IconButton';
+import SendIcon from '@material-ui/icons/Send';
+import { withStyles } from '@material-ui/core/styles';
 
 import messages from './messages';
 
@@ -8,7 +11,12 @@ import FormSelectField from '../../../components/FormSelectField';
 import TextField from '../../../components/FormTextField';
 
 import ManageFormDialogPage from '../../../components/FormDialog';
-import InfoButton from '../../../components/Buttons/InfoButton';
+
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+});
 
 const validate = values => {
   const errors = {};
@@ -21,17 +29,16 @@ const validate = values => {
   return errors;
 };
 
-const OrderRoutesFormDialog = ({ order, handleSubmit }) => (
+const OrderRoutesFormDialog = ({ order, handleSubmit, classes }) => (
   <ManageFormDialogPage
     title={<FormattedMessage {...messages.header} />}
     cancelButtonTitle={<FormattedMessage {...messages.cancel} />}
     submitButtonTitle={<FormattedMessage {...messages.send} />}
     onSubmitForm={handleSubmit}
     openingButton={
-      <InfoButton
-        variant="text"
-        label={<FormattedMessage {...messages.send} />}
-      />
+      <IconButton className={classes.button}>
+        <SendIcon />
+      </IconButton>
     }
     validate={validate}
   >
@@ -54,6 +61,7 @@ const OrderRoutesFormDialog = ({ order, handleSubmit }) => (
 OrderRoutesFormDialog.propTypes = {
   order: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
 };
 
-export default OrderRoutesFormDialog;
+export default withStyles(styles)(OrderRoutesFormDialog);

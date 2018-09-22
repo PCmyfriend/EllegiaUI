@@ -37,4 +37,28 @@ export default defineMessages({
     id: 'app.components.Orders.OrdersPage.actions',
     defaultMessage: 'Actions',
   },
+  previousText: {
+    id: 'app.components.Orders.OrdersPage.previousText',
+    defaultMessage: 'Previous',
+  },
+  nextText: {
+    id: 'app.components.Orders.OrdersPage.nextText',
+    defaultMessage: 'Next',
+  },
+  noRowsFound: {
+    id: 'app.components.Orders.OrdersPage.noRowsFound',
+    defaultMessage: 'No rows found',
+  },
+  ofText: {
+    id: 'app.components.Orders.OrdersPage.ofText',
+    defaultMessage: 'of',
+  },
+  rowsText: {
+    id: 'app.components.Orders.OrdersPage.rowsText',
+    defaultMessage: 'rows',
+  },
+  pageText: {
+    id: 'app.components.Orders.OrdersPage.pageText',
+    defaultMessage: 'Page',
+  },
 });
