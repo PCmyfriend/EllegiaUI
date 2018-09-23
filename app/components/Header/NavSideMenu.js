@@ -33,8 +33,8 @@ const styles = {
 };
 
 class NavSideMenu extends React.Component {
-  constructor(context, props) {
-    super(context, props);
+  constructor(props) {
+    super(props);
 
     this.state = {
       anchorEl: null,
