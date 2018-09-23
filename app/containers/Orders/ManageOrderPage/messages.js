@@ -73,4 +73,8 @@ export default defineMessages({
     id: 'app.components.Orders.ManageOrderPage.thicknessInMicronError',
     defaultMessage: 'Thickness in micron error',
   },
+  productTypeName: {
+    id: 'app.components.Orders.ManagerOrderPage.productTypeName',
+    defaultMessage: 'Brand',
+  },
 });

@@ -61,4 +61,12 @@ export default defineMessages({
     id: 'app.components.Orders.OrdersPage.pageText',
     defaultMessage: 'Page',
   },
+  yesText: {
+    id: 'app.components.Orders.OrdersPage.yesText',
+    defaultMessage: 'Yes',
+  },
+  noText: {
+    id: 'app.components.Orders.OrdersPage.noText',
+    defaultMessage: 'No',
+  },
 });

@@ -30,6 +30,7 @@ const styles = theme => ({
 });
 
 const columnWidth = 240;
+const defaultPageSize = 10;
 
 const OrdersList = ({
   orders,
@@ -47,9 +48,15 @@ const OrdersList = ({
           width: columnWidth,
         },
         {
+          id: 'productTypeName',
+          Header: <FormattedMessage {...orderFormMessages.productTypeName} />,
+          accessor: o => o.productType.name,
+          width: columnWidth,
+        },
+        {
           id: 'filmType',
           Header: <FormattedMessage {...orderFormMessages.filmType} />,
-          accessor: o => o.productType.name,
+          accessor: o => o.productType.filmType.name,
           width: columnWidth,
         },
         {
@@ -61,7 +68,7 @@ const OrdersList = ({
         {
           id: 'plasticBagType',
           Header: <FormattedMessage {...orderFormMessages.plasticBagType} />,
-          accessor: o => o.productType.color.name,
+          accessor: o => o.productType.standardSize.plasticBagType.name,
           width: columnWidth,
         },
         {
@@ -105,8 +112,14 @@ const OrdersList = ({
         {
           id: 'hasCorona',
           Header: <FormattedMessage {...orderFormMessages.hasCorona} />,
-          accessor: o => o.productType.hasCorona,
+          accessor: o => o,
           width: columnWidth,
+          Cell: ({ value: order }) =>
+            order.productType.hasCorona ? (
+              <FormattedMessage {...orderMessages.yesText} />
+            ) : (
+              <FormattedMessage {...orderMessages.noText} />
+            ),
         },
         {
           id: 'filmTypeOption',
@@ -146,12 +159,14 @@ const OrdersList = ({
                 <PrintIcon />
               </IconButton>
               {order.isMine && <OrderRoutesFormDialog order={order} />}
-              <IconButton
-                className={classes.button}
-                onClick={() => handleDeleteOrderClick(order.id)}
-              >
-                <DeleteIcon />
-              </IconButton>
+              {order.isDeletionPermitted && (
+                <IconButton
+                  className={classes.button}
+                  onClick={() => handleDeleteOrderClick(order.id)}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              )}
             </div>
           ),
         },
@@ -163,6 +178,10 @@ const OrdersList = ({
       pageText={<FormattedMessage {...orderMessages.pageText} />}
       ofText={<FormattedMessage {...orderMessages.ofText} />}
       rowsText="строк"
+      style={{
+        textAlign: 'center',
+      }}
+      defaultPageSize={defaultPageSize}
     />
   </Paper>
 );
