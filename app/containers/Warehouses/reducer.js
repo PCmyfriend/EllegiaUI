@@ -1,32 +1,24 @@
 import { fromJS } from 'immutable';
 
 import {
-  LOAD_WAREHOUSE_SUCCESS,
-  PUT_WAREHOUSE_ITEM_SUCCESS,
-  TAKE_WAREHOUSE_ITEM_SUCCESS,
+  LOAD_WAREHOUSE_HISTORY_SUCCESS,
+  ADD_WAREHOUSE_HISTORY_RECORD_SUCCESS,
 } from './constants';
 
 const initialState = fromJS([]);
 
 export function warehousesReducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD_WAREHOUSE_SUCCESS: {
+    case LOAD_WAREHOUSE_HISTORY_SUCCESS: {
       const warehouses = state.toJS();
-      warehouses[action.warehouseId] = action.warehouse;
+      warehouses[action.warehouseId].history = action.history;
       return fromJS([...warehouses]);
     }
-    case PUT_WAREHOUSE_ITEM_SUCCESS: {
-      const { warehouseStockingHistoryRecord } = action;
+    case ADD_WAREHOUSE_HISTORY_RECORD_SUCCESS: {
+      const { warehouseId, warehouseHistoryRecord } = action;
       const warehouses = state.toJS();
-      const warehouse = warehouses[warehouseStockingHistoryRecord.warehouseId];
-      warehouse.inOutHistory.insert(0, warehouseStockingHistoryRecord);
-      return fromJS([...warehouses]);
-    }
-    case TAKE_WAREHOUSE_ITEM_SUCCESS: {
-      const { warehouseDeliveryHistoryRecord } = action;
-      const warehouses = state.toJS();
-      const warehouse = warehouses[warehouseDeliveryHistoryRecord.warehouseId];
-      warehouse.inOutHistory.insert(0, warehouseDeliveryHistoryRecord);
+      const warehouse = warehouses[warehouseId];
+      warehouse.history.insert(0, warehouseHistoryRecord);
       return fromJS([...warehouses]);
     }
     default:

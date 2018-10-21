@@ -10,52 +10,59 @@ import {
 
 import { makeSelectToken } from '../LoginPage/selectors';
 
-import { takeWarehouseItemSuccess, putWarehouseItemSuccess } from './actions';
+import {
+  addWarehouseHistoryRecordSuccess,
+  loadWarehouseHistorySuccess,
+} from './actions';
 
-import { PUT_WAREHOUSE_ITEM, TAKE_WAREHOUSE_ITEM } from './constants';
+import {
+  LOAD_WAREHOUSE_HISTORY,
+  ADD_WAREHOUSE_HISTORY_RECORD,
+} from './constants';
 
-export function* takeWarehouseItem(action) {
-  const { warehouseId, warehouseItem } = action;
+export function* addWarehouseHistoryRecord(action) {
+  const { warehouseId, warehouseHistoryRecord } = action;
 
   const authHeader = yield select(makeSelectToken());
 
-  const takeWarehouseItemRequestUrl = `warehouses/${warehouseId}/history/out`;
+  const requestUrl = `warehouses/${warehouseId}/history`;
 
   try {
     yield put(showLoading());
-    const warehouseDeliveryHistoryRecord = yield call(
-      apiRequest(authHeader),
-      takeWarehouseItemRequestUrl,
-      warehouseItem,
+    const returnedWarehouseHistoryRecord = yield call(
+      apiRequest(authHeader).post,
+      requestUrl,
+      warehouseHistoryRecord,
     );
     yield all([
       put(showLoading()),
       put(showSuccess()),
-      put(takeWarehouseItemSuccess(warehouseDeliveryHistoryRecord)),
+      put(
+        addWarehouseHistoryRecordSuccess(
+          warehouseId,
+          returnedWarehouseHistoryRecord,
+        ),
+      ),
     ]);
   } catch (error) {
     yield all([put(hideLoading(), showError())]);
   }
 }
 
-export function* putWarehouseItem(action) {
-  const { warehouseId, warehouseItem } = action;
+export function* loadWarehouseHistory(action) {
+  const { warehouseId } = action;
 
   const authHeader = yield select(makeSelectToken());
 
-  const putWarehouseItemRequestUrl = `warehouses/${warehouseId}/history/in`;
+  const requestUrl = `warehouses/${warehouseId}/history`;
 
   try {
     yield put(showLoading());
-    const warehouseStokingHistoryRecord = yield call(
-      apiRequest(authHeader),
-      putWarehouseItemRequestUrl,
-      warehouseItem,
-    );
+    const warehouseHistory = yield call(apiRequest(authHeader).get, requestUrl);
     yield all([
       put(showLoading()),
       put(showSuccess()),
-      put(putWarehouseItemSuccess(warehouseStokingHistoryRecord)),
+      put(loadWarehouseHistorySuccess(warehouseId, warehouseHistory)),
     ]);
   } catch (error) {
     yield all([put(hideLoading(), showError())]);
@@ -64,7 +71,7 @@ export function* putWarehouseItem(action) {
 
 export default function* warehouseHistoryData() {
   yield [
-    takeLatest(PUT_WAREHOUSE_ITEM, putWarehouseItem),
-    takeLatest(TAKE_WAREHOUSE_ITEM, takeWarehouseItem),
+    takeLatest(LOAD_WAREHOUSE_HISTORY, loadWarehouseHistory),
+    takeLatest(ADD_WAREHOUSE_HISTORY_RECORD, addWarehouseHistoryRecord),
   ];
 }

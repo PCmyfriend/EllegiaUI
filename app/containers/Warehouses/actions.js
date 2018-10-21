@@ -1,51 +1,40 @@
 import {
-  PUT_WAREHOUSE_ITEM,
-  PUT_WAREHOUSE_ITEM_SUCCESS,
-  TAKE_WAREHOUSE_ITEM,
-  TAKE_WAREHOUSE_ITEM_SUCCESS,
-  LOAD_WAREHOUSE,
-  LOAD_WAREHOUSE_SUCCESS,
+  ADD_WAREHOUSE_HISTORY_RECORD,
+  ADD_WAREHOUSE_HISTORY_RECORD_SUCCESS,
+  LOAD_WAREHOUSE_HISTORY,
+  LOAD_WAREHOUSE_HISTORY_SUCCESS,
 } from './constants';
 
-export function putWarehouseItem(warehouseId, warehouseItem) {
+export function addWarehouseHistoryRecord(warehouseId, warehouseHistoryRecord) {
   return {
-    type: PUT_WAREHOUSE_ITEM,
-    warehouseItem,
+    type: ADD_WAREHOUSE_HISTORY_RECORD,
+    warehouseHistoryRecord,
     warehouseId,
   };
 }
 
-export function takeWarehouseItem(warehouseId, warehouseItem) {
+export function addWarehouseHistoryRecordSuccess(
+  warehouseId,
+  warehouseHistoryRecord,
+) {
   return {
-    type: TAKE_WAREHOUSE_ITEM,
-    warehouseItem,
+    type: ADD_WAREHOUSE_HISTORY_RECORD_SUCCESS,
+    warehouseId,
+    warehouseHistoryRecord,
+  };
+}
+
+export function loadWarehouseHistory(warehouseId) {
+  return {
+    type: LOAD_WAREHOUSE_HISTORY,
     warehouseId,
   };
 }
 
-export function takeWarehouseItemSuccess(warehouseDeliveryHistoryRecord) {
+export function loadWarehouseHistorySuccess(warehouseId, warehouseHistory) {
   return {
-    type: TAKE_WAREHOUSE_ITEM_SUCCESS,
-    warehouseDeliveryHistoryRecord,
-  };
-}
-
-export function putWarehouseItemSuccess(warehouseStockingHistoryRecord) {
-  return {
-    type: PUT_WAREHOUSE_ITEM_SUCCESS,
-    warehouseStockingHistoryRecord,
-  };
-}
-
-export function loadWarehouse() {
-  return {
-    type: LOAD_WAREHOUSE,
-  };
-}
-
-export function loadWarehouseSuccess(warehouse) {
-  return {
-    type: LOAD_WAREHOUSE_SUCCESS,
-    warehouse,
+    type: LOAD_WAREHOUSE_HISTORY_SUCCESS,
+    history: warehouseHistory,
+    warehouseId,
   };
 }
