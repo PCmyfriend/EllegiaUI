@@ -39,4 +39,8 @@ export default defineMessages({
     id: 'app.components.Header.greeting',
     defaultMessage: 'Hello, ',
   },
+  warehouseHistory: {
+    id: 'app.components.Header.warehouseHistory',
+    defaultMessage: 'History',
+  },
 });

@@ -113,6 +113,11 @@ class NavSideMenu extends React.Component {
               <FormattedMessage {...messages.handbooks} />
             </HeaderLink>
           </MenuItem>
+          <MenuItem>
+            <HeaderLink to="/warehouseHistory">
+              <FormattedMessage {...messages.warehouseHistory} />
+            </HeaderLink>
+          </MenuItem>
           <Divider />
           <MenuItem onClick={this.handleSignOutClick}>
             <FormattedMessage {...messages.signOut} />

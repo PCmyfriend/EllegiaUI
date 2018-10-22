@@ -5,6 +5,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 
 import { createStructuredSelector } from 'reselect';
+import { FormattedMessage } from 'react-intl';
 
 import 'react-table/react-table.css';
 
@@ -21,6 +22,8 @@ import HistoryRecordsList from './HistoryRecordsList';
 
 import ManageHistoryPage from '../ManageHistoryPage/Loadable';
 
+import messages from './messages';
+
 class HistoryPage extends React.Component {
   componentDidMount() {
     this.props.loadHistoryRecords();
@@ -29,8 +32,11 @@ class HistoryPage extends React.Component {
   render() {
     return (
       <div>
+        <h1>
+          <FormattedMessage {...messages.header} />
+        </h1>
         <HistoryRecordsList historyRecords={this.props.historyRecords} />
-        <div>
+        <div style={{ marginTop: '20px' }}>
           <ManageHistoryPage />
         </div>
       </div>
