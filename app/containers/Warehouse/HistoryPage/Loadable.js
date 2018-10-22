@@ -1,6 +1,6 @@
 import Loadable from 'react-loadable';
 
 export default Loadable({
-  loader: () => import('../../Customers/ManageCustomerPage/index'),
+  loader: () => import('./index'),
   loading: () => null,
 });

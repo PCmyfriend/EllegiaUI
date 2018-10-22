@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 
-const ContentAddButton = ({ onClick, classes }) => (
+const ContentAddButton = ({ onClick = () => {}, classes }) => (
   <Button
     variant="fab"
     color="primary"
@@ -19,7 +19,7 @@ const ContentAddButton = ({ onClick, classes }) => (
 );
 
 ContentAddButton.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   classes: PropTypes.object.isRequired,
 };
 

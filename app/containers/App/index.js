@@ -35,6 +35,7 @@ import ManageHandbookValuePage from '../../containers/HandbookMaker/ManageHandbo
 import PlasticBagTypesPage from '../../containers/PlasticBagTypes/PlasticBagTypesPage/Loadable';
 import ManagePlasticBagTypePage from '../../containers/PlasticBagTypes/ManagePlasticBagTypePage/Loadable';
 import ManageOrderPage from '../../containers/Orders/ManageOrderPage/Loadable';
+import WarehouseHistoryPage from '../../containers/Warehouse/HistoryPage/Loadable';
 
 const userIsAuthenticated = connectedReduxRedirect({
   redirectPath: '/login',
@@ -146,6 +147,10 @@ export default function App() {
                   handbookSingularName="filmTypeOption"
                 />
               ))}
+            />
+            <Route
+              path="/warehouseHistory"
+              component={userIsAuthenticated(WarehouseHistoryPage)}
             />
             <Route component={NotFoundPage} />
           </Switch>

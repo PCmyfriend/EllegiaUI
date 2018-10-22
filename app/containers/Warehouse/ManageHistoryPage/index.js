@@ -5,23 +5,21 @@ import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
+import { fromJS } from 'immutable';
+
 import filmTypesSaga from '../../FilmTypes/saga';
-import filmTypesReducer from '../../FilmTypes/reducer';
 import { makeSelectFilmTypes } from '../../FilmTypes/selectors';
 import { loadFilmTypes } from '../../FilmTypes/actions';
 
-import handbookReducerMaker from '../../HandbookMaker/handbookReducerMaker';
 import handbookSaga from '../../HandbookMaker/saga';
 import { makeSelectHandbookValues } from '../../HandbookMaker/selectors';
 import { loadHandbookValues } from '../../HandbookMaker/actions';
 
 import { addWarehouseHistoryRecord } from '../actions';
-import saga from '../saga';
 
 import injectSaga from '../../../utils/injectSaga';
-import injectReducer from '../../../utils/injectReducer';
 
-import InOutHistoryForm from './InOutHistoryForm';
+import HistoryRecordForm from './HistoryRecordForm';
 
 class ManageWarehouseInOutHistoryPage extends React.Component {
   componentDidMount() {
@@ -31,7 +29,7 @@ class ManageWarehouseInOutHistoryPage extends React.Component {
 
   render() {
     return (
-      <InOutHistoryForm
+      <HistoryRecordForm
         measurementUnits={this.props.measurementUnits}
         colors={this.props.colors}
         filmTypes={this.props.filmTypes}
@@ -54,7 +52,7 @@ const mapStateToProps = () =>
   createStructuredSelector({
     colors: makeSelectHandbookValues('colors'),
     filmTypes: makeSelectFilmTypes(),
-    measurementUnits: () => [{ id: 1, name: 'kg' }],
+    measurementUnits: () => fromJS([{ id: 1, name: 'kg' }]),
   });
 
 function mapDispatchToProps(dispatch) {
@@ -80,26 +78,8 @@ const withFilmTypesSaga = injectSaga({
   saga: filmTypesSaga,
 });
 
-const withInOutHistorySaga = injectSaga({
-  key: 'inOutHistory',
-  saga,
-});
-
-const withColorsReducer = injectReducer({
-  key: 'colors',
-  reducer: handbookReducerMaker('colors'),
-});
-
-const withFilmTypesReducer = injectReducer({
-  key: 'filmTypes',
-  reducer: filmTypesReducer,
-});
-
 export default compose(
-  withColorsReducer,
-  withFilmTypesReducer,
   withHandbookValuesSaga,
   withFilmTypesSaga,
   withConnect,
-  withInOutHistorySaga,
 )(ManageWarehouseInOutHistoryPage);

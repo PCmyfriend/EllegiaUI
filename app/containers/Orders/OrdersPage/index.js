@@ -135,6 +135,7 @@ const withConnect = connect(
   mapStateToProps,
   mapDispatchToProps,
 );
+
 const withSaga = injectSaga({ key: 'orders', saga });
 
 export default compose(

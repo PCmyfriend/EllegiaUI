@@ -29,23 +29,16 @@ export function* addWarehouseHistoryRecord(action) {
 
   try {
     yield put(showLoading());
-    const returnedWarehouseHistoryRecord = yield call(
-      apiRequest(authHeader).post,
-      requestUrl,
-      warehouseHistoryRecord,
-    );
+    yield call(apiRequest(authHeader).post, requestUrl, warehouseHistoryRecord);
     yield all([
-      put(showLoading()),
+      put(hideLoading()),
       put(showSuccess()),
       put(
-        addWarehouseHistoryRecordSuccess(
-          warehouseId,
-          returnedWarehouseHistoryRecord,
-        ),
+        addWarehouseHistoryRecordSuccess(warehouseId, warehouseHistoryRecord),
       ),
     ]);
   } catch (error) {
-    yield all([put(hideLoading(), showError())]);
+    yield all([put(hideLoading()), put(showError())]);
   }
 }
 
@@ -60,12 +53,12 @@ export function* loadWarehouseHistory(action) {
     yield put(showLoading());
     const warehouseHistory = yield call(apiRequest(authHeader).get, requestUrl);
     yield all([
-      put(showLoading()),
+      put(hideLoading()),
       put(showSuccess()),
       put(loadWarehouseHistorySuccess(warehouseId, warehouseHistory)),
     ]);
   } catch (error) {
-    yield all([put(hideLoading(), showError())]);
+    yield all([put(hideLoading()), put(showError())]);
   }
 }
 

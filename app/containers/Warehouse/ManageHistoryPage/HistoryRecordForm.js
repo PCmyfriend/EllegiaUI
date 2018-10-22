@@ -25,7 +25,7 @@ const validate = values => {
   return errors;
 };
 
-const InOutHistoryForm = ({
+const HistoryRecordForm = ({
   measurementUnits,
   colors,
   filmTypes,
@@ -61,11 +61,11 @@ const InOutHistoryForm = ({
   </FormDialog>
 );
 
-InOutHistoryForm.propTypes = {
+HistoryRecordForm.propTypes = {
   measurementUnits: PropTypes.object.isRequired,
   colors: PropTypes.object.isRequired,
   filmTypes: PropTypes.object.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
 };
 
-export default InOutHistoryForm;
+export default HistoryRecordForm;
