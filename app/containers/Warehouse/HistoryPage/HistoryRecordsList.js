@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 import Table from '../../../components/Table/Loadable';
+import HighlightedValue from './HighlightedValue';
 
 import messages from './messages';
 
 const HistoryRecordsList = ({ historyRecords }) => (
   <Table
-    columns={[
+    columns /* eslint-disable react/prop-types */={[
       {
         id: 'operationDateTime',
         Header: <FormattedMessage {...messages.operationDateTime} />,
@@ -34,6 +35,7 @@ const HistoryRecordsList = ({ historyRecords }) => (
         id: 'amount',
         Header: <FormattedMessage {...messages.amount} />,
         accessor: hr => hr.amount,
+        Cell: ({ value: amount }) => <HighlightedValue value={amount} />,
       },
       {
         id: 'measurementUnit',
