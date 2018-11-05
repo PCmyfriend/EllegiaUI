@@ -29,12 +29,19 @@ export function* addWarehouseHistoryRecord(action) {
 
   try {
     yield put(showLoading());
-    yield call(apiRequest(authHeader).post, requestUrl, warehouseHistoryRecord);
+    const returnedWarehouseHistoryRecord = yield call(
+      apiRequest(authHeader).post,
+      requestUrl,
+      warehouseHistoryRecord,
+    );
     yield all([
       put(hideLoading()),
       put(showSuccess()),
       put(
-        addWarehouseHistoryRecordSuccess(warehouseId, warehouseHistoryRecord),
+        addWarehouseHistoryRecordSuccess(
+          warehouseId,
+          returnedWarehouseHistoryRecord,
+        ),
       ),
     ]);
   } catch (error) {

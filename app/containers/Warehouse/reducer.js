@@ -12,14 +12,14 @@ export default function warehousesReducer(state = initialState, action) {
     case LOAD_WAREHOUSE_HISTORY_SUCCESS: {
       const warehouses = state.toJS();
       warehouses[action.warehouseId] = { history: action.history };
-      return fromJS([...warehouses]);
+      return fromJS(Object.assign({}, warehouses));
     }
     case ADD_WAREHOUSE_HISTORY_RECORD_SUCCESS: {
       const { warehouseId, warehouseHistoryRecord } = action;
       const warehouses = state.toJS();
       const warehouse = warehouses[warehouseId];
       warehouse.history.splice(0, 0, warehouseHistoryRecord);
-      return fromJS([...warehouses]);
+      return fromJS(Object.assign({}, warehouses));
     }
     default:
       return state;

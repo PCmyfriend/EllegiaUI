@@ -25,4 +25,20 @@ export default defineMessages({
     id: 'app.components.Warehouse.History.operationDateTime',
     defaultMessage: 'Operation date time',
   },
+  type: {
+    id: 'app.components.Warehouse.History.type',
+    defaultMessage: 'Type',
+  },
+  name: {
+    id: 'app.components.Warehouse.History.name',
+    defaultMessage: 'Name',
+  },
+  shift: {
+    id: 'app.components.Warehouse.History.shift',
+    defaultMessage: 'Shift',
+  },
+  order: {
+    id: 'app.components.Warehouse.History.order',
+    defaultMessage: 'Order',
+  },
 });

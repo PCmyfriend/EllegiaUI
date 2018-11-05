@@ -64,12 +64,12 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-const withSaga = injectSaga({ key: 'warehouseHistoryRecords', saga });
-
 const withReducer = injectReducer({ key: 'warehouses', reducer });
 
+const withSaga = injectSaga({ key: 'warehouseHistoryRecords', saga });
+
 export default compose(
-  withSaga,
   withReducer,
+  withSaga,
   withConnect,
 )(HistoryPage);

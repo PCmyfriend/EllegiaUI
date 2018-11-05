@@ -1,7 +1,8 @@
 import { createSelector } from 'reselect';
 import { fromJS } from 'immutable';
 
-const selectWarehouse = state => state.get('warehouses').get(1) || fromJS({});
+const selectWarehouse = state =>
+  fromJS(state.get('warehouses').toJS()[1] || {});
 
 const makeSelectHistoryRecords = () =>
   createSelector(
