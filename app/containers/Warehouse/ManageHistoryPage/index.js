@@ -5,12 +5,13 @@ import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import { fromJS } from 'immutable';
+import { FormattedMessage } from 'react-intl';
 
 import filmTypesSaga from '../../FilmTypes/saga';
 import { makeSelectFilmTypes } from '../../FilmTypes/selectors';
 import { loadFilmTypes } from '../../FilmTypes/actions';
 
+import makeHandbookReducer from '../../HandbookMaker/handbookReducerMaker';
 import handbookSaga from '../../HandbookMaker/saga';
 import { makeSelectHandbookValues } from '../../HandbookMaker/selectors';
 import { loadHandbookValues } from '../../HandbookMaker/actions';
@@ -18,19 +19,56 @@ import { loadHandbookValues } from '../../HandbookMaker/actions';
 import { addWarehouseHistoryRecord } from '../actions';
 
 import injectSaga from '../../../utils/injectSaga';
+import injectReducer from '../../../utils/injectReducer';
 
 import HistoryRecordForm from './HistoryRecordForm';
 
+import messages from './messages';
+
+import { TYPE_CUSTOM_PRODUCT, TYPE_FILM_TYPE } from './warehouseItemTypes';
+
 class ManageWarehouseInOutHistoryPage extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      warehouseItemTypes: [
+        {
+          id: TYPE_CUSTOM_PRODUCT,
+          name: <FormattedMessage {...messages.customProduct} />,
+        },
+        {
+          id: TYPE_FILM_TYPE,
+          name: <FormattedMessage {...messages.filmType} />,
+        },
+      ],
+      selectedWarehouseItemType: TYPE_CUSTOM_PRODUCT,
+    };
+
+    this.handleWarehouseItemTypeChange = this.handleWarehouseItemTypeChange.bind(
+      this,
+    );
+  }
+
   componentDidMount() {
     this.props.loadColors();
     this.props.loadFilmTypes();
+    this.props.loadMeasurementUnits();
+    this.props.loadProductTypes();
+  }
+
+  handleWarehouseItemTypeChange(value) {
+    this.setState({ selectedWarehouseItemType: value });
   }
 
   render() {
     return (
       <HistoryRecordForm
+        onSelectWarehouseItemType={this.handleWarehouseItemTypeChange}
+        selectedWarehouseItemType={this.state.selectedWarehouseItemType}
+        warehouseItemTypes={this.state.warehouseItemTypes}
         measurementUnits={this.props.measurementUnits}
+        productTypes={this.props.productTypes}
         colors={this.props.colors}
         filmTypes={this.props.filmTypes}
         onSubmitForm={this.props.onSubmitForm}
@@ -43,8 +81,11 @@ ManageWarehouseInOutHistoryPage.propTypes = {
   colors: PropTypes.object.isRequired,
   filmTypes: PropTypes.object.isRequired,
   measurementUnits: PropTypes.object.isRequired,
+  productTypes: PropTypes.object.isRequired,
   loadColors: PropTypes.func.isRequired,
   loadFilmTypes: PropTypes.func.isRequired,
+  loadMeasurementUnits: PropTypes.func.isRequired,
+  loadProductTypes: PropTypes.func.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
 };
 
@@ -52,14 +93,28 @@ const mapStateToProps = () =>
   createStructuredSelector({
     colors: makeSelectHandbookValues('colors'),
     filmTypes: makeSelectFilmTypes(),
-    measurementUnits: () => fromJS([{ id: 1, name: 'kg' }]),
+    measurementUnits: makeSelectHandbookValues('measurementUnits'),
+    productTypes: makeSelectHandbookValues('productTypes'),
   });
 
 function mapDispatchToProps(dispatch) {
   return {
     loadColors: () => dispatch(loadHandbookValues('colors')),
     loadFilmTypes: () => dispatch(loadFilmTypes()),
-    onSubmitForm: values => dispatch(addWarehouseHistoryRecord(1, values)),
+    loadMeasurementUnits: () =>
+      dispatch(loadHandbookValues('measurementUnits')),
+    loadProductTypes: () => dispatch(loadHandbookValues('productTypes')),
+    onSubmitForm: values => {
+      const modifiedValues = Object.assign({}, values.toJS());
+      if (modifiedValues.warehouseItemType === TYPE_CUSTOM_PRODUCT) {
+        modifiedValues.filmTypeId = null;
+      } else if (modifiedValues.warehouseItemType === TYPE_FILM_TYPE) {
+        modifiedValues.productTypeId = null;
+      }
+      modifiedValues.warehouseItemType = null;
+      console.log(modifiedValues);
+      dispatch(addWarehouseHistoryRecord(1, modifiedValues));
+    },
   };
 }
 
@@ -67,6 +122,16 @@ const withConnect = connect(
   mapStateToProps,
   mapDispatchToProps,
 );
+
+const withProductTypesReducer = injectReducer({
+  key: 'productTypes',
+  reducer: makeHandbookReducer('productTypes'),
+});
+
+const withMeasurementUnitsReducer = injectReducer({
+  key: 'measurementUnits',
+  reducer: makeHandbookReducer('measurementUnits'),
+});
 
 const withHandbookValuesSaga = injectSaga({
   key: 'handbookValues',
@@ -79,6 +144,8 @@ const withFilmTypesSaga = injectSaga({
 });
 
 export default compose(
+  withProductTypesReducer,
+  withMeasurementUnitsReducer,
   withHandbookValuesSaga,
   withFilmTypesSaga,
   withConnect,

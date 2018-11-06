@@ -9,14 +9,18 @@ import ContentAddButton from '../../../components/Buttons/ContentAddButton';
 
 import messages from './messages';
 
-const validate = values => {
+import { TYPE_CUSTOM_PRODUCT, TYPE_FILM_TYPE } from './warehouseItemTypes';
+
+const makeValidationFunc = selectedType => values => {
   const errors = {};
-  const requiredFields = [
-    'filmTypeId',
-    'colorId',
-    'measurementUnitId',
-    'amount',
-  ];
+  const requiredFields = ['colorId', 'measurementUnitId', 'amount'];
+
+  if (selectedType === TYPE_FILM_TYPE) {
+    requiredFields.push('filmTypeId');
+  } else if (selectedType === TYPE_CUSTOM_PRODUCT) {
+    requiredFields.push('productTypeId');
+  }
+
   requiredFields.forEach(field => {
     if (!values.get(field)) {
       errors[field] = 'Обязательное поле';
@@ -26,9 +30,13 @@ const validate = values => {
 };
 
 const HistoryRecordForm = ({
+  warehouseItemTypes,
+  selectedWarehouseItemType,
+  onSelectWarehouseItemType,
   measurementUnits,
   colors,
   filmTypes,
+  productTypes,
   onSubmitForm,
 }) => (
   <FormDialog
@@ -37,13 +45,28 @@ const HistoryRecordForm = ({
     onSubmitForm={onSubmitForm}
     submitButtonTitle={<FormattedMessage {...messages.save} />}
     cancelButtonTitle={<FormattedMessage {...messages.cancel} />}
-    validate={validate}
+    validate={makeValidationFunc(selectedWarehouseItemType)}
   >
     <FormSelectField
-      name="filmTypeId"
-      label={<FormattedMessage {...messages.filmType} />}
-      data={filmTypes.toJS()}
+      name="warehouseItemType"
+      label={<FormattedMessage {...messages.warehouseItemType} />}
+      data={warehouseItemTypes}
+      onChange={onSelectWarehouseItemType}
     />
+    {selectedWarehouseItemType === TYPE_CUSTOM_PRODUCT && (
+      <FormSelectField
+        name="productTypeId"
+        label={<FormattedMessage {...messages.productType} />}
+        data={productTypes.toJS()}
+      />
+    )}
+    {selectedWarehouseItemType === TYPE_FILM_TYPE && (
+      <FormSelectField
+        name="filmTypeId"
+        label={<FormattedMessage {...messages.filmType} />}
+        data={filmTypes.toJS()}
+      />
+    )}
     <FormSelectField
       name="colorId"
       label={<FormattedMessage {...messages.color} />}
@@ -62,9 +85,13 @@ const HistoryRecordForm = ({
 );
 
 HistoryRecordForm.propTypes = {
+  warehouseItemTypes: PropTypes.array.isRequired,
+  selectedWarehouseItemType: PropTypes.number.isRequired,
+  onSelectWarehouseItemType: PropTypes.func.isRequired,
   measurementUnits: PropTypes.object.isRequired,
   colors: PropTypes.object.isRequired,
   filmTypes: PropTypes.object.isRequired,
+  productTypes: PropTypes.object.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
 };
 

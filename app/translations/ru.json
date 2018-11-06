@@ -112,5 +112,19 @@
   "app.components.Warehouse.History.type": "Тип",
   "app.components.Warehouse.History.name": "Наименование",
   "app.components.Warehouse.History.shift": "Смена",
-  "app.components.Warehouse.History.order": "Заказ"
+  "app.components.Warehouse.History.order": "Заказ",
+  "app.components.ManageWarehouseInOutHistory.Form.header":
+    "Форма прихода/выдачи",
+  "app.components.ManageWarehouseInOutHistory.Form.cancel": "Отменить",
+  "app.components.ManageWarehouseInOutHistory.Form.save": "Сохранить",
+  "app.components.ManageWarehouseInOutHistory.Form.color": "Цвет",
+  "app.components.ManageWarehouseInOutHistory.Form.filmType": "Марка пленки",
+  "app.components.ManageWarehouseInOutHistory.Form.amount": "Количество",
+  "app.components.ManageWarehouseInOutHistory.Form.measurementUnit":
+    "Единица измерения",
+  "app.components.ManageWarehouseInOutHistory.Form.productType": "Тип продукта",
+  "app.components.ManageWarehouseInOutHistory.Form.customProduct":
+    "Свой продукт",
+  "app.components.ManageWarehouseInOutHistory.Form.warehouseItemType":
+    "Тип продукции"
 }

@@ -29,4 +29,16 @@ export default defineMessages({
     id: 'app.components.ManageWarehouseInOutHistory.Form.measurementUnit',
     defaultMessage: 'Measurement unit',
   },
+  productType: {
+    id: 'app.components.ManageWarehouseInOutHistory.Form.productType',
+    defaultMessage: 'Product type',
+  },
+  customProduct: {
+    id: 'app.components.ManageWarehouseInOutHistory.Form.customProduct',
+    defaultMessage: 'Custom product',
+  },
+  warehouseItemType: {
+    id: 'app.components.ManageWarehouseInOutHistory.Form.warehouseItemType',
+    defaultMessage: 'Production type',
+  },
 });
