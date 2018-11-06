@@ -55,6 +55,7 @@ class ManageWarehouseInOutHistoryPage extends React.Component {
     this.props.loadFilmTypes();
     this.props.loadMeasurementUnits();
     this.props.loadProductTypes();
+    this.props.loadShifts();
   }
 
   handleWarehouseItemTypeChange(value) {
@@ -71,6 +72,7 @@ class ManageWarehouseInOutHistoryPage extends React.Component {
         productTypes={this.props.productTypes}
         colors={this.props.colors}
         filmTypes={this.props.filmTypes}
+        shifts={this.props.shifts}
         onSubmitForm={this.props.onSubmitForm}
       />
     );
@@ -78,6 +80,7 @@ class ManageWarehouseInOutHistoryPage extends React.Component {
 }
 
 ManageWarehouseInOutHistoryPage.propTypes = {
+  shifts: PropTypes.object.isRequired,
   colors: PropTypes.object.isRequired,
   filmTypes: PropTypes.object.isRequired,
   measurementUnits: PropTypes.object.isRequired,
@@ -86,11 +89,13 @@ ManageWarehouseInOutHistoryPage.propTypes = {
   loadFilmTypes: PropTypes.func.isRequired,
   loadMeasurementUnits: PropTypes.func.isRequired,
   loadProductTypes: PropTypes.func.isRequired,
+  loadShifts: PropTypes.func.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = () =>
   createStructuredSelector({
+    shifts: makeSelectHandbookValues('shifts'),
     colors: makeSelectHandbookValues('colors'),
     filmTypes: makeSelectFilmTypes(),
     measurementUnits: makeSelectHandbookValues('measurementUnits'),
@@ -104,6 +109,7 @@ function mapDispatchToProps(dispatch) {
     loadMeasurementUnits: () =>
       dispatch(loadHandbookValues('measurementUnits')),
     loadProductTypes: () => dispatch(loadHandbookValues('productTypes')),
+    loadShifts: () => dispatch(loadHandbookValues('shifts')),
     onSubmitForm: values => {
       const modifiedValues = Object.assign({}, values.toJS());
       if (modifiedValues.warehouseItemType === TYPE_CUSTOM_PRODUCT) {
@@ -122,6 +128,11 @@ const withConnect = connect(
   mapStateToProps,
   mapDispatchToProps,
 );
+
+const withShiftsReducer = injectReducer({
+  key: 'shifts',
+  reducer: makeHandbookReducer('shifts'),
+});
 
 const withProductTypesReducer = injectReducer({
   key: 'productTypes',
@@ -144,6 +155,7 @@ const withFilmTypesSaga = injectSaga({
 });
 
 export default compose(
+  withShiftsReducer,
   withProductTypesReducer,
   withMeasurementUnitsReducer,
   withHandbookValuesSaga,

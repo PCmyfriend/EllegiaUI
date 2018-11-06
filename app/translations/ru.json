@@ -126,5 +126,7 @@
   "app.components.ManageWarehouseInOutHistory.Form.customProduct":
     "Свой продукт",
   "app.components.ManageWarehouseInOutHistory.Form.warehouseItemType":
-    "Тип продукции"
+    "Тип продукции",
+  "app.components.ManageWarehouseInOutHistory.Form.shift": "Смена",
+  "app.components.ManageWarehouseInOutHistory.Form.noSelected": "Не выбрано"
 }

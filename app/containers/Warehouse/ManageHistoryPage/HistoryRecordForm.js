@@ -31,6 +31,7 @@ const makeValidationFunc = selectedType => values => {
 
 const HistoryRecordForm = ({
   warehouseItemTypes,
+  shifts,
   selectedWarehouseItemType,
   onSelectWarehouseItemType,
   measurementUnits,
@@ -81,6 +82,14 @@ const HistoryRecordForm = ({
       name="amount"
       label={<FormattedMessage {...messages.amount} />}
     />
+    <FormSelectField
+      name="shiftId"
+      label={<FormattedMessage {...messages.shift} />}
+      data={[
+        { id: null, name: <FormattedMessage {...messages.notSelected} /> },
+        ...shifts.toJS(),
+      ]}
+    />
   </FormDialog>
 );
 
@@ -92,6 +101,7 @@ HistoryRecordForm.propTypes = {
   colors: PropTypes.object.isRequired,
   filmTypes: PropTypes.object.isRequired,
   productTypes: PropTypes.object.isRequired,
+  shifts: PropTypes.object.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
 };
 

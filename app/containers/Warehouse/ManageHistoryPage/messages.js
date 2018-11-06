@@ -41,4 +41,12 @@ export default defineMessages({
     id: 'app.components.ManageWarehouseInOutHistory.Form.warehouseItemType',
     defaultMessage: 'Production type',
   },
+  shift: {
+    id: 'app.components.ManageWarehouseInOutHistory.Form.shift',
+    defaultMessage: 'Production type',
+  },
+  notSelected: {
+    id: 'app.components.ManageWarehouseInOutHistory.Form.noSelected',
+    defaultMessage: 'Not selected',
+  },
 });
