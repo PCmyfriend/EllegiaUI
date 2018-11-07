@@ -7,7 +7,7 @@ import injectSaga from '../../../utils/injectSaga';
 import { addHandbookValue } from '../actions';
 import saga from '../saga';
 
-import messages from './messages';
+import messages from '../messages';
 import HandbookValueForm from './HandbookValueForm';
 
 class ManageHandbookValuePage extends React.PureComponent {

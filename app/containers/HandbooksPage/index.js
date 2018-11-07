@@ -63,6 +63,16 @@ class CommonHandbooksPage extends React.PureComponent {
             />
             <ContentInbox />
           </ListItem>
+          <ListItem>
+            <ListItemText
+              primary={
+                <Link to="/measurementUnits">
+                  <FormattedMessage {...messages.measurementUnits} />
+                </Link>
+              }
+            />
+            <ContentInbox />
+          </ListItem>
         </List>
       </div>
     );

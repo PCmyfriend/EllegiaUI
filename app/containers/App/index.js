@@ -149,6 +149,24 @@ export default function App() {
               ))}
             />
             <Route
+              path="/measurementUnits"
+              component={userIsAuthenticated(() => (
+                <HandbookValuesPage
+                  handbookName="measurementUnits"
+                  handbookSingularName="measurementUnit"
+                />
+              ))}
+            />
+            <Route
+              path="/measurementUnit"
+              component={userIsAuthenticated(() => (
+                <ManageHandbookValuePage
+                  handbookName="measurementUnits"
+                  handbookSingularName="measurementUnit"
+                />
+              ))}
+            />
+            <Route
               path="/warehouseHistory"
               component={userIsAuthenticated(WarehouseHistoryPage)}
             />

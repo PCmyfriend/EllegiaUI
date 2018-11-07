@@ -59,6 +59,7 @@ export default function createReducer(injectedReducers) {
     colors: makeHandbookReducer('colors'),
     plasticBagTypes,
     filmTypeOptions: makeHandbookReducer('filmTypeOptions'),
+    measurementUnits: makeHandbookReducer('measurementUnits'),
     orders,
     ...injectedReducers,
   });

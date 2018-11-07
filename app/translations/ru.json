@@ -34,6 +34,7 @@
   "app.components.HandbooksPage.plasticBagTypes": "Виды пакетов",
   "app.components.HandbooksPage.filmOptions": "Варианты пленки",
   "app.components.HandbooksPage.colors": "Цвета",
+  "app.components.HandbooksPage.measurementUnits": "Единицы измерения",
   "app.components.ManageHandbookValuePage.header": "Добавить",
   "app.components.ManageHandbookValuePage.save": "Сохранить",
   "app.components.ManageHandbookValuePage.colors": "Цвета",
@@ -42,6 +43,9 @@
   "app.components.ManageHandbookValuePage.plasticBagType": "Вид пакета",
   "app.components.ManageHandbookValuePage.filmTypeOptions": "Варианты пленки",
   "app.components.ManageHandbookValuePage.filmTypeOption": "Вариант пленки",
+  "app.components.ManageHandbookValuePage.measurementUnit": "Единица измерения",
+  "app.components.ManageHandbookValuePage.measurementUnits":
+    "Единицы измерения",
   "app.components.PlasticBagTypes.ManageStandardSize.header":
     "Форма стандартного размера",
   "app.components.PlasticBagTypes.ManageStandardSize.widthInMm": "Ширина в мм",

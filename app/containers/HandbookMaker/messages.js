@@ -33,4 +33,12 @@ export default defineMessages({
     id: 'app.components.ManageHandbookValuePage.filmTypeOption',
     defaultMessage: 'Film type option',
   },
+  measurementUnits: {
+    id: 'app.components.ManageHandbookValuePage.measurementUnits',
+    defaultMessage: 'Measurement units',
+  },
+  measurementUnit: {
+    id: 'app.components.ManageHandbookValuePage.measurementUnit',
+    defaultMessage: 'Measurement unit',
+  },
 });

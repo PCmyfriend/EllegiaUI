@@ -14,7 +14,7 @@ import { loadHandbookValues, deleteHandbookValue } from '../actions';
 import saga from '../saga';
 
 import HandbookValuesList from './HandbookValuesList';
-import messages from '../ManageHandbookValuePage/messages';
+import messages from '../messages';
 
 import ContentAddButton from '../../../components/Buttons/ContentAddButton';
 

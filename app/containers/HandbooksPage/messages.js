@@ -31,4 +31,8 @@ export default defineMessages({
     id: 'app.components.HandbooksPage.colors',
     defaultMessage: 'Colors',
   },
+  measurementUnits: {
+    id: 'app.components.HandbooksPage.measurementUnits',
+    defaultMessage: 'Measurement units',
+  },
 });

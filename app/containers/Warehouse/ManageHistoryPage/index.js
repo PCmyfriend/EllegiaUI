@@ -139,11 +139,6 @@ const withProductTypesReducer = injectReducer({
   reducer: makeHandbookReducer('productTypes'),
 });
 
-const withMeasurementUnitsReducer = injectReducer({
-  key: 'measurementUnits',
-  reducer: makeHandbookReducer('measurementUnits'),
-});
-
 const withHandbookValuesSaga = injectSaga({
   key: 'handbookValues',
   saga: handbookSaga,
@@ -157,7 +152,6 @@ const withFilmTypesSaga = injectSaga({
 export default compose(
   withShiftsReducer,
   withProductTypesReducer,
-  withMeasurementUnitsReducer,
   withHandbookValuesSaga,
   withFilmTypesSaga,
   withConnect,
