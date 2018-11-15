@@ -8,7 +8,7 @@ export function showSuccess(
     title,
     message,
     position: 'tr',
-    autoDismiss: 5,
+    autoDismiss: 2,
   });
 }
 
