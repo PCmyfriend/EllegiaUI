@@ -29,11 +29,6 @@ const OrdersList = ({
   <Table
     columns={[
       {
-        id: 'customer',
-        Header: <FormattedMessage {...orderFormMessages.customer} />,
-        accessor: o => o.customer.name,
-      },
-      {
         id: 'productTypeName',
         Header: <FormattedMessage {...orderFormMessages.productTypeName} />,
         accessor: o => o.productType.name,
@@ -59,30 +54,8 @@ const OrdersList = ({
         accessor: o => o.productType.standardSize.name,
       },
       {
-        id: 'widthInMmError',
-        Header: <FormattedMessage {...orderFormMessages.widthInMmError} />,
-        accessor: o => o.productType.widthInMmError,
-      },
-      {
-        id: 'lengthInMmError',
-        Header: <FormattedMessage {...orderFormMessages.lengthInMmError} />,
-        accessor: o => o.productType.lengthInMmError,
-      },
-      {
-        id: 'heightInMmError',
-        Header: <FormattedMessage {...orderFormMessages.heightInMmError} />,
-        accessor: o => o.productType.heightInMmError,
-      },
-      {
         id: 'thicknessInMicron',
         Header: <FormattedMessage {...orderFormMessages.thicknessInMicron} />,
-      },
-      {
-        id: 'thicknessInMicronError',
-        Header: (
-          <FormattedMessage {...orderFormMessages.thicknessInMicronError} />
-        ),
-        accessor: o => o.productType.thicknessInMicronError,
       },
       {
         id: 'hasCorona',
