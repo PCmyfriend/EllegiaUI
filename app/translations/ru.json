@@ -80,7 +80,7 @@
   "app.components.Orders.ManageOrderPage.widthInMmError":
     "Погрешность ширины в мм",
   "app.components.Orders.ManageOrderPage.heightInMmError":
-    "Погрешность высоты в мм",
+    "Погрешность закладок в мм",
   "app.components.Orders.ManageOrderPage.lengthInMmError":
     "Погрешность длины в мм",
   "app.components.Orders.ManageOrderPage.thicknessInMicronError":
