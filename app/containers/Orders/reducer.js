@@ -1,17 +1,33 @@
 import { fromJS } from 'immutable';
 
 import {
+  ON_EDITING,
+  ACTIVE,
+  ACTIVE_PARTIALLY_RELEASED,
+  COMPLETED,
+  RELEASED,
+  CLOSED,
+} from './orderStatuses';
+
+import {
   ADD_ORDER_SUCCESS,
   LOAD_ORDERS_SUCCESS,
   DELETE_ORDER_SUCCESS,
   SEND_ORDER_SUCCESS,
 } from './constants';
 
-const initialState = fromJS({
-  active: [],
-  completed: [],
-  released: [],
-});
+const initialState = fromJS(
+  (() => {
+    const state = {};
+    state[ON_EDITING] = [];
+    state[ACTIVE] = [];
+    state[ACTIVE_PARTIALLY_RELEASED] = [];
+    state[COMPLETED] = [];
+    state[RELEASED] = [];
+    state[CLOSED] = [];
+    return state;
+  })(),
+);
 
 export default function ordersReducer(state = initialState, action) {
   if (action.type === ADD_ORDER_SUCCESS) {

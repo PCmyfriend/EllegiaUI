@@ -86,9 +86,13 @@
     "Погрешность толщины в мк",
   "app.components.Orders.OrdersPage.header": "Заказы",
   "app.components.Orders.OrdersPage.totalPrice": "Итоговая цена",
+  "app.components.Orders.OrdersPage.onEditing": "На редактировании",
   "app.components.Orders.OrdersPage.active": "Активные",
+  "app.components.Orders.OrdersPage.activePartiallyReleased":
+    "Частично отпущенные",
   "app.components.Orders.OrdersPage.completed": "Завершенные",
   "app.components.Orders.OrdersPage.released": "Отпущенные",
+  "app.components.Orders.OrdersPage.closed": "Закрытые",
   "app.components.Orders.OrdersPage.print": "Распечатать",
   "app.components.Orders.OrdersPage.delete": "Удалить",
   "app.components.Orders.OrdersPage.actions": "Действия",

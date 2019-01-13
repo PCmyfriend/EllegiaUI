@@ -13,6 +13,10 @@ export default defineMessages({
     id: 'app.components.Orders.OrdersPage.active',
     defaultMessage: 'Active',
   },
+  activePartiallyReleased: {
+    id: 'app.components.Orders.OrdersPage.activePartiallyReleased',
+    defaultMessage: 'Partially released',
+  },
   completed: {
     id: 'app.components.Orders.OrdersPage.completed',
     defaultMessage: 'Completed',
@@ -20,6 +24,14 @@ export default defineMessages({
   released: {
     id: 'app.components.Orders.OrdersPage.released',
     defaultMessage: 'Released',
+  },
+  closed: {
+    id: 'app.components.Orders.OrdersPage.closed',
+    defaultMessage: 'Closed',
+  },
+  onEditing: {
+    id: 'app.components.Orders.OrdersPage.onEditing',
+    defaultMessage: 'On editing',
   },
   print: {
     id: 'app.components.Orders.OrdersPage.print',

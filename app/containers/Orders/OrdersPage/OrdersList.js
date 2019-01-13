@@ -56,6 +56,7 @@ const OrdersList = ({
       {
         id: 'thicknessInMicron',
         Header: <FormattedMessage {...orderFormMessages.thicknessInMicron} />,
+        accessor: o => o.productType.thicknessInMicron,
       },
       {
         id: 'hasCorona',

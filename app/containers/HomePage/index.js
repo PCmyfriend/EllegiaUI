@@ -22,7 +22,7 @@ class HomePage extends React.PureComponent {
   // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <div>
+      <div style={{ width: '95vw', marginLeft: '-7.5vw' }}>
         <div>
           <OrdersPage />
         </div>
