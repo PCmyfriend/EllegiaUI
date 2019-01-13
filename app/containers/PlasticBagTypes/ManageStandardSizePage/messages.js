@@ -18,8 +18,8 @@ export default defineMessages({
     defaultMessage: 'Height in mm',
   },
   quantityInBag: {
-    id: 'app.components.PlasticBagTypes.ManageStandardSize.quantityInBag',
-    defaultMessage: 'Quantity in bag',
+    id: 'app.components.PlasticBagTypes.ManageStandardSize.quantityInKg',
+    defaultMessage: 'Quantity in kg',
   },
   save: {
     id: 'app.components.PlasticBagTypes.ManageStandardSize.save',

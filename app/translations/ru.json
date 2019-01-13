@@ -50,9 +50,10 @@
     "Форма стандартного размера",
   "app.components.PlasticBagTypes.ManageStandardSize.widthInMm": "Ширина в мм",
   "app.components.PlasticBagTypes.ManageStandardSize.lengthInMm": "Длина в мм",
-  "app.components.PlasticBagTypes.ManageStandardSize.heightInMm": "Высота в мм",
-  "app.components.PlasticBagTypes.ManageStandardSize.quantityInBag":
-    "Количество в сумке",
+  "app.components.PlasticBagTypes.ManageStandardSize.heightInMm":
+    "Закладки в мм",
+  "app.components.PlasticBagTypes.ManageStandardSize.quantityInKg":
+    "Количество в кг",
   "app.components.PlasticBagTypes.ManageStandardSize.save": "Сохранить",
   "app.components.PlasticBagTypes.ManageStandardSize.cancel": "Отменить",
   "app.components.PlasticBagTypes.ManagePlasticBagTypePage.header":
