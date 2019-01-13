@@ -31,7 +31,7 @@ class HistoryPage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{ width: '95vw', marginLeft: '-7.5vw' }}>
         <h1>
           <FormattedMessage {...messages.header} />
         </h1>
