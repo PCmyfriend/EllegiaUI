@@ -29,14 +29,14 @@ const validate = values => {
   return errors;
 };
 
-const OrderRoutesFormDialog = ({ order, handleSubmit, classes }) => (
+const OrderRoutesFormDialog = ({ order, handleSubmit }) => (
   <ManageFormDialogPage
     title={<FormattedMessage {...messages.header} />}
     cancelButtonTitle={<FormattedMessage {...messages.cancel} />}
     submitButtonTitle={<FormattedMessage {...messages.send} />}
     onSubmitForm={handleSubmit}
     openingButton={
-      <IconButton className={classes.button}>
+      <IconButton>
         <SendIcon />
       </IconButton>
     }

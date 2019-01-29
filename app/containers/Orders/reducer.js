@@ -31,13 +31,16 @@ const initialState = fromJS(
 
 export default function ordersReducer(state = initialState, action) {
   if (action.type === ADD_ORDER_SUCCESS) {
-    return state.set('active', fromJS([...state.get('active'), action.order]));
+    return state.set(
+      ON_EDITING,
+      fromJS([...state.get(ON_EDITING), action.order]),
+    );
   } else if (action.type === DELETE_ORDER_SUCCESS) {
     return state.set(
-      'active',
+      ON_EDITING,
       fromJS([
         ...state
-          .get('active')
+          .get(ON_EDITING)
           .filter(
             o => parseInt(o.get('id'), 10) !== parseInt(action.orderId, 10),
           ),
@@ -46,7 +49,7 @@ export default function ordersReducer(state = initialState, action) {
   } else if (action.type === LOAD_ORDERS_SUCCESS) {
     return state.set(action.orderStatus, fromJS([...action.orders]));
   } else if (action.type === SEND_ORDER_SUCCESS) {
-    const activeOrders = state.get('active').toJS();
+    const activeOrders = state.get(ON_EDITING).toJS();
 
     const newActiveOrders = [];
     for (let i = 0; i < activeOrders.length; i += 1) {
@@ -58,7 +61,7 @@ export default function ordersReducer(state = initialState, action) {
       newActiveOrders.push(newOrder);
     }
 
-    return state.set('active', fromJS(newActiveOrders));
+    return state.set(ON_EDITING, fromJS(newActiveOrders));
   }
   return state;
 }

@@ -24,7 +24,6 @@ const OrdersList = ({
   orders,
   handlePreviewOrderPrintingVersionClick,
   handleDeleteOrderClick,
-  classes,
 }) => (
   <Table
     columns={[
@@ -96,17 +95,13 @@ const OrdersList = ({
         Cell: ({ value: order }) => (
           <div>
             <IconButton
-              className={classes.button}
               onClick={() => handlePreviewOrderPrintingVersionClick(order.id)}
             >
               <PrintIcon />
             </IconButton>
             {order.isMine && <OrderRoutesFormDialog order={order} />}
             {order.isDeletionPermitted && (
-              <IconButton
-                className={classes.button}
-                onClick={() => handleDeleteOrderClick(order.id)}
-              >
+              <IconButton onClick={() => handleDeleteOrderClick(order.id)}>
                 <DeleteIcon />
               </IconButton>
             )}

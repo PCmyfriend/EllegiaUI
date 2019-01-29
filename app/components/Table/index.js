@@ -25,12 +25,15 @@ const styles = theme => ({
   },
 });
 
-const columnWidth = 240;
-const defaultPageSize = 10;
+const defaultOptions = {
+  columnWidth: 170,
+  pageSize: 10,
+};
 
-const Table = ({ columns, data, classes }) => {
+const Table = ({ columns, data, classes, options }) => {
+  const modifiedOptions = Object.assign({}, defaultOptions, options);
   const modifiedColumns = columns.map(c =>
-    Object.assign({}, c, { width: columnWidth }),
+    Object.assign({}, c, { width: modifiedOptions.columnWidth }),
   );
   return (
     <Paper className={classes.paper}>
@@ -40,7 +43,7 @@ const Table = ({ columns, data, classes }) => {
         style={{
           textAlign: 'center',
         }}
-        defaultPageSize={defaultPageSize}
+        defaultPageSize={modifiedOptions.pageSize}
         previousText={<FormattedMessage {...messages.previousText} />}
         nextText={<FormattedMessage {...messages.nextText} />}
         noDataText={<FormattedMessage {...messages.noRowsFound} />}
@@ -56,6 +59,7 @@ Table.propTypes = {
   columns: PropTypes.array.isRequired,
   data: PropTypes.array.isRequired,
   classes: PropTypes.object.isRequired,
+  options: PropTypes.object,
 };
 
 export default withStyles(styles)(Table);
