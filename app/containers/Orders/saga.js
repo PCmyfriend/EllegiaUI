@@ -114,9 +114,13 @@ export function* sendOrder(action) {
 
   try {
     yield put(showLoading());
-    yield call(apiRequest(authHeader).post, requestUrl, orderRoute);
+    const responseOrderRoute = yield call(
+      apiRequest(authHeader).post,
+      requestUrl,
+      orderRoute,
+    );
     yield all([
-      put(sendOrderSuccess(orderId, orderRoute)),
+      put(sendOrderSuccess(orderId, responseOrderRoute)),
       put(hideLoading()),
       put(showSuccess()),
     ]);

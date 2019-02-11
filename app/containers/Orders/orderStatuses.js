@@ -1,6 +1,16 @@
-export const ON_EDITING = 'onEditing';
-export const ACTIVE = 'active';
-export const ACTIVE_PARTIALLY_RELEASED = 'activePartiallyReleased';
-export const COMPLETED = 'completed';
-export const RELEASED = 'released';
-export const CLOSED = 'closed';
+export const ON_EDITING = 0;
+export const ACTIVE = 1;
+export const ACTIVE_PARTIALLY_RELEASED = 2;
+export const COMPLETED_PARTIALLY_RELEASED = 3;
+export const COMPLETED = 4;
+export const RELEASED = 5;
+export const CLOSED = 6;
+export const ALL = [
+  ON_EDITING,
+  ACTIVE,
+  ACTIVE_PARTIALLY_RELEASED,
+  COMPLETED_PARTIALLY_RELEASED,
+  COMPLETED_PARTIALLY_RELEASED,
+  RELEASED,
+  CLOSED,
+];

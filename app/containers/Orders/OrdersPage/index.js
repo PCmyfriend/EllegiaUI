@@ -24,6 +24,7 @@ import {
   ON_EDITING,
   ACTIVE,
   ACTIVE_PARTIALLY_RELEASED,
+  COMPLETED_PARTIALLY_RELEASED,
   COMPLETED,
   RELEASED,
   CLOSED,
@@ -54,6 +55,7 @@ class OrdersPage extends React.PureComponent {
     this.props.loadOrders(ON_EDITING);
     this.props.loadOrders(ACTIVE);
     this.props.loadOrders(ACTIVE_PARTIALLY_RELEASED);
+    this.props.loadOrders(COMPLETED_PARTIALLY_RELEASED);
     this.props.loadOrders(RELEASED);
     this.props.loadOrders(CLOSED);
   }
@@ -72,15 +74,17 @@ class OrdersPage extends React.PureComponent {
 
   getOrdersBySelectedTab() {
     const { selectedTab } = this.state;
-    if (selectedTab === 0) {
+    if (selectedTab === ON_EDITING) {
       return this.props.editingOrders;
-    } else if (selectedTab === 1) {
+    } else if (selectedTab === ACTIVE) {
       return this.props.activeOrders;
-    } else if (selectedTab === 2) {
+    } else if (selectedTab === ACTIVE_PARTIALLY_RELEASED) {
       return this.props.activePartiallyReleasedOrders;
-    } else if (selectedTab === 3) {
+    } else if (selectedTab === COMPLETED_PARTIALLY_RELEASED) {
+      return this.props.completedPartiallyReleasedOrders;
+    } else if (selectedTab === COMPLETED) {
       return this.props.completedOrders;
-    } else if (selectedTab === 4) {
+    } else if (selectedTab === RELEASED) {
       return this.props.releaseOrders;
     }
 
@@ -114,6 +118,12 @@ class OrdersPage extends React.PureComponent {
               label={<FormattedMessage {...messages.activePartiallyReleased} />}
             />
             <Tab
+              icon={<FlightTakeOff />}
+              label={
+                <FormattedMessage {...messages.completedPartiallyReleased} />
+              }
+            />
+            <Tab
               icon={<DoneIcon />}
               label={<FormattedMessage {...messages.completed} />}
             />
@@ -143,6 +153,7 @@ OrdersPage.propTypes = {
   editingOrders: PropTypes.object.isRequired,
   activeOrders: PropTypes.object.isRequired,
   activePartiallyReleasedOrders: PropTypes.object.isRequired,
+  completedPartiallyReleasedOrders: PropTypes.object.isRequired,
   completedOrders: PropTypes.object.isRequired,
   releaseOrders: PropTypes.object.isRequired,
   closedOrders: PropTypes.object.isRequired,
@@ -156,6 +167,9 @@ const mapStateToProps = createStructuredSelector({
   activeOrders: makeSelectOrdersByStatus(ACTIVE),
   activePartiallyReleasedOrders: makeSelectOrdersByStatus(
     ACTIVE_PARTIALLY_RELEASED,
+  ),
+  completedPartiallyReleasedOrders: makeSelectOrdersByStatus(
+    COMPLETED_PARTIALLY_RELEASED,
   ),
   completedOrders: makeSelectOrdersByStatus(COMPLETED),
   releaseOrders: makeSelectOrdersByStatus(RELEASED),

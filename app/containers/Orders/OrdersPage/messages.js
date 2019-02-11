@@ -17,6 +17,10 @@ export default defineMessages({
     id: 'app.components.Orders.OrdersPage.activePartiallyReleased',
     defaultMessage: 'Partially released',
   },
+  completedPartiallyReleased: {
+    id: 'app.components.Orders.OrdersPage.completedPartiallyReleased',
+    defaultMessage: 'Completed partially released',
+  },
   completed: {
     id: 'app.components.Orders.OrdersPage.completed',
     defaultMessage: 'Completed',

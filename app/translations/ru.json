@@ -89,7 +89,9 @@
   "app.components.Orders.OrdersPage.onEditing": "На редактировании",
   "app.components.Orders.OrdersPage.active": "Активные",
   "app.components.Orders.OrdersPage.activePartiallyReleased":
-    "Частично отпущенные",
+    "Активные частично отпущенные",
+  "app.components.Orders.OrdersPage.completedPartiallyReleased":
+    "Завершенные частично отпущенные",
   "app.components.Orders.OrdersPage.completed": "Завершенные",
   "app.components.Orders.OrdersPage.released": "Отпущенные",
   "app.components.Orders.OrdersPage.closed": "Закрытые",
