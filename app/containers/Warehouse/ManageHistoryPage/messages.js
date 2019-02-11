@@ -17,6 +17,10 @@ export default defineMessages({
     id: 'app.components.ManageWarehouseInOutHistory.Form.color',
     defaultMessage: 'Color',
   },
+  order: {
+    id: 'app.components.ManageWarehouseInOutHistory.Form.order',
+    defaultMessage: 'Order',
+  },
   filmType: {
     id: 'app.components.ManageWarehouseInOutHistory.Form.filmType',
     defaultMessage: 'Film type',

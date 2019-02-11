@@ -128,6 +128,7 @@
   "app.components.ManageWarehouseInOutHistory.Form.cancel": "Отменить",
   "app.components.ManageWarehouseInOutHistory.Form.save": "Сохранить",
   "app.components.ManageWarehouseInOutHistory.Form.color": "Цвет",
+  "app.components.ManageWarehouseInOutHistory.Form.order": "Заказ",
   "app.components.ManageWarehouseInOutHistory.Form.filmType": "Марка пленки",
   "app.components.ManageWarehouseInOutHistory.Form.amount": "Количество",
   "app.components.ManageWarehouseInOutHistory.Form.measurementUnit":

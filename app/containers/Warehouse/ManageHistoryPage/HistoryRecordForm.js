@@ -38,6 +38,7 @@ const HistoryRecordForm = ({
   colors,
   filmTypes,
   productTypes,
+  orders,
   onSubmitForm,
 }) => (
   <FormDialog
@@ -90,6 +91,14 @@ const HistoryRecordForm = ({
         ...shifts.toJS(),
       ]}
     />
+    <FormSelectField
+      name="orderId"
+      label={<FormattedMessage {...messages.order} />}
+      data={[
+        { id: null, name: <FormattedMessage {...messages.notSelected} /> },
+        ...orders.toJS(),
+      ]}
+    />
   </FormDialog>
 );
 
@@ -102,6 +111,7 @@ HistoryRecordForm.propTypes = {
   filmTypes: PropTypes.object.isRequired,
   productTypes: PropTypes.object.isRequired,
   shifts: PropTypes.object.isRequired,
+  orders: PropTypes.object.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
 };
 

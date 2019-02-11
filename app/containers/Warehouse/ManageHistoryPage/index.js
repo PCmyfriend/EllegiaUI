@@ -10,9 +10,16 @@ import { FormattedMessage } from 'react-intl';
 import filmTypesSaga from '../../FilmTypes/saga';
 import { makeSelectFilmTypes } from '../../FilmTypes/selectors';
 import { loadFilmTypes } from '../../FilmTypes/actions';
+import { loadOrders } from '../../Orders/actions';
 
 import makeHandbookReducer from '../../HandbookMaker/handbookReducerMaker';
+
 import handbookSaga from '../../HandbookMaker/saga';
+import ordersSaga from '../../Orders/saga';
+
+import { ACTIVE } from '../../Orders/orderStatuses';
+
+import { makeSelectOrdersByStatus } from '../../Orders/selectors';
 import { makeSelectHandbookValues } from '../../HandbookMaker/selectors';
 import { loadHandbookValues } from '../../HandbookMaker/actions';
 
@@ -56,6 +63,7 @@ class ManageWarehouseInOutHistoryPage extends React.Component {
     this.props.loadMeasurementUnits();
     this.props.loadProductTypes();
     this.props.loadShifts();
+    this.props.loadActiveOrders();
   }
 
   handleWarehouseItemTypeChange(value) {
@@ -73,6 +81,7 @@ class ManageWarehouseInOutHistoryPage extends React.Component {
         colors={this.props.colors}
         filmTypes={this.props.filmTypes}
         shifts={this.props.shifts}
+        orders={this.props.orders}
         onSubmitForm={this.props.onSubmitForm}
       />
     );
@@ -83,6 +92,7 @@ ManageWarehouseInOutHistoryPage.propTypes = {
   shifts: PropTypes.object.isRequired,
   colors: PropTypes.object.isRequired,
   filmTypes: PropTypes.object.isRequired,
+  orders: PropTypes.object.isRequired,
   measurementUnits: PropTypes.object.isRequired,
   productTypes: PropTypes.object.isRequired,
   loadColors: PropTypes.func.isRequired,
@@ -90,6 +100,7 @@ ManageWarehouseInOutHistoryPage.propTypes = {
   loadMeasurementUnits: PropTypes.func.isRequired,
   loadProductTypes: PropTypes.func.isRequired,
   loadShifts: PropTypes.func.isRequired,
+  loadActiveOrders: PropTypes.func.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
 };
 
@@ -100,10 +111,12 @@ const mapStateToProps = () =>
     filmTypes: makeSelectFilmTypes(),
     measurementUnits: makeSelectHandbookValues('measurementUnits'),
     productTypes: makeSelectHandbookValues('productTypes'),
+    orders: makeSelectOrdersByStatus(ACTIVE),
   });
 
 function mapDispatchToProps(dispatch) {
   return {
+    loadActiveOrders: () => dispatch(loadOrders(ACTIVE)),
     loadColors: () => dispatch(loadHandbookValues('colors')),
     loadFilmTypes: () => dispatch(loadFilmTypes()),
     loadMeasurementUnits: () =>
@@ -118,7 +131,6 @@ function mapDispatchToProps(dispatch) {
         modifiedValues.productTypeId = null;
       }
       modifiedValues.warehouseItemType = null;
-      console.log(modifiedValues);
       dispatch(addWarehouseHistoryRecord(1, modifiedValues));
     },
   };
@@ -149,10 +161,16 @@ const withFilmTypesSaga = injectSaga({
   saga: filmTypesSaga,
 });
 
+const withOrdersSaga = injectSaga({
+  key: 'orders',
+  saga: ordersSaga,
+});
+
 export default compose(
   withShiftsReducer,
   withProductTypesReducer,
   withHandbookValuesSaga,
   withFilmTypesSaga,
+  withOrdersSaga,
   withConnect,
 )(ManageWarehouseInOutHistoryPage);
